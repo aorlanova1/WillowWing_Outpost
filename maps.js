@@ -334,6 +334,31 @@ var mapStarter = {
     mapBackground: "Background",
   }
 
+  var worldMaps = {
+    maps: {
+      1: mapStarter,
+      2: mapTwo,
+      3: mapThree,
+      4: mapFour,
+      5: mapFive,
+      6: mapSix,
+      7: catchWild,
+      8: mapSevenVillage,
+      9: mapEight,
+      10: mapNine
+    },
+    mapSize: {
+     rows: 5,
+     cols: 4,
+    },
+    mapLayout: 
+    [[0,8,0,0],
+     [2,3,9,0],
+    [4,1,5,10],
+    [0,6,0,0],
+    [0,0,0,0]]
+   };
+
   export const maps = {
     mapStarter,
     mapTwo,
@@ -345,5 +370,6 @@ var mapStarter = {
     mapEight,
     mapNine,
     catchWild,
+    worldMaps
 
   }
