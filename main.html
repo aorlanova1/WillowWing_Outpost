@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<head>
+    <style></style>
+    <link rel="stylesheet" href="main.css">
+    <title>Lab4</title>
+</head>
+<body>
+    <div>
+        <canvas id="theCanvas" tabindex="1" width="640" height="480"></canvas>
+        <canvas id="theSecondCanvas" tabindex="1" width="640" height="480"></canvas>
+        <div id="buttonMenu">
+            <button id="horseMenu">HORSES</button>
+            <button id="inventory">INVENTORY</button>
+            <div id="playerCoins"></div>
+        </div>
+    </div>
+
+    <div width="640" height="480">
+        <div id="enterScreen">
+            <h1>Welcome to the outpost!</h1>
+            <ul id="buttonList">
+                <li><button id="enterGame">enter</button></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="menuExpand">
+        <button id="exitExpand">EXIT</button>
+        <h4 id="menuExpandTitle"></h4>
+        <ul id="menuExpandList">
+        </ul>
+        <ul id="menuHorseExpandList"></ul>
+        <ul id="menuInventoryExpandList"></ul>
+        </ul>
+    </div>
+
+    <div id="horseCard">
+        <button id="exitCard">EXIT</button>
+        <table id="">
+            <th id="horseCardHeader"></th>
+                <tr>
+                  <td>&nbsp;</td>
+                   <td>Interested</td>
+                  <td>Nervous</td>
+                  <td>Stuborn</td>
+                  <td>Trecherous</td>
+                </tr>
+                <tr>
+                  <td>TEMPERMENT</td>
+                  <td id="interested"></td>
+                  <td id="nervous"></td>
+                  <td id="stuborn"></td>
+                  <td id="trecherous"></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Bond Level</td>
+                </tr>
+                <tr>
+                  <td>Bond</td>
+                  <td id="bond"></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Y/N</td>
+                </tr>
+                  <tr>
+                  <td>In Field?</td>
+                  <td id="displayed"></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                   <td>Saddle Pad</td>
+                  <td>Saddle</td>
+                  <td>Bridle</td>
+                </tr>
+                <tr>
+                  <td>TACK</td>
+                  <td id="sadpd"></td>
+                  <td id="saddle"></td>
+                  <td id="bridle"></td>
+                </tr>
+                <tr>
+        </table>
+    </div>
+
+    <div id="NPC">
+      <button id="exitNPCCard">EXIT</button>
+      <div id="NPCImgHolder"></div>
+      <div id="NPCDialogueHolder"><p id="NPCDialogue"></p></div>
+      <div id="CharDialogueHolder"></div>
+    </div>
+
+    <br>
+    <div id="eventContainer" width="640" height="480">
+        <ul id="eventInterface">
+        </u1>
+    </div>
+    <script type="module" src="main.js"></script>
+</body>
+</html>

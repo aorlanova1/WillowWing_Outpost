@@ -1,0 +1,125 @@
+#theCanvas {
+    background-color: rgb(248, 248, 248);
+    clear: right;
+    position: absolute;
+}
+
+#buttonMenu {
+    position: absolute;
+    height: 20px;
+    width: 640px;
+    background-color: rgb(215, 205, 171);
+    display: inline;
+}
+
+#playerCoins {
+    float: right;
+}
+
+#menuHorseExpandList {
+    display: block;
+    overflow: scroll;
+}
+
+#menuInventoryExpandList {
+    display: block;
+    overflow: scroll;
+}
+
+#eventContainer {
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: auto;
+}
+
+#menuExpand {
+    position: fixed;
+    margin-left: 160px;
+    margin-top: 100px;
+    display: none;
+    overflow: scroll;
+    height: 300px;
+    width: 350px;
+    background: whitesmoke;
+}
+
+#horseCard {
+    position: fixed;
+    margin-left: 160px;
+    margin-top: 100px;
+    display: none;
+    overflow: scroll;
+    height: 300px;
+    width: 390px;
+    background: whitesmoke;
+}
+
+#NPC {
+    position: fixed;
+    margin-left: 160px;
+    margin-top: 100px;
+    display: none;
+    overflow: scroll;
+    height: 300px;
+    width: 390px;
+    background: whitesmoke;    
+}
+
+#exitNPCCard {
+    float: right;
+    background-color: #ab9191;    
+}
+
+#exitExpand {
+    float: right;
+    background-color: #ab9191;
+}
+
+#exitCard {
+    float: right;
+    background-color: #ab9191;
+}
+
+#theSecondCanvas {
+    background-color: rgb(10, 0, 59);
+    opacity: .001;
+    position: absolute;
+}
+#enterScreen {
+    position: fixed;
+    display: block;
+    height: 480px;
+    width: 640px;
+    background: linear-gradient(to left, #665454 50%, #9c63a4 50%);
+}
+#eventInterface {
+    height: 100px !important;
+    width: 640px !important;
+    overflow: scroll;
+    background-color: bisque;
+    margin-top: 472px;
+}
+
+.Background {
+    background-image: url('background.png');
+    clear: left;
+}
+.Swamp {
+    background-image: url('swamp.png');
+    clear: left;
+}
+
+.StoneSwamp {
+    background-image: url('StoneSwamp.png');
+    clear: left;
+}
+
+.Grass {
+    background-image: url('Grass.png');
+    clear: left;
+}
+
+.Game {
+    background-color: blue;
+    clear: left;
+}
