@@ -1,4 +1,33 @@
 import { gameImages } from './gameImages.js';
+import { maps } from './maps.js';
+import { items } from './items.js';
+import { horsePhysical } from './horseAttributes.js';
+import { classDefinitions } from './classDefinitions.js';
+
+var worldMaps = {
+  maps: {
+    1: maps.mapStarter,
+    2: maps.mapTwo,
+    3: maps.mapThree,
+    4: maps.mapFour,
+    5: maps.mapFive,
+    6: maps.mapSix,
+    7: maps.catchWild,
+    8: maps.mapSevenVillage,
+    9: maps.mapEight,
+    10: maps.mapNine
+  },
+  mapSize: {
+   rows: 5,
+   cols: 4,
+  },
+  mapLayout: 
+  [[0,8,0,0],
+   [2,3,9,0],
+  [4,1,5,10],
+  [0,6,0,0],
+  [0,0,0,0]]
+ };
 
 // Store all wild horses, max of 5. 
 var wildHorses = [];
@@ -10,739 +39,58 @@ var playerHorses = [];
 var worldItems = [];
 var playerItems = new Map();
 
-//water pond
-var WaterPondSpriteRow = 0;   
-var WaterPondSpriteCol = 0;      
-var WaterPondMaxSpriteRow = 1;   
-var WaterPondMaxSpriteCol = 1; 
-
-var horseTack = {
-  saddlePads: {
-    1: {
-      name: "black saddle pad",
-      icon: gameImages.blackSP,
-      type: "saddlePad",
-      ownedByPlayer: 0,
-    },
-    2: {
-      name: "blue saddle pad",
-      icon: gameImages.blueSP,
-      type: "saddlePad",
-      ownedByPlayer: 0,
-    },
-    3: {
-      name: "brown saddle pad",
-      icon: gameImages.brownSP,
-      type: "saddlePad",
-      ownedByPlayer: 0,
-    },
-    4: {
-      name: "green saddle pad",
-      icon: gameImages.greenSP,
-      type: "saddlePad",
-      ownedByPlayer: 0,
-    },
-    5: {
-      name: "indigo saddle pad",
-      icon: gameImages.indigoSP,
-      type: "saddlePad",
-      ownedByPlayer: 0,
-    },
-    6: {
-      name: "light glass saddle pad",
-      icon: gameImages.lightGlassSP,
-      type: "saddlePad",
-      ownedByPlayer: 0,
-    },
-    7: {
-      name: "mosi1 saddle pad",
-      icon: gameImages.mosi1SP,
-      type: "saddlePad",
-      ownedByPlayer: 0,
-    },
-    8: {
-      name: "mosi2 saddle pad",
-      icon: gameImages.mosi2SP,
-      type: "saddlePad",
-      ownedByPlayer: 0,
-    },
-    9: {
-      name: "neon yellow saddle pad",
-      icon: gameImages.neonYellowSP,
-      type: "saddlePad",
-      ownedByPlayer: 0,
-    },
-    10: {
-      name: "orange saddle pad",
-      icon: gameImages.orangeSP,
-      type: "saddlePad",
-      ownedByPlayer: 0,
-    },
-    11: {
-      name: "orange cream saddle pad",
-      icon: gameImages.orangeCreamSP,
-      type: "saddlePad",
-      ownedByPlayer: 0,
-    },
-    12: {
-      name: "periwinkle saddle pad",
-      icon: gameImages.periwinkleSP,
-      type: "saddlePad",
-      ownedByPlayer: 0,
-    },
-    13: {
-      name: "pink saddle pad",
-      icon: gameImages.pinkSP,
-      type: "saddlePad",
-      ownedByPlayer: 0,
-    },
-    14: {
-      name: "red saddle pad",
-      icon: gameImages.redSP,
-      type: "saddlePad",
-      ownedByPlayer: 0,
-    },
-    15: {
-      name: "robin saddle pad",
-      icon: gameImages.robinSP,
-      type: "saddlePad",
-      ownedByPlayer: 0,
-    },
-    16: {
-      name: "sea glass saddle pad",
-      icon: gameImages.seaGlassSP,
-      type: "saddlePad",
-      ownedByPlayer: 0,
-    },
-    17: {
-      name: "tan saddle pad",
-      icon: gameImages.tanSP,
-      type: "saddlePad",
-      ownedByPlayer: 0,
-    },
-    18: {
-      name: "white saddle pad",
-      icon: gameImages.whiteSP,
-      type: "saddlePad",
-      ownedByPlayer: 0,
-    },
-    19: {
-      name: "white saddle pad (duplicate)",
-      icon: gameImages.whiteSP,
-      type: "saddlePad",
-      ownedByPlayer: 0,
-    },
-    20: {
-      name: "yellow saddle pad",
-      icon: gameImages.yellowSP,
-      type: "saddlePad",
-      ownedByPlayer: 0,
-    }
-  },
-  saddles: {
-    1: {
-      name: "brown saddle",
-      icon: gameImages.brownSaddle,
-      type: "saddle",
-      ownedByPlayer: 0,
-    }
-  },
-  bridles: {
-    1: {
-      name: "brown bridle",
-      icon: gameImages.brownBridle,
-      type: "bridle",
-      ownedByPlayer: 0,
-    }
-  } 
-}
-
-// ALL HORSE ART LAYERS
-var horseAttributes = {
-  horseBase: {
-    1: gameImages.horseBase,
-  },
-  maneBase: {
-    1: gameImages.Mane
-  },
-  maneShade: {
-    1: gameImages.maneShade
-  },
-  maneColor: {
-    1: gameImages.ManeCBay,
-    2: gameImages.ManeCBrown,
-    3: gameImages.ManeCBrowner,
-    4: gameImages.ManeCBuckskin,
-    5: gameImages.ManeCCream,
-    6: gameImages.ManeCDarkBrown,
-    7: gameImages.ManeCDarkestGrey,
-    8: gameImages.ManeCDarkGrey,
-    9: gameImages.ManeCGrey,
-    10: gameImages.ManeCLightBay,
-    11: gameImages.ManeCPalomino,
-    12: gameImages.ManeCRed,
-    13: gameImages.ManeCSeal,
-    14: gameImages.ManeCSilver,
-    15: gameImages.ManeCTan,
-    16: gameImages.ManeCWhite,
-  },
-  baseColor: {
-    1: gameImages.baseCBay,
-    2: gameImages.baseCBrown,
-    3: gameImages.baseCBrowner,
-    4: gameImages.baseCBuckskin,
-    5: gameImages.baseCCream,
-    6: gameImages.baseCDarkBrown,
-    7: gameImages.baseCDarkestGrey,
-    8: gameImages.baseCDarkGrey,
-    9: gameImages.baseCGrey,
-    10: gameImages.baseCLightBay,
-    11:  gameImages.baseCPalomino,
-    12: gameImages.baseCRed,
-    13: gameImages.baseCSeal,
-    14: gameImages.baseCSilver,
-    15: gameImages.baseCTan,
-    16: gameImages.baseCWhite,
-  },
-  markings: {
-    1: gameImages.appy1,
-    2: gameImages.appy2,
-    3: gameImages.legs1,
-    4: gameImages.legs2,
-    5: gameImages.legs3,
-    6: gameImages.legs4,
-    7: gameImages.pinto1,
-    8: gameImages.pinto2,
-    9: gameImages.pinto3,
-    10: gameImages.pinto4,
-    11: gameImages.pinto5,
-    12: gameImages.pinto6,
-    13: gameImages.pinto7
-  },
-  gradient: {
-    1: gameImages.belly1,
-    2: gameImages.belly2,
-    3: gameImages.belly3,
-    4: gameImages.belly4,
-    5: gameImages.belly5,
-    6: gameImages.belly6,
-    7: gameImages.belly7,
-    8: gameImages.face1,
-    9: gameImages.face2,
-    10: gameImages.face3,
-    11: gameImages.leg1,
-    12: gameImages.spotted,
-    13: gameImages.top1,
-    14: gameImages.top2,
-    15: gameImages.top3,
-    16: gameImages.top4,
-    15: gameImages.top5,
-    16: gameImages.top6
-  }
-}
-
-var possibleItems = {
-  Background: {
-    1: {
-      name: "seedling",
-      icon: "",
-      type: "Enviromental",
-      ownedByPlayer: 0,
-    },
-    2: {
-      name: "apple",
-      icon: "",
-      type: "Feed",
-      ownedByPlayer: 0,
-    },
-  },
-  Swamp: {
-    1: {
-      name: "lilly",
-      icon: "",
-      type: "Enviromental",
-      ownedByPlayer: 0,
-    }
-  }
-}
-
-var mapStarter = {
-  1: gameImages.SpriteImage,
-  2: gameImages.cactus,
-  3: gameImages.shrub1,
-  4: gameImages.shrub2,
-  5: gameImages.home,
-  6: gameImages.waterPond,
-  7: gameImages.waterRiverDown,
-  8: gameImages.waterRiverUp,
-  mapLayout: 
-  [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
-  [0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
-  [0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 4, 3, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 8, 7, 7, 7, 7],
-  [0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 6, 6, 7, 7, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
-  mapBackground: "Background",
-}
-var mapTwo = {
-  1: gameImages.SpriteImage,
-  2: gameImages.cactus,
-  3: gameImages.shrub1,
-  4: gameImages.shrub2,
-  5: gameImages.home,
-  6: gameImages.waterPond,
-  7: gameImages.waterRiverDown,
-  8: gameImages.waterRiverUp,
-  mapLayout: 
-  [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
-  mapBackground: "Background",
-}
-var mapThree = {
-  1: gameImages.SpriteImage,
-  2: gameImages.cactus,
-  3: gameImages.shrub1,
-  4: gameImages.shrub2,
-  5: gameImages.home,
-  6: gameImages.waterPond,
-  7: gameImages.waterRiverDown,
-  8: gameImages.waterRiverUp,
-  mapLayout: 
-  [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
-  mapBackground: "Background",
-}
-var mapFour = {
-  1: gameImages.SpriteImage,
-  2: gameImages.cactus,
-  3: gameImages.shrub1,
-  4: gameImages.shrub2,
-  5: gameImages.home,
-  6: gameImages.waterPond,
-  7: gameImages.waterRiverDown,
-  8: gameImages.waterRiverUp,
-  mapLayout: 
-  [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
-  mapBackground: "Background",
-}
-
-var mapFive = {
-  1: gameImages.SpriteImage,
-  2: gameImages.cactus,
-  3: gameImages.shrub1,
-  4: gameImages.shrub2,
-  5: gameImages.home,
-  6: gameImages.waterPond,
-  7: gameImages.waterRiverDown,
-  8: gameImages.waterRiverUp,
-  9: gameImages.cattails1,
-  10: gameImages.cattails2,
-  11: gameImages.flowerPatch1,
-  mapLayout: 
-  [[0, 0, 0, 0, 0, 0, 11, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 11, 6, 6, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 6, 6, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 11, 11, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 11, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
-  mapBackground: "Swamp",
-}
-
-var mapSix = { // NO SPAWNS: 6
-  1: gameImages.SpriteImage,
-  2: gameImages.cactus,
-  3: gameImages.shrub1,
-  4: gameImages.shrub2,
-  5: gameImages.home,
-  6: gameImages.waterPond,
-  7: gameImages.waterRiverDown,
-  8: gameImages.waterRiverUp,
-  9: gameImages.cattails1,
-  10: gameImages.cattails2,
-  11: gameImages.flowerPatch1,
-  12: gameImages.fenceTL,
-  13: gameImages.fenceTM,
-  14: gameImages.fenceTR,
-  15: gameImages.fenceBL,
-  16: gameImages.fenceBM,
-  17: gameImages.fenceBR,
-  18: gameImages.fenceL1,
-  19: gameImages.fenceL2,
-  20: gameImages.fenceR1,
-  21: gameImages.fenceR2,
-  mapLayout: 
-  [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 12, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 14, 0, 0],
-  [0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0],
-  [0, 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21, 0, 0],
-  [0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 20, 11, 0],
-  [0, 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21, 0, 0],
-  [0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0],
-  [0, 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21, 0, 0],
-  [0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0],
-  [0, 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21, 0, 0],
-  [0, 0, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
-  mapBackground: "Background",
-}
-
-var mapSevenVillage = {
-  1: gameImages.SpriteImage,
-  2: gameImages.cactus,
-  3: gameImages.shrub1,
-  4: gameImages.shrub2,
-  5: gameImages.home,
-  6: gameImages.waterPond,
-  7: gameImages.waterRiverDown,
-  8: gameImages.waterRiverUp,
-  9: gameImages.cattails1,
-  10: gameImages.cattails2,
-  11: gameImages.flowerPatch1,
-  12: gameImages.fenceTL,
-  13: gameImages.fenceTM,
-  14: gameImages.fenceTR,
-  15: gameImages.fenceBL,
-  16: gameImages.fenceBM,
-  17: gameImages.fenceBR,
-  18: gameImages.fenceL1,
-  19: gameImages.fenceL2,
-  20: gameImages.fenceR1,
-  21: gameImages.fenceR2,
-  mapLayout: 
-  [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
-  mapBackground: "Background",
-}
-
-var mapEight = {
-  1: gameImages.SpriteImage,
-  2: gameImages.cactus,
-  3: gameImages.shrub1,
-  4: gameImages.shrub2,
-  5: gameImages.home,
-  6: gameImages.waterPond,
-  7: gameImages.waterRiverDown,
-  8: gameImages.waterRiverUp,
-  9: gameImages.cattails1,
-  10: gameImages.cattails2,
-  11: gameImages.flowerPatch1,
-  12: gameImages.fenceTL,
-  13: gameImages.fenceTM,
-  14: gameImages.fenceTR,
-  15: gameImages.fenceBL,
-  16: gameImages.fenceBM,
-  17: gameImages.fenceBR,
-  18: gameImages.fenceL1,
-  19: gameImages.fenceL2,
-  20: gameImages.fenceR1,
-  21: gameImages.fenceR2,
-  mapLayout: 
-  [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
-  mapBackground: "StoneSwamp",
-}
-
-var mapNine = {
-  1: gameImages.SpriteImage,
-  2: gameImages.cactus,
-  3: gameImages.shrub1,
-  4: gameImages.shrub2,
-  5: gameImages.home,
-  6: gameImages.waterPond,
-  7: gameImages.waterRiverDown,
-  8: gameImages.waterRiverUp,
-  9: gameImages.cattails1,
-  10: gameImages.cattails2,
-  11: gameImages.flowerPatch1,
-  12: gameImages.fenceTL,
-  13: gameImages.fenceTM,
-  14: gameImages.fenceTR,
-  15: gameImages.fenceBL,
-  16: gameImages.fenceBM,
-  17: gameImages.fenceBR,
-  18: gameImages.fenceL1,
-  19: gameImages.fenceL2,
-  20: gameImages.fenceR1,
-  21: gameImages.fenceR2,
-  mapLayout: 
-  [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
-  mapBackground: "Grass",
-}
-
-var catchWild = { //NO SPAWNS:7
-  1: gameImages.fenceTL,
-  2: gameImages.fenceTM,
-  3: gameImages.fenceTR,
-  4: gameImages.fenceBL,
-  5: gameImages.fenceBM,
-  6: gameImages.fenceBR,
-  7: gameImages.fenceL1,
-  8: gameImages.fenceL2,
-  9: gameImages.fenceR1,
-  10: gameImages.fenceR2,
-  mapLayout: 
-  [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-  [-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1],
-  [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-  [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-  [-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1],
-  [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
-  mapBackground: "Background",
-}
-
-var worldMaps = {
- maps: {
-   1: mapStarter,
-   2: mapTwo,
-   3: mapThree,
-   4: mapFour,
-   5: mapFive,
-   6: mapSix,
-   7: catchWild,
-   8: mapSevenVillage,
-   9: mapEight,
-   10: mapNine
- },
- mapSize: {
-  rows: 5,
-  cols: 4,
- },
- mapLayout: 
- [[0,8,0,0],
-  [2,3,9,0],
- [4,1,5,10],
- [0,6,0,0],
- [0,0,0,0]]
-};
-
 // active character map and character map position
 var spriteMapCol = 1;
 var spriteMapRow = 2;
 var activeMap = worldMaps.maps[worldMaps.mapLayout[spriteMapRow][spriteMapCol]];
 //main character
 var SpriteRow = 0;   
-var SpriteCol = 0;      
-var MaxSpriteRow = 3;   
-var MaxSpriteCol = 1; 
+var SpriteCol = 0;       
 var SpriteColPos = 5;     
 var SpriteRowPos = 5;
+var SpriteWidth = 32;   
+var SpriteHeight = 32;
+var playerCoin = 0;
 
-//HORSE OBJECT DEFINITION
-class horse {
-  constructor(horseBase,maneBase,maneShade,maneColor,baseColor,markings, gradient, spawnMap,interested,nervous,stuborn,trecherous) {
-  this.horseBase = horseBase;
-  this.maneBase = maneBase;
-  this.maneShade = maneShade;
-  this.maneColor = maneColor;
-  this.baseColor = baseColor;
-  this.markings = markings;
-  this.gradient = gradient;
-  this.spawnMap = spawnMap;
-  this.interested = interested;
-  this.nervous = nervous;
-  this.stuborn = stuborn;
-  this.trecherous = trecherous;
-  this.HorseRow = 0;
-  this.HorseCol = 0;
-  this.MaxHorseSpriteRow = 4;
-  this.MaxHorseSpriteCol = 1;
-  this.HorsePosRow = 0;
-  this.HorsePosCol = 0;
-  this.horseTrust = 0;
-  this.horseName = "unnamed";
-  this.horseIcon = "";
-  this.horseDisplayed = "N";
-  this.horseBeingRidden = "N";
-  this.saddlePad = "";
-  this.saddle = "";
-  this.bridle = "";
-  }
-}
 
-class NPC {
-  constructor(name,dialogue, art,map,col,row, questList){
-    this.name = name;
-    this.dialogue = dialogue;
-    this.art = art;
-    this.map = map;
-    this.col = col;
-    this.row = row;
-    this.questList = questList;
-    this.activeQuest = "";
-    this.lastQuestCompletedTime = "";
-  }
-}
+var INTERVAL = 50;
+var ctx;
+var canvas;
+var miniGameActive = false;
+var expandMenu;
+var expandHorseButton;
+var expandInventoryButton;
+var menuExpandTitle;
+var menuExpandList;
+var menuHorseExpandList;
+var exitHorseCard;
+var NPCs = [];
+var activeRiddenHorse = "";
+var exitExpandMenu;
+var npcMenuExpand;
+var bankShow;
+var lassoCol;
+var myInterval;
 
-class horseQuest {
-  constructor(dialogueStart, dialogueEnd,interestedMin, interestedMax,nervousMin, nervousMax, stubornMin, stubornMax,trecherousMin, trecherousMax,bondMin, reward) {
-    this.dialogueStart = dialogueStart;
-    this.dialogueEnd = dialogueEnd;
-    this.interestedMin = interestedMin;
-    this.interestedMax = interestedMax;
-    this.nervousMin = nervousMin;
-    this.nervousMax = nervousMax;
-    this.stubornMin = stubornMin;
-    this.stubornMax = stubornMax;
-    this.trecherousMin = trecherousMin;
-    this.trecherousMax = trecherousMax;
-    this.bondMin = bondMin;
-    this.reward = reward;
-  }
-}
-
-class itemQuest {
-  constructor(dialogueStart, dialogueEnd, itemRequest, reward) {
-    this.dialogueStart = dialogueStart;
-    this.dialogueEnd = dialogueEnd;
-    this.itemRequest = itemRequest;
-    this.reward = reward;
-  }
-}
-
-class shopQuest {
-  constructor(dialogueStart, dialogueEnd, inventory) {
-    this.dialogueStart = dialogueStart;
-    this.dialogueEnd = dialogueEnd;
-    this.inventory = inventory;
-  }
-}
-
-class item {
-  constructor(item, itemColPos,ItemRowPos, itemMapCol,itemMapRow) {
-    this.item = item;
-    this.itemColPos = itemColPos;
-    this.ItemRowPos = ItemRowPos;
-    this.itemMapCol = itemMapCol;
-    this.itemMapRow = itemMapRow;
-  }
-}
+//water pond  
+var WaterPondSpriteCol = 0;      
 
 function createNPCs() {
-  var annaQuest1 = new horseQuest("Wrangler.. I'm in need of a steed. Something with a good head on its shoulders", 
+  var annaQuest1 = new classDefinitions.horseQuest("Wrangler.. I'm in need of a steed. Something with a good head on its shoulders", 
     "Thank you!",20,50,0,10,0,40,0,10,0,300); 
-  var annaQuest2 = new horseQuest("I was hoping you'd come around. I can take in one of your mustangs, give me your worst.", 
+  var annaQuest2 = new classDefinitions.horseQuest("I was hoping you'd come around. I can take in one of your mustangs, give me your worst.", 
     "This should be interesting!",0,50,40,50,20,50,30,50,0,500); 
-  var annaQuest3 = new itemQuest("I need something to make my horses like me more..", "Thanks, all work and no play makes my horses grey.", new Map([["apple",1]]),70);
-  var anna = new NPC("anna", ["Hey.", "Can I help you?"],gameImages.annaIcon,mapSevenVillage, 3,2,[annaQuest1,annaQuest2, annaQuest3]);
+  var annaQuest3 = new classDefinitions.itemQuest("I need something to make my horses like me more..", "Thanks, all work and no play makes my horses grey.", new Map([["apple",1]]),70);
+  var anna = new classDefinitions.NPC("anna", ["Hey.", "Can I help you?"],gameImages.annaIcon,maps.mapSevenVillage, 3,2,[annaQuest1,annaQuest2, annaQuest3]);
   NPCs.push(anna);
 
-  var eightballQuest1 = new horseQuest("Heard you're in the horse pawning biz? Need a turbulent one, something I can slap around.", 
+  var eightballQuest1 = new classDefinitions.horseQuest("Heard you're in the horse pawning biz? Need a turbulent one, something I can slap around.", 
     "Gonna put some miles on this thang..",0,50,0,10,20,40,40,50,0,800); 
-  var eightball = new NPC("eightball", ["You stick your nose in everyone's bizness?"],gameImages.eightballIcon,mapSevenVillage, 7,2,[eightballQuest1]);
+  var eightball = new classDefinitions.NPC("eightball", ["You stick your nose in everyone's bizness?"],gameImages.eightballIcon,maps.mapSevenVillage, 7,2,[eightballQuest1]);
   NPCs.push(eightball);
 
-  var damonShop1 = new shopQuest(["Buy before you try. No refunds"], ["Luck"], new Map([[horseTack.saddlePads[randomIntFromInterval(1,20)],0], [horseTack.saddles[1],0], [horseTack.bridles[1],0]]));
-  var damon = new NPC('damon', ["How's farm life treating you?", "Any nasty falls lately?"],gameImages.cactus.src,mapSevenVillage,11,2,[damonShop1]);
+  var damonShop1 = new classDefinitions.shopQuest(["Buy before you try. No refunds"], ["Luck"], new Map([[items.horseTack.saddlePads[randomIntFromInterval(1,20)],0], [items.horseTack.saddles[1],0], [items.horseTack.bridles[1],0]]));
+  var damon = new classDefinitions.NPC('damon', ["How's farm life treating you?", "Any nasty falls lately?"],gameImages.cactus.src,maps.mapSevenVillage,11,2,[damonShop1]);
   NPCs.push(damon);
 }
  
@@ -774,9 +122,9 @@ function randomWorldWilds(min, max) {
 }}
 
 function createHorse() {
-var holder = new horse(horseAttributes.horseBase[1],horseAttributes.maneBase[1],horseAttributes.maneShade[1],
-  horseAttributes.maneColor[randomIntFromInterval(1,16)],horseAttributes.baseColor[randomIntFromInterval(1,16)],
-  horseAttributes.markings[randomIntFromInterval(1,13)], horseAttributes.gradient[randomIntFromInterval(1,16)], worldMaps.maps[randomWorldWilds(1, 10)], 
+var holder = new classDefinitions.horse(horsePhysical.horseAttributes.horseBase[1],horsePhysical.horseAttributes.maneBase[1],horsePhysical.horseAttributes.maneShade[1],
+  horsePhysical.horseAttributes.maneColor[randomIntFromInterval(1,16)],horsePhysical.horseAttributes.baseColor[randomIntFromInterval(1,16)],
+  horsePhysical.horseAttributes.markings[randomIntFromInterval(1,13)], horsePhysical.horseAttributes.gradient[randomIntFromInterval(1,16)], worldMaps.maps[randomWorldWilds(1, 10)], 
   randomIntFromInterval(0,50), randomIntFromInterval(0,50), randomIntFromInterval(0,50), randomIntFromInterval(0,50));
 randomIntFromIntervalForWilds(holder);
 
@@ -801,28 +149,6 @@ function spawnWilds() {
   }
 }
 
-var INTERVAL = 50;
-var ctx;
-var canvas;
-var SpriteWidth = 32;   
-var SpriteHeight = 32;
-var playerCoin = 0;
-var miniGameActive = false;
-var expandMenu;
-var expandHorseButton;
-var expandInventoryButton;
-var menuExpandTitle;
-var menuExpandList;
-var menuHorseExpandList;
-var exitHorseCard;
-var NPCs = [];
-var activeRiddenHorse = "";
-var exitExpandMenu;
-var npcMenuExpand;
-var bankShow;
-var lassoCol;
-var myInterval;
-
 function loadComplete() {
     console.log("Load is complete."); 
     canvas = document.getElementById("theCanvas");
@@ -830,7 +156,7 @@ function loadComplete() {
     var loadingSreen = document.getElementById("enterScreen");
     enterGame = document.getElementById("enterGame").addEventListener("click", () => {
       loadingSreen.style.display = 'none';    
-      generateMap(mapStarter);
+      generateMap(maps.mapStarter);
       drawSprite();
       createWilds();
       createNPCs();
@@ -1106,12 +432,12 @@ function loadComplete() {
     var randNumber = randomIntFromInterval(1,120);
     if (randNumber <=10) {
       var biome = activeMap.mapBackground;
-      var itemValue = possibleItems[biome][randomIntFromInterval(1,2)];
+      var itemValue = items.possibleItems[biome][randomIntFromInterval(1,2)];
       var worldItemNotify = document.createElement('li');
       var collectItemButton = document.createElement('button');
       collectItemButton.innerHTML = "collect";
       worldItemNotify.id = "worldItem"
-      worldItems.push(new item(itemValue, SpriteColPos, SpriteRowPos,spriteMapCol,spriteMapRow));
+      worldItems.push(new classDefinitions.item(itemValue, SpriteColPos, SpriteRowPos,spriteMapCol,spriteMapRow));
       itemAtSpot = worldItems[worldItems.length-1];
       collectItemButton.addEventListener("click", () => collectItem(itemAtSpot));
       worldItemNotify.textContent = ("Item found: " + itemAtSpot.item.name + " ");
@@ -1390,7 +716,7 @@ function loadComplete() {
           case 28:  // Right arrow was pressed 
            if (SpriteColPos < 19 && ((activeMap.mapLayout[SpriteRowPos][SpriteColPos+1] == 0))) { 
             if(activeRiddenHorse == "") {
-            if(activeMap != catchWild) {  
+            if(activeMap != maps.catchWild) {  
             SpriteRow = 1;	
             } else {
             SpriteRow = 3;	
@@ -1409,7 +735,7 @@ function loadComplete() {
             }, 150);
           } else {
             eraseSprite();
-            if(activeMap != catchWild) {  
+            if(activeMap != maps.catchWild) {  
               SpriteRow = 1;	
             } else {
               SpriteRow = 3;	
@@ -1431,7 +757,7 @@ function loadComplete() {
           case 29:  // Left arrow, ASCII 29 
            if (SpriteColPos > 0 && ((activeMap.mapLayout[SpriteRowPos][SpriteColPos-1] == 0))){  
             if (activeRiddenHorse == "") {
-              if(activeMap != catchWild) {  
+              if(activeMap != maps.catchWild) {  
                 SpriteRow = 2;	
               } else {
                 SpriteRow = 3;	
@@ -1450,7 +776,7 @@ function loadComplete() {
             }, 150);
           } else {
             eraseSprite();
-            if(activeMap != catchWild) {  
+            if(activeMap != maps.catchWild) {  
               SpriteRow = 2;	
             } else {
               SpriteRow = 3;	
@@ -1695,10 +1021,10 @@ function loadComplete() {
     }
       function moveHorses() {
         for (var i = 0; i<5; i++) {
-          if (wildHorses[i].spawnMap == activeMap && activeMap != catchWild) {
+          if (wildHorses[i].spawnMap == activeMap && activeMap != maps.catchWild) {
           animateHorse(wildHorses[i]);
           moveHorsePhysical(randomIntFromInterval(28,100), wildHorses[i]);
-        } else if(wildHorses[i].spawnMap == catchWild && activeMap == catchWild)  {
+        } else if(wildHorses[i].spawnMap == maps.catchWild && activeMap == maps.catchWild)  {
           animateHorse(wildHorses[i]);
           moveHorsePhysical(randomIntFromInterval(24,29), wildHorses[i]);
         }
@@ -1747,7 +1073,7 @@ function wildCatchMiniGame(horse) {
     horse.HorsePosCol = 9;
     horse.HorsePosRow = 6;
     var attempts = 0;
-    activeMap = catchWild;
+    activeMap = maps.catchWild;
     if(activeRiddenHorse != "") {
       activeRiddenHorse.spawnMap = activeMap;
       activeRiddenHorse.HorsePosCol = SpriteColPos;
@@ -1755,10 +1081,10 @@ function wildCatchMiniGame(horse) {
     }
     horse.spawnMap = activeMap;
     console.log('entered wild mini attempts: ' + attempts);
-    generateMap(catchWild);
+    generateMap(maps.catchWild);
 
     const keyUpHandler = event => {
-        if (event.code === 'Space' && activeMap == catchWild) {
+        if (event.code === 'Space' && activeMap == maps.catchWild) {
             attempts++;
             console.log('Space pressed, attempts: ' + attempts);
             if (attempts == 5) {
@@ -1866,7 +1192,7 @@ function wildCatchMiniGame(horse) {
       function displayHorse(horseName) {
         for(var i = 0; i<playerHorses.length; i++) {
           if(playerHorses[i].horseName == horseName && playerHorses[i].horseDisplayed == "N") {
-            playerHorses[i].spawnMap = mapSix;
+            playerHorses[i].spawnMap = maps.mapSix;
             playerHorses[i].HorsePosCol = 5;
             playerHorses[i].HorsePosRow = 5;
             playerHorses[i].horseDisplayed = "Y";
@@ -1946,7 +1272,7 @@ function wildCatchMiniGame(horse) {
 
       function findWildHorseIndex() {
         for (var i = 0; i<5; i++) {
-          if (wildHorses[i].spawnMap == catchWild) {
+          if (wildHorses[i].spawnMap == maps.catchWild) {
             return i;
           }
         }
