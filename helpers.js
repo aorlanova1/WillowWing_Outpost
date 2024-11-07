@@ -1,12 +1,11 @@
 import { gameImages } from './gameImages.js';
-import { maps } from './maps.js';
+import { worldMapsStore } from './maps.js';
 import { items } from './items.js';
 import { horsePhysical } from './horseAttributes.js';
 import { classDefinitions } from './classDefinitions.js';
 import {npcFunctionality} from './npcFunctionality.js';
-import { helpers } from './helpers.js';
 import { playerCharacter } from './playerCharacter.js';
-import { menus } from './menus.js/index.js';
+import { menus } from './menus.js';
 import { inventory } from './inventory.js';
 import { wildHorses } from './wildHorses.js';
 import { worldInteractions } from './worldInteractions.js';
@@ -16,6 +15,13 @@ import { wildCatchGame } from './wildCatchingMiniGame.js';
 
 //water pond  
 var WaterPondSpriteCol = 0;  
+var ctx;
+var canvas;
+
+function loadCanvas() {
+  canvas = document.getElementById("theCanvas");
+  ctx = canvas.getContext("2d");
+}
 
 function randomIntFromInterval(min, max) { 
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -187,7 +193,7 @@ function randomWorldWilds(min, max) {
 
   function findWildHorseIndex() {
     for (var i = 0; i<5; i++) {
-      if (wildHorses[i].spawnMap == maps.catchWild) {
+      if (wildHorses.wildHorses[i].spawnMap == worldMapsStore.catchWild) {
         return i;
       }
     }
@@ -212,5 +218,8 @@ function randomWorldWilds(min, max) {
     eraseHorse,
     animateHorse,
     animateCharacter,
-    findWildHorseIndex
+    findWildHorseIndex,
+    loadCanvas,
+    ctx,
+    canvas
   }

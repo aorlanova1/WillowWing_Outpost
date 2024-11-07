@@ -1,15 +1,14 @@
 import { gameImages } from './gameImages.js';
-import { maps } from './maps.js';
+import { worldMapsStore } from './maps.js';
 import { items } from './items.js';
 import { horsePhysical } from './horseAttributes.js';
 import { classDefinitions } from './classDefinitions.js';
 import {npcFunctionality} from './npcFunctionality.js';
 import { helpers } from './helpers.js';
 import { playerCharacter } from './playerCharacter.js';
-import { menus } from './menus.js/index.js';
+import { menus } from './menus.js';
 import { inventory } from './inventory.js';
 import { wildHorses } from './wildHorses.js';
-import { worldInteractions } from './worldInteractions.js';
 import { ownedHorse } from './ownedHorse.js';
 import { movement } from './movement.js';
 import { wildCatchGame } from './wildCatchingMiniGame.js';
@@ -101,7 +100,7 @@ function putDownItem() {
         atHomeNotify.textContent = "Looks like there's someone home... ";
         var knockButton = document.createElement('button');
         knockButton.innerHTML = "knock";
-        knockButton.addEventListener("click", () => enterHome(NPCAtHome));
+        knockButton.addEventListener("click", () => npcFunctionality.enterHome(NPCAtHome));
         atHomeNotify.appendChild(knockButton);
         document.getElementById("eventInterface").appendChild(atHomeNotify);
     }
@@ -111,8 +110,8 @@ function putDownItem() {
 
   function isPlayerOnWild() {
     for (var i = 0; i<5; i++) {
-      if (wildHorses[i].spawnMap == playerCharacter.activeMap && wildHorses[i].HorsePosCol == playerCharacter.SpriteColPos && wildHorses[i].HorsePosRow == playerCharacter.SpriteRowPos) {
-        onWildEvent(wildHorses[i]);
+      if (wildHorses.wildHorses[i].spawnMap == playerCharacter.activeMap && wildHorses.wildHorses[i].HorsePosCol == playerCharacter.SpriteColPos && wildHorses.wildHorses[i].HorsePosRow == playerCharacter.SpriteRowPos) {
+        onWildEvent(wildHorses.wildHorses[i]);
       }
     }
   }

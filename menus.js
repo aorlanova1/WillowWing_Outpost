@@ -1,12 +1,11 @@
 import { gameImages } from './gameImages.js';
-import { maps } from './maps.js';
+import { worldMapsStore } from './maps.js';
 import { items } from './items.js';
 import { horsePhysical } from './horseAttributes.js';
 import { classDefinitions } from './classDefinitions.js';
 import {npcFunctionality} from './npcFunctionality.js';
 import { helpers } from './helpers.js';
 import { playerCharacter } from './playerCharacter.js';
-import { menus } from './menus.js/index.js';
 import { inventory } from './inventory.js';
 import { wildHorses } from './wildHorses.js';
 import { worldInteractions } from './worldInteractions.js';

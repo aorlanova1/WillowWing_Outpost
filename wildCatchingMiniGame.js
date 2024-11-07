@@ -1,18 +1,17 @@
 import { gameImages } from './gameImages.js';
-import { maps } from './maps.js';
+import { worldMapsStore } from './maps.js';
 import { items } from './items.js';
 import { horsePhysical } from './horseAttributes.js';
 import { classDefinitions } from './classDefinitions.js';
 import {npcFunctionality} from './npcFunctionality.js';
 import { helpers } from './helpers.js';
 import { playerCharacter } from './playerCharacter.js';
-import { menus } from './menus.js/index.js';
+import { menus } from './menus.js';
 import { inventory } from './inventory.js';
 import { wildHorses } from './wildHorses.js';
 import { worldInteractions } from './worldInteractions.js';
 import { ownedHorse } from './ownedHorse.js';
 import { movement } from './movement.js';
-import { wildCatchGame } from './wildCatchingMiniGame.js';
 
 var miniGameActive = false;
 var lassoCol;
@@ -28,7 +27,7 @@ function wildCatchMiniGame(horse) {
     horse.HorsePosCol = 9;
     horse.HorsePosRow = 6;
     var attempts = 0;
-    playerCharacter.activeMap = maps.catchWild;
+    playerCharacter.activeMap = worldMapsStore.catchWild;
     if(playerCharacter.activeRiddenHorse != "") {
       playerCharacter.activeRiddenHorse.spawnMap = playerCharacter.activeMap;
       playerCharacter.activeRiddenHorse.HorsePosCol = playerCharacter.SpriteColPos;
@@ -36,18 +35,18 @@ function wildCatchMiniGame(horse) {
     }
     horse.spawnMap = playerCharacter.activeMap;
     console.log('entered wild mini attempts: ' + attempts);
-    helpers.generateMap(maps.catchWild);
+    helpers.generateMap(worldMapsStore.catchWild);
 
     const keyUpHandler = event => {
-        if (event.code === 'Space' && playerCharacter.activeMap == maps.catchWild) {
+        if (event.code === 'Space' && playerCharacter.activeMap == worldMapsStore.catchWild) {
             attempts++;
             console.log('Space pressed, attempts: ' + attempts);
             if (attempts == 5) {
                 endMiniGame("You've failed to catch a wild!", horse, activeMapHolder);
             } else if (sendLasso(horse)) {
                 endMiniGame("You've caught a wild! It took " + attempts + " attempts", horse, activeMapHolder);
-                wildHorses.splice(helpers.findWildHorseIndex(), 1);
-                createWilds();
+                wildHorses.wildHorses.splice(helpers.findWildHorseIndex(), 1);
+                wildHorses.createWilds();
                 horse.spawnMap = 0;
                 horse.HorsePosCol = 10;
                 horse.HorsePosRow = 10;
@@ -72,7 +71,7 @@ function wildCatchMiniGame(horse) {
                 displayHorseButton.addEventListener("click", () => ownedHorse.displayHorse(horse.horseName));
                 openHorseCardButton.addEventListener("click", () => openHorseCard(horse));
                 rideHorseButton.addEventListener("click", () => ownedHorse.rideHorse(horse));
-                menuHorseExpandList.appendChild(horseListItem);
+                menus.menuHorseExpandList.appendChild(horseListItem);
             }
         }
     };
@@ -81,8 +80,8 @@ function wildCatchMiniGame(horse) {
 
     function endMiniGame(message, horse, activeMapHolder) {
         attempts = 0;
-        wildHorses.splice(helpers.findWildHorseIndex(), 1);
-        createWilds();
+        wildHorses.wildHorses.splice(helpers.findWildHorseIndex(), 1);
+        wildHorses.createWilds();
         miniGameActive = false; // Reset the flag
         playerCharacter.activeMap = activeMapHolder;
         helpers.generateMap(playerCharacter.activeMap);
@@ -136,7 +135,6 @@ function sendLasso(horse) {
 
 export const wildCatchGame = {
     wildCatchMiniGame,
-    endMiniGame,
     sendLasso,
     miniGameActive,
     lassoCol

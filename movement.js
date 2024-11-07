@@ -1,17 +1,16 @@
 import { gameImages } from './gameImages.js';
-import { maps } from './maps.js';
+import { worldMapsStore } from './maps.js';
 import { items } from './items.js';
 import { horsePhysical } from './horseAttributes.js';
 import { classDefinitions } from './classDefinitions.js';
 import {npcFunctionality} from './npcFunctionality.js';
 import { helpers } from './helpers.js';
 import { playerCharacter } from './playerCharacter.js';
-import { menus } from './menus.js/index.js';
+import { menus } from './menus.js';
 import { inventory } from './inventory.js';
 import { wildHorses } from './wildHorses.js';
 import { worldInteractions } from './worldInteractions.js';
 import { ownedHorse } from './ownedHorse.js';
-import { movement } from './movement.js';
 import { wildCatchGame } from './wildCatchingMiniGame.js';
 
 function moveCharacter(key) {
@@ -19,7 +18,7 @@ function moveCharacter(key) {
       case 28:  // Right arrow was pressed 
        if (playerCharacter.SpriteColPos < 19 && ((playerCharacter.activeMap.mapLayout[playerCharacter.SpriteRowPos][playerCharacter.SpriteColPos+1] == 0))) { 
         if(playerCharacter.activeRiddenHorse == "") {
-        if(playerCharacter.activeMap != maps.catchWild) {  
+        if(playerCharacter.activeMap != worldMapsStore.catchWild) {  
           playerCharacter.SpriteRow = 1;	
         } else {
           playerCharacter.SpriteRow = 3;	
@@ -38,7 +37,7 @@ function moveCharacter(key) {
         }, 150);
       } else {
         helpers.eraseSprite();
-        if(playerCharacter.activeMap != maps.catchWild) {  
+        if(playerCharacter.activeMap != worldMapsStore.catchWild) {  
           playerCharacter.SpriteRow = 1;	
         } else {
           playerCharacter.SpriteRow = 3;	
@@ -60,7 +59,7 @@ function moveCharacter(key) {
       case 29:  // Left arrow, ASCII 29 
        if (playerCharacter.SpriteColPos > 0 && ((playerCharacter.activeMap.mapLayout[playerCharacter.SpriteRowPos][playerCharacter.SpriteColPos-1] == 0))){  
         if (playerCharacter.activeRiddenHorse == "") {
-          if(playerCharacter.activeMap != maps.catchWild) {  
+          if(playerCharacter.activeMap != worldMapsStore.catchWild) {  
             playerCharacter.SpriteRow = 2;	
           } else {
             playerCharacter.SpriteRow = 3;	
@@ -79,7 +78,7 @@ function moveCharacter(key) {
         }, 150);
       } else {
         helpers.eraseSprite();
-        if(playerCharacter.activeMap != maps.catchWild) {  
+        if(playerCharacter.activeMap != worldMapsStore.catchWild) {  
           playerCharacter.SpriteRow = 2;	
         } else {
           playerCharacter.SpriteRow = 3;	
@@ -168,9 +167,9 @@ function moveCharacter(key) {
   function moveMaps(key) {
     switch (key) {
       case 28:  // Right arrow was pressed 
-       if (playerCharacter.SpriteColPos >= 19 && playerCharacter.spriteMapCol < maps.worldMaps.mapSize.cols && maps.worldMaps.mapLayout[playerCharacter.spriteMapRow][playerCharacter.spriteMapCol+1] != 0) { 	
+       if (playerCharacter.SpriteColPos >= 19 && playerCharacter.spriteMapCol < worldMapsStore.worldMaps.mapSize.cols && worldMapsStore.worldMaps.mapLayout[playerCharacter.spriteMapRow][playerCharacter.spriteMapCol+1] != 0) { 	
         helpers.eraseSprite();
-        playerCharacter.activeMap = maps.worldMaps.maps[maps.worldMaps.mapLayout[playerCharacter.spriteMapRow][playerCharacter.spriteMapCol+1]];
+        playerCharacter.activeMap = worldMapsStore.worldMaps.maps[worldMapsStore.worldMaps.mapLayout[playerCharacter.spriteMapRow][playerCharacter.spriteMapCol+1]];
         playerCharacter.spriteMapCol += 1;
         playerCharacter.SpriteColPos = 0;
         helpers.generateMap(playerCharacter.activeMap);
@@ -186,9 +185,9 @@ function moveCharacter(key) {
       break;
        }	
       case 29:  // Left arrow, ASCII 29 
-      if (playerCharacter.SpriteColPos >= 0 && playerCharacter.spriteMapCol > 0 && maps.worldMaps.mapLayout[playerCharacter.spriteMapRow][playerCharacter.spriteMapCol-1] != 0) { 	
+      if (playerCharacter.SpriteColPos >= 0 && playerCharacter.spriteMapCol > 0 && worldMapsStore.worldMaps.mapLayout[playerCharacter.spriteMapRow][playerCharacter.spriteMapCol-1] != 0) { 	
         helpers.eraseSprite();
-        playerCharacter.activeMap = maps.worldMaps.maps[maps.worldMaps.mapLayout[playerCharacter.spriteMapRow][playerCharacter.spriteMapCol-1]];
+        playerCharacter.activeMap = worldMapsStore.worldMaps.maps[worldMapsStore.worldMaps.mapLayout[playerCharacter.spriteMapRow][playerCharacter.spriteMapCol-1]];
         playerCharacter.spriteMapCol -= 1;
         playerCharacter.SpriteColPos = 19;
         helpers.generateMap(playerCharacter.activeMap);
@@ -204,9 +203,9 @@ function moveCharacter(key) {
       break;
        }
       case 30:  // up arrow was pressed 
-      if (playerCharacter.SpriteRowPos <= 0 && playerCharacter.spriteMapRow > 0 && maps.worldMaps.mapLayout[playerCharacter.spriteMapRow-1][playerCharacter.spriteMapCol] != 0) { 	
+      if (playerCharacter.SpriteRowPos <= 0 && playerCharacter.spriteMapRow > 0 && worldMapsStore.worldMaps.mapLayout[playerCharacter.spriteMapRow-1][playerCharacter.spriteMapCol] != 0) { 	
         helpers.eraseSprite();
-        playerCharacter.activeMap = maps.worldMaps.maps[maps.worldMaps.mapLayout[playerCharacter.spriteMapRow-1][playerCharacter.spriteMapCol]];
+        playerCharacter.activeMap = worldMapsStore.worldMaps.maps[worldMapsStore.worldMaps.mapLayout[playerCharacter.spriteMapRow-1][playerCharacter.spriteMapCol]];
         playerCharacter.spriteMapRow -= 1;
         playerCharacter.SpriteRowPos = 14;
         helpers.generateMap(playerCharacter.activeMap);
@@ -222,9 +221,9 @@ function moveCharacter(key) {
       break;
        }
       case 31:  // down arrow was pressed 
-      if (playerCharacter.SpriteRowPos >= 14 && playerCharacter.spriteMapRow < maps.worldMaps.mapSize.rows && maps.worldMaps.mapLayout[playerCharacter.spriteMapRow+1][playerCharacter.spriteMapCol] != 0) { 	
+      if (playerCharacter.SpriteRowPos >= 14 && playerCharacter.spriteMapRow < worldMapsStore.worldMaps.mapSize.rows && worldMapsStore.worldMaps.mapLayout[playerCharacter.spriteMapRow+1][playerCharacter.spriteMapCol] != 0) { 	
         helpers.eraseSprite();
-        playerCharacter.activeMap = maps.worldMaps.maps[maps.worldMaps.mapLayout[playerCharacter.spriteMapRow+1][playerCharacter.spriteMapCol]];
+        playerCharacter.activeMap = worldMapsStore.worldMaps.maps[worldMapsStore.worldMaps.mapLayout[playerCharacter.spriteMapRow+1][playerCharacter.spriteMapCol]];
         playerCharacter.spriteMapRow += 1;
         playerCharacter.SpriteRowPos = 0;
         helpers.generateMap(playerCharacter.activeMap);
@@ -296,12 +295,12 @@ function moveCharacter(key) {
 
   function moveHorses() {
     for (var i = 0; i<5; i++) {
-      if (wildHorses[i].spawnMap == playerCharacter.activeMap && playerCharacter.activeMap != maps.catchWild) {
-        helpers.animateHorse(wildHorses[i]);
-      moveHorsePhysical(helpers.randomIntFromInterval(28,100), wildHorses[i]);
-    } else if(wildHorses[i].spawnMap == maps.catchWild && playerCharacter.activeMap == maps.catchWild)  {
-        helpers.animateHorse(wildHorses[i]);
-      moveHorsePhysical(helpers.randomIntFromInterval(24,29), wildHorses[i]);
+      if (wildHorses.wildHorses[i].spawnMap == playerCharacter.activeMap && playerCharacter.activeMap != worldMapsStore.catchWild) {
+        helpers.animateHorse(wildHorses.wildHorses[i]);
+      moveHorsePhysical(helpers.randomIntFromInterval(28,100), wildHorses.wildHorses[i]);
+    } else if(wildHorses.wildHorses[i].spawnMap == worldMapsStore.catchWild && playerCharacter.activeMap == worldMapsStore.catchWild)  {
+        helpers.animateHorse(wildHorses.wildHorses[i]);
+      moveHorsePhysical(helpers.randomIntFromInterval(24,29), wildHorses.wildHorses[i]);
     }
   }
     for(var b = 0; b<=playerCharacter.playerHorses.length-1; b++) {

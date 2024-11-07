@@ -1,16 +1,15 @@
 import { gameImages } from './gameImages.js';
-import { maps } from './maps.js';
+import { worldMapsStore } from './maps.js';
 import { items } from './items.js';
 import { horsePhysical } from './horseAttributes.js';
 import { classDefinitions } from './classDefinitions.js';
 import {npcFunctionality} from './npcFunctionality.js';
 import { helpers } from './helpers.js';
 import { playerCharacter } from './playerCharacter.js';
-import { menus } from './menus.js/index.js';
+import { menus } from './menus.js';
 import { inventory } from './inventory.js';
 import { wildHorses } from './wildHorses.js';
 import { worldInteractions } from './worldInteractions.js';
-import { ownedHorse } from './ownedHorse.js';
 import { movement } from './movement.js';
 import { wildCatchGame } from './wildCatchingMiniGame.js';
 
@@ -98,7 +97,7 @@ function tackHorse(horseName, item) {
   function displayHorse(horseName) {
     for(var i = 0; i<playerCharacter.playerHorses.length; i++) {
       if(playerCharacter.playerHorses[i].horseName == horseName && playerCharacter.playerHorses[i].horseDisplayed == "N") {
-        playerCharacter.playerHorses[i].spawnMap = maps.mapSix;
+        playerCharacter.playerHorses[i].spawnMap = worldMapsStore.mapSix;
         playerCharacter.playerHorses[i].HorsePosCol = 5;
         playerCharacter.playerHorses[i].HorsePosRow = 5;
         playerCharacter.playerHorses[i].horseDisplayed = "Y";
