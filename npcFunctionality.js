@@ -102,7 +102,7 @@ function createNPCs() {
       } else if (NPCAtHome.activeQuest.constructor.name == "itemQuest") {
         var playerHasAllItems = true;
         NPCAtHome.activeQuest.itemRequest.forEach(function(value, key) {
-          if(!(playerItems.has(key) && playerItems.get(key).ownedByPlayer >= value)) {
+          if(!(playerCharacter.playerItems.has(key) && playerCharacter.playerItems.get(key).ownedByPlayer >= value)) {
             playerHasAllItems = false;
           }
         });
@@ -151,7 +151,7 @@ function openShop(quest, NPC) {
 function purchaseItem(item, price) {
   if(price <= playerCharacter.playerCoin) {
     item.ownedByPlayer++;
-    playerItems.set(item.name,item);
+    playerCharacter.playerItems.set(item.name,item);
     playerCharacter.playerCoin -= price;
     document.getElementById("NPCDialogue").textContent = "Thanks";
     helpers.updateBank();
@@ -179,7 +179,7 @@ function submitHorseQuest(horseName, NPC) {
 function submitItemQuest(NPC) {
 
   NPC.activeQuest.itemRequest.forEach(function(value, key) {
-    playerItems.get(key).ownedByPlayer-= value;
+    playerCharacter.playerItems.get(key).ownedByPlayer-= value;
   });
 
   playerCharacter.playerCoin += NPC.activeQuest.reward;

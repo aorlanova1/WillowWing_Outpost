@@ -49,7 +49,7 @@ function randomWorldWilds(min, max) {
   }}
 
   function updateBank() {
-    menus.bankShow.textContent = playerCharacter.playerCoin;
+    document.getElementById("playerCoins").textContent = playerCharacter.playerCoin;
   }
 
   function eraseSprite() {
@@ -78,7 +78,7 @@ function randomWorldWilds(min, max) {
       playerCharacter.SpriteWidth, playerCharacter.SpriteHeight, colPos*32, rowPos*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
   }
 
-  function drawLasso(item, rowPos,colPos) {
+  function drawLasso(item, rowPos,colPos,lassoCol) {
     ctx.drawImage(item, lassoCol * playerCharacter.SpriteWidth, 3 * playerCharacter.SpriteHeight, 
       playerCharacter.SpriteWidth, playerCharacter.SpriteHeight, colPos*32, rowPos*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
   }
@@ -193,7 +193,7 @@ function randomWorldWilds(min, max) {
 
   function findWildHorseIndex() {
     for (var i = 0; i<5; i++) {
-      if (wildHorses.wildHorses[i].spawnMap == worldMapsStore.catchWild) {
+      if (wildHorses.allWildHorses[i].spawnMap == worldMapsStore.catchWild) {
         return i;
       }
     }

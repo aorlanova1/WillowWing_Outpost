@@ -18,7 +18,7 @@ function fillInventoryMenu() {
       document.getElementById("menuInventoryExpandList").removeChild(document.getElementById("inventoryItem"));
     }
 
-    playerItems.forEach((item, itemName) =>{
+    playerCharacter.playerItems.forEach((item, itemName) =>{
       if(item.ownedByPlayer != 0) {
       var listItem = document.createElement('li'); 
       listItem.id = "inventoryItem";

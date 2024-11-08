@@ -295,12 +295,12 @@ function moveCharacter(key) {
 
   function moveHorses() {
     for (var i = 0; i<5; i++) {
-      if (wildHorses.wildHorses[i].spawnMap == playerCharacter.activeMap && playerCharacter.activeMap != worldMapsStore.catchWild) {
-        helpers.animateHorse(wildHorses.wildHorses[i]);
-      moveHorsePhysical(helpers.randomIntFromInterval(28,100), wildHorses.wildHorses[i]);
-    } else if(wildHorses.wildHorses[i].spawnMap == worldMapsStore.catchWild && playerCharacter.activeMap == worldMapsStore.catchWild)  {
-        helpers.animateHorse(wildHorses.wildHorses[i]);
-      moveHorsePhysical(helpers.randomIntFromInterval(24,29), wildHorses.wildHorses[i]);
+      if (wildHorses.allWildHorses[i].spawnMap == playerCharacter.activeMap && playerCharacter.activeMap != worldMapsStore.catchWild) {
+        helpers.animateHorse(wildHorses.allWildHorses[i]);
+      moveHorsePhysical(helpers.randomIntFromInterval(28,100), wildHorses.allWildHorses[i]);
+    } else if(wildHorses.allWildHorses[i].spawnMap == worldMapsStore.catchWild && playerCharacter.activeMap == worldMapsStore.catchWild)  {
+        helpers.animateHorse(wildHorses.allWildHorses[i]);
+      moveHorsePhysical(helpers.randomIntFromInterval(24,29), wildHorses.allWildHorses[i]);
     }
   }
     for(var b = 0; b<=playerCharacter.playerHorses.length-1; b++) {

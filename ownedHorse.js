@@ -151,5 +151,6 @@ function tackHorse(horseName, item) {
     feedHorse,
     rideHorse,
     displayHorse,
-    untackHorse
+    untackHorse,
+    openHorseCard
   }

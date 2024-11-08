@@ -69,7 +69,7 @@ function putDownItem() {
   function collectItem(itemToCollect) {
     itemToCollect.item.ownedByPlayer++;
     console.log(itemToCollect.item.name + "   " + itemToCollect.item.ownedByPlayer);
-    playerItems.set(itemToCollect.item.name, itemToCollect.item);
+    playerCharacter.playerItems.set(itemToCollect.item.name, itemToCollect.item);
   
     for(var i = 0; i<worldItems.length; i++) {
       if(playerCharacter.spriteMapCol == worldItems[i].itemMapCol && playerCharacter.spriteMapRow == worldItems[i].itemMapRow
@@ -110,8 +110,8 @@ function putDownItem() {
 
   function isPlayerOnWild() {
     for (var i = 0; i<5; i++) {
-      if (wildHorses.wildHorses[i].spawnMap == playerCharacter.activeMap && wildHorses.wildHorses[i].HorsePosCol == playerCharacter.SpriteColPos && wildHorses.wildHorses[i].HorsePosRow == playerCharacter.SpriteRowPos) {
-        onWildEvent(wildHorses.wildHorses[i]);
+      if (wildHorses.allWildHorses[i].spawnMap == playerCharacter.activeMap && wildHorses.allWildHorses[i].HorsePosCol == playerCharacter.SpriteColPos && wildHorses.allWildHorses[i].HorsePosRow == playerCharacter.SpriteRowPos) {
+        onWildEvent(wildHorses.allWildHorses[i]);
       }
     }
   }

@@ -45,7 +45,7 @@ function wildCatchMiniGame(horse) {
                 endMiniGame("You've failed to catch a wild!", horse, activeMapHolder);
             } else if (sendLasso(horse)) {
                 endMiniGame("You've caught a wild! It took " + attempts + " attempts", horse, activeMapHolder);
-                wildHorses.wildHorses.splice(helpers.findWildHorseIndex(), 1);
+                wildHorses.allWildHorses.splice(helpers.findWildHorseIndex(), 1);
                 wildHorses.createWilds();
                 horse.spawnMap = 0;
                 horse.HorsePosCol = 10;
@@ -69,9 +69,9 @@ function wildCatchMiniGame(horse) {
                 horseListItem.appendChild(openHorseCardButton);
                 horseListItem.appendChild(rideHorseButton);
                 displayHorseButton.addEventListener("click", () => ownedHorse.displayHorse(horse.horseName));
-                openHorseCardButton.addEventListener("click", () => openHorseCard(horse));
+                openHorseCardButton.addEventListener("click", () => ownedHorse.openHorseCard(horse));
                 rideHorseButton.addEventListener("click", () => ownedHorse.rideHorse(horse));
-                menus.menuHorseExpandList.appendChild(horseListItem);
+                document.getElementById("menuHorseExpandList").appendChild(horseListItem);
             }
         }
     };
@@ -80,7 +80,7 @@ function wildCatchMiniGame(horse) {
 
     function endMiniGame(message, horse, activeMapHolder) {
         attempts = 0;
-        wildHorses.wildHorses.splice(helpers.findWildHorseIndex(), 1);
+        wildHorses.allWildHorses.splice(helpers.findWildHorseIndex(), 1);
         wildHorses.createWilds();
         miniGameActive = false; // Reset the flag
         playerCharacter.activeMap = activeMapHolder;
@@ -118,14 +118,14 @@ function sendLasso(horse) {
         lassoCol = 0;
       }
       
-      helpers.drawLasso(gameImages.lasso, lassoPosRow, lassoPosCol);
+      helpers.drawLasso(gameImages.lasso, lassoPosRow, lassoPosCol, lassoCol);
       if (lassoPosRow == horse.HorsePosRow && lassoPosCol == horse.HorsePosCol) {
         horseCaught = true;
       }
       setTimeout(function(){
         for (var x = 0; x <= distance; x++) {
             helpers.eraseEnv(lassoPosCol, lassoPosRow+x);
-        } }, 100);
+        } }, 500);
         if(horseCaught) {
           return true;
         }
@@ -137,5 +137,4 @@ export const wildCatchGame = {
     wildCatchMiniGame,
     sendLasso,
     miniGameActive,
-    lassoCol
 }

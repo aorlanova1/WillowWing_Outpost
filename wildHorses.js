@@ -14,7 +14,7 @@ import { movement } from './movement.js';
 import { wildCatchGame } from './wildCatchingMiniGame.js';
 
 // Store all wild horses, max of 5. 
-var wildHorses = [];
+var allWildHorses = [];
 
 function createHorse() {
     var holder = new classDefinitions.horse(horsePhysical.horseAttributes.horseBase[1],horsePhysical.horseAttributes.maneBase[1],horsePhysical.horseAttributes.maneShade[1],
@@ -27,24 +27,24 @@ function createHorse() {
     }
     
     function createWilds() {
-        while (wildHorses.length < 5) {
-          wildHorses.push(createHorse());
+        while (allWildHorses.length < 5) {
+            allWildHorses.push(createHorse());
         }
-        console.log("new horses generated! " + wildHorses.length);
+        console.log("new horses generated! " + allWildHorses.length);
       spawnWilds();
     }
     
     function spawnWilds() {
-      for(var i = 0; i<5; i++) {
-        if (wildHorses[i].spawnMap == playerCharacter.activeMap) {
-            helpers.drawHorse(wildHorses[i]);
+      for(var i = 0; i<allWildHorses.length; i++) {
+        if (allWildHorses[i].spawnMap == playerCharacter.activeMap) {
+            helpers.drawHorse(allWildHorses[i]);
         }
       }
     }
 
 
 export const wildHorses = {
-    wildHorses,
+    allWildHorses,
     createHorse,
     createWilds,
     spawnWilds
