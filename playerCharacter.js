@@ -1,9 +1,21 @@
-import { maps } from './maps.js';
-
+import { gameImages } from './gameImages.js';
+import { worldMapsStore } from './maps.js';
+import { items } from './items.js';
+import { horsePhysical } from './horseAttributes.js';
+import { classDefinitions } from './classDefinitions.js';
+import {npcFunctionality} from './npcFunctionality.js';
+import { helpers } from './helpers.js';
+import { menus } from './menus.js';
+import { inventory } from './inventory.js';
+import { wildHorses } from './wildHorses.js';
+import { worldInteractions } from './worldInteractions.js';
+import { ownedHorse } from './ownedHorse.js';
+import { movement } from './movement.js';
+import { wildCatchGame } from './wildCatchingMiniGame.js';
 // active character map and character map position
 var spriteMapCol = 1;
 var spriteMapRow = 2;
-var activeMap = maps.worldMaps.maps[maps.worldMaps.mapLayout[spriteMapRow][spriteMapCol]];
+var activeMap;
 //main character
 var SpriteRow = 0;   
 var SpriteCol = 0;       
@@ -14,6 +26,7 @@ var SpriteHeight = 32;
 var playerCoin = 0;
 var activeRiddenHorse = "";
 var playerHorses = [];
+var playerItems = new Map();
 
 export const playerCharacter = {
     spriteMapCol,
@@ -27,5 +40,6 @@ export const playerCharacter = {
     SpriteHeight,
     playerCoin,
     activeRiddenHorse,
-    playerHorses
+    playerHorses,
+    playerItems
 }

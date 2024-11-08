@@ -1,4 +1,17 @@
 import { gameImages } from './gameImages.js';
+import { items } from './items.js';
+import { horsePhysical } from './horseAttributes.js';
+import { classDefinitions } from './classDefinitions.js';
+import {npcFunctionality} from './npcFunctionality.js';
+import { helpers } from './helpers.js';
+import { playerCharacter } from './playerCharacter.js';
+import { menus } from './menus.js';
+import { inventory } from './inventory.js';
+import { wildHorses } from './wildHorses.js';
+import { worldInteractions } from './worldInteractions.js';
+import { ownedHorse } from './ownedHorse.js';
+import { movement } from './movement.js';
+import { wildCatchGame } from './wildCatchingMiniGame.js';
 
 var mapStarter = {
     1: gameImages.SpriteImage,
@@ -359,7 +372,7 @@ var mapStarter = {
     [0,0,0,0]]
    };
 
-  export const maps = {
+  export const worldMapsStore = {
     mapStarter,
     mapTwo,
     mapThree,

@@ -40,8 +40,6 @@ var eightballIcon = "eightball.png";
 //minigame assets
 var lasso = new Image();
 lasso.src = "Rope.png"
-var lassoCol;
-var lassoRow;
 
 //fence:
 var fenceTL = new Image();
