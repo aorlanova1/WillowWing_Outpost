@@ -13,6 +13,7 @@ import { worldInteractions } from './worldInteractions.js';
 import { ownedHorse } from './ownedHorse.js';
 import { movement } from './movement.js';
 import { wildCatchGame } from './wildCatchingMiniGame.js';
+import {worldNPCs} from './npcDefinitions.js';
 
 var INTERVAL = 50;
 var myInterval;    
@@ -28,7 +29,7 @@ function loadComplete() {
       helpers.drawSprite();
       wildHorses.createWilds();
       menus.initializeMenus();
-      npcFunctionality.createNPCs();
+      worldNPCs.createNPCs();
       menus.buttonEvents();
       helpers.updateBank();
       myInterval = self.setInterval(function(){Tick()}, INTERVAL);})
