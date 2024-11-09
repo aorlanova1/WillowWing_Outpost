@@ -198,6 +198,26 @@ function randomWorldWilds(min, max) {
       }
     }
   }
+
+  function checkNPCLevel(NPC) {
+    if(NPC.NPCRelationship >= 0 && NPC.NPCRelationship <5) {
+      NPC.activeDialogue = NPC.dialogue1;
+    } else if(NPC.NPCRelationship >= 5 && NPC.NPCRelationship <15) {
+      NPC.activeDialogue = NPC.dialogue2;
+    } else if (NPC.NPCRelationship >= 15) {
+      NPC.activeDialogue = NPC.dialogue3;
+    } 
+  }
+
+  function notifyPlayer(text) {
+    var notif = document.createElement('li');
+    notif.textContent = text;
+    document.getElementById('eventInterface').appendChild(notif);
+
+    setTimeout(function() {
+        document.getElementById('eventInterface').removeChild(notif);
+    }, 6000);
+  }
   
   export const helpers = {
     randomIntFromInterval,
@@ -221,5 +241,7 @@ function randomWorldWilds(min, max) {
     findWildHorseIndex,
     loadCanvas,
     ctx,
-    canvas
+    canvas,
+    checkNPCLevel,
+    notifyPlayer
   }

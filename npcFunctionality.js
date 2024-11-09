@@ -16,9 +16,13 @@ import { wildCatchGame } from './wildCatchingMiniGame.js';
 
 var NPCs = [];
 var dialogueOption;
+var lvl1 = 0;
+var lvl2 = 5;
+var lvl3 = 10;
 
   function enterHome(NPCAtHome) {
     //put NPC Icon
+    helpers.checkNPCLevel(NPCAtHome);
     if(document.contains(document.getElementById("NPCIcon"))) { 
       document.getElementById("NPCImgHolder").removeChild(document.getElementById("NPCIcon"));
     }
@@ -31,71 +35,68 @@ var dialogueOption;
 
     //no currently active quest
     if(NPCAtHome.activeQuest == "") {
-
-    var questHolder = NPCAtHome.questList[helpers.randomIntFromInterval(0,NPCAtHome.questList.length-1)];
-    addNPCDialogue(questHolder.dialogueStart);
-
-    if(questHolder.constructor.name == "shopQuest") {
-
-      addCharacterDialogue("I'll have a look.", "follow " + NPCAtHome.name);
-      document.getElementById("characterButton").addEventListener("click", () => openShop(questHolder, NPCAtHome));
-
-    } else if(questHolder.constructor.name == "horseQuest" || questHolder.constructor.name == "itemQuest") {
-
-    addCharacterDialogue("I can take care of it.","accept quest");
-    document.getElementById("characterButton").addEventListener("click", () => acceptQuest(questHolder, NPCAtHome));
-    
-    
+      startQuest(NPCAtHome);
+    } else {
+      activeQuestVisit(NPCAtHome);
+    }
   }
-  } else {
+
+  function activeQuestVisit(NPCAtHome) {
     //active quest exists. Check parameters of request
 
-      addNPCDialogue(NPCAtHome.dialogue1[helpers.randomIntFromInterval(0,(NPCAtHome.dialogue1.length)-1)]);
-      
-      //horse Quest
-      if(NPCAtHome.activeQuest.constructor.name == "horseQuest") {
-      var dropDownMenuApplicableHorse = document.createElement('SELECT');
-
-      playerCharacter.playerHorses.forEach(horsie => {
-        if(horsie.nervous >= NPCAtHome.activeQuest.nervousMin && horsie.nervous <= NPCAtHome.activeQuest.nervousMax &&
-          horsie.stuborn >= NPCAtHome.activeQuest.stubornMin && horsie.nervous <= NPCAtHome.activeQuest.stubornMax &&
-          horsie.interested >= NPCAtHome.activeQuest.interestedMin && horsie.nervous <= NPCAtHome.activeQuest.interestedMax &&
-          horsie.trecherous >= NPCAtHome.activeQuest.trecherousMin && horsie.nervous <= NPCAtHome.activeQuest.trecherousMax &&
-          horsie.horseTrust >= NPCAtHome.activeQuest.bondMin) {
-            var applicableHorse = document.createElement('option');
-            applicableHorse.value = horsie.horseName;
-            applicableHorse.text = horsie.horseName;
-            dropDownMenuApplicableHorse.add(applicableHorse);
-          } 
-        })
-
-        addCharacterDialogue("Got your horse.","give");
-        document.getElementById("characterButton").addEventListener("click", () => submitHorseQuest(dropDownMenuApplicableHorse.value, NPCAtHome));
-        document.getElementById("CharDialogueHolder").appendChild(dropDownMenuApplicableHorse);
-        document.getElementById("CharDialogueHolder").appendChild(dialogueOption);
-
-      } else if (NPCAtHome.activeQuest.constructor.name == "itemQuest") {
-        var playerHasAllItems = true;
-        NPCAtHome.activeQuest.itemRequest.forEach(function(value, key) {
-          if(!(playerCharacter.playerItems.has(key) && playerCharacter.playerItems.get(key).ownedByPlayer >= value)) {
-            playerHasAllItems = false;
-          }
-        });
-        if(playerHasAllItems) {
-
-          addCharacterDialogue("Got your stuff.","give");
-          document.getElementById("characterButton").addEventListener("click", () => submitItemQuest(NPCAtHome));
-          
-        } else {
-
-          addCharacterDialogue("Still working on getting your items.","leave");
-          document.getElementById("characterButton").addEventListener("click", () => menus.exitMenu());
-        }
-      } else if (NPCAtHome.activeQuest.constructor.name == "shopQuest") {
-        openShop(NPCAtHome.activeQuest, NPCAtHome);
-      }
+    addNPCDialogue(NPCAtHome.activeDialogue[helpers.randomIntFromInterval(0,(NPCAtHome.activeDialogue.length)-1)]);
+    
+    //horse Quest
+    if(NPCAtHome.activeQuest.constructor.name == "horseQuest") {
+      horseQuestCheck(NPCAtHome);
+    } else if (NPCAtHome.activeQuest.constructor.name == "itemQuest") {
+      itemQuestCheck(NPCAtHome);
+    } else if (NPCAtHome.activeQuest.constructor.name == "shopQuest") {
+      openShop(NPCAtHome.activeQuest, NPCAtHome);
     }
-}
+  }
+
+  function horseQuestCheck(NPCAtHome) {
+    var dropDownMenuApplicableHorse = document.createElement('SELECT');
+  
+    playerCharacter.playerHorses.forEach(horsie => {
+      if(horsie.nervous >= NPCAtHome.activeQuest.nervousMin && horsie.nervous <= NPCAtHome.activeQuest.nervousMax &&
+        horsie.stuborn >= NPCAtHome.activeQuest.stubornMin && horsie.nervous <= NPCAtHome.activeQuest.stubornMax &&
+        horsie.interested >= NPCAtHome.activeQuest.interestedMin && horsie.nervous <= NPCAtHome.activeQuest.interestedMax &&
+        horsie.trecherous >= NPCAtHome.activeQuest.trecherousMin && horsie.nervous <= NPCAtHome.activeQuest.trecherousMax &&
+        horsie.horseTrust >= NPCAtHome.activeQuest.bondMin) {
+          var applicableHorse = document.createElement('option');
+          applicableHorse.value = horsie.horseName;
+          applicableHorse.text = horsie.horseName;
+          dropDownMenuApplicableHorse.add(applicableHorse);
+        } 
+      })
+  
+      addCharacterDialogue("Got your horse.","give");
+      document.getElementById("characterButton").addEventListener("click", () => submitHorseQuest(dropDownMenuApplicableHorse.value, NPCAtHome));
+      document.getElementById("CharDialogueHolder").appendChild(dropDownMenuApplicableHorse);
+      document.getElementById("CharDialogueHolder").appendChild(dialogueOption);
+  }
+  
+  function itemQuestCheck(NPCAtHome) {
+    var playerHasAllItems = true;
+    NPCAtHome.activeQuest.itemRequest.forEach(function(value, key) {
+      if(!(playerCharacter.playerItems.has(key) && playerCharacter.playerItems.get(key).ownedByPlayer >= value)) {
+        playerHasAllItems = false;
+      }
+    });
+    if(playerHasAllItems) {
+  
+      addCharacterDialogue("Got your stuff.","give");
+      document.getElementById("characterButton").addEventListener("click", () => submitItemQuest(NPCAtHome));
+      
+    } else {
+  
+      addCharacterDialogue("Still working on getting your items.","leave");
+      document.getElementById("characterButton").addEventListener("click", () => menus.exitMenu());
+    }
+  }
+
 function openShop(quest, NPC) {
   if(NPC.activeQuest == "") {
      NPC.activeQuest = quest;
@@ -103,7 +104,7 @@ function openShop(quest, NPC) {
 
   addCharacterDialogue("Thanks. I'm out of here.","leave");
   document.getElementById("characterButton").addEventListener("click", () => menus.exitMenu());
-  addNPCDialogue(NPC.dialogue1[helpers.randomIntFromInterval(0,NPC.dialogue1.length-1)]);
+  addNPCDialogue(NPC.activeDialogue[helpers.randomIntFromInterval(0,NPC.activeDialogue.length-1)]);
 
   var tackSelection = document.createElement('ul');
   quest.inventory.forEach(function(value, key) {
@@ -135,6 +136,9 @@ function submitHorseQuest(horseName, NPC) {
   addNPCDialogue(NPC.activeQuest.dialogueEnd + " here's " + NPC.activeQuest.reward + " coin.");
 
   addCharacterDialogue("Take good care of 'em. Thanks for the tip.","get going.");
+  NPC.NPCRelationship ++;
+  gossip(NPC);
+  helpers.notifyPlayer("Quest Completed! Relationship with " + NPC.name + " increased!");
   document.getElementById("characterButton").addEventListener("click", () => menus.exitMenu());
   
   helpers.updateBank();
@@ -157,6 +161,9 @@ function submitItemQuest(NPC) {
   addNPCDialogue(NPC.activeQuest.dialogueEnd + " here's " + NPC.activeQuest.reward + " coin.");
 
   addCharacterDialogue("Enjoy. Thanks for the tip.","get going.");
+  NPC.NPCRelationship ++;
+  gossip(NPC);
+  helpers.notifyPlayer("Quest Completed! Relationship with " + NPC.name + " increased!");
   document.getElementById("characterButton").addEventListener("click", () => menus.exitMenu());
 
   helpers.updateBank();
@@ -185,6 +192,45 @@ function acceptQuest(quest, NPC) {
   addCharacterDialogue("Got it.","get going.");
   document.getElementById("characterButton").addEventListener("click", () => menus.exitMenu());
 }
+
+function gossip(NPC) {
+  var randomNum;
+  for (var i = 0; i<NPC.dislikedByNeighbors.length; i++) {
+    randomNum = helpers.randomIntFromInterval(1,3);
+    if(randomNum == 3) {
+      NPC.dislikedByNeighbors[i].NPCRelationship --;
+      helpers.notifyPlayer("Word got around that you helped " + NPC.name + ". " + NPC.dislikedByNeighbors[i].name + " is not a fan. Relationship went down.");
+    }
+  }
+    for (var i = 0; i<NPC.likedByNeighbors.length; i++) {
+      randomNum = helpers.randomIntFromInterval(1,3);
+      if(randomNum == 3) {
+        NPC.likedByNeighbors[i].NPCRelationship++;
+        helpers.notifyPlayer("Word got around that you did " + NPC.name + " a favor! " + NPC.likedByNeighbors[i].name + " is happy you helped! Relationship went up!");
+      }
+    }
+  }
+
+
+
+function startQuest(NPCAtHome) {
+  var questHolder = NPCAtHome.questList[helpers.randomIntFromInterval(0,NPCAtHome.questList.length-1)];
+  addNPCDialogue(questHolder.dialogueStart);
+
+  if(questHolder.constructor.name == "shopQuest") {
+
+    addCharacterDialogue("I'll have a look.", "follow " + NPCAtHome.name);
+    document.getElementById("characterButton").addEventListener("click", () => openShop(questHolder, NPCAtHome));
+
+  } else if(questHolder.constructor.name == "horseQuest" || questHolder.constructor.name == "itemQuest") {
+
+  addCharacterDialogue("I can take care of it.","accept quest");
+  document.getElementById("characterButton").addEventListener("click", () => acceptQuest(questHolder, NPCAtHome));
+  
+  
+}
+}
+
 
 function addNPCDialogue(dialogue) {
   document.getElementById("NPCDialogue").textContent = dialogue;
