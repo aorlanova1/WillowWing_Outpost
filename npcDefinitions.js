@@ -20,6 +20,10 @@ var annaQuest3;
 var eightballQuest1;
 var damonShop1;
 
+var anna;
+var damon;
+var eightball;
+
 function createQuests() {
  annaQuest1 = new classDefinitions.horseQuest("Wrangler.. I'm in need of a steed. Something with a good head on its shoulders", 
   "Thank you!",20,50,0,10,0,40,0,10,0,300); 
@@ -45,28 +49,36 @@ function getNPCQuests() {
     }
   }
 }
+function getNPCRelationships() {
+  return {
+    anna: {
+      likedBy: [damon],
+      dislikedBy: [eightball]
+    },
+    eightball: {
+      likedBy: [],
+      dislikedBy: [anna]
+    },
+    damon: {
+      likedBy: [anna],
+      dislikedBy: []
+    },
+  }
+}
 
 function createNPCs() {
-    var anna = new classDefinitions.NPC("anna", ["Hey.", "Can I help you?"],["Hey, dude!"],["Happy you're here!"],[],[],gameImages.annaIcon,worldMapsStore.mapSevenVillage, 3,2);
+     anna = new classDefinitions.NPC("anna", ["Hey.", "Can I help you?"],["Hey, dude!"],["Happy you're here!"],gameImages.annaIcon,worldMapsStore.mapSevenVillage, 3,2);
     npcFunctionality.NPCs.push(anna);
-    var eightball = new classDefinitions.NPC("eightball", ["You stick your nose in everyone's bizness?"],["Sup dopie."],["You're not one to just write people off, are you?"],[],[],gameImages.eightballIcon,worldMapsStore.mapSevenVillage, 7,2);
+     eightball = new classDefinitions.NPC("eightball", ["You stick your nose in everyone's bizness?"],["Sup dopie."],["You're not one to just write people off, are you?"],gameImages.eightballIcon,worldMapsStore.mapSevenVillage, 7,2);
     npcFunctionality.NPCs.push(eightball);
-    var damon = new classDefinitions.NPC('damon', ["How's farm life treating you?", "Any nasty falls lately?"],["The weather, nice, eh?."],["You've been great to us."],[],[],gameImages.cactus.src,worldMapsStore.mapSevenVillage,11,2);
+     damon = new classDefinitions.NPC('damon', ["How's farm life treating you?", "Any nasty falls lately?"],["The weather, nice, eh?."],["You've been great to us."],gameImages.cactus.src,worldMapsStore.mapSevenVillage,11,2);
     npcFunctionality.NPCs.push(damon);
-
-    anna.likedByNeighbors.push(damon);
-    anna.dislikedByNeighbors.push(eightball);
-
-    eightball.dislikedByNeighbors.push(anna);
-    eightball.dislikedByNeighbors.push(damon);
-
-    damon.likedByNeighbors.push(anna);
-    damon.dislikedByNeighbors.push(eightball);
   }
 
 
 export const worldNPCs = {
     createNPCs,
     createQuests,
-    getNPCQuests
+    getNPCQuests,
+    getNPCRelationships
 }

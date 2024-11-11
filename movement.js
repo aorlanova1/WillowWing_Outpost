@@ -300,7 +300,7 @@ function moveCharacter(key) {
       moveHorsePhysical(helpers.randomIntFromInterval(28,100), wildHorses.allWildHorses[i]);
     } else if(wildHorses.allWildHorses[i].spawnMap == worldMapsStore.catchWild && playerCharacter.activeMap == worldMapsStore.catchWild)  {
         helpers.animateHorse(wildHorses.allWildHorses[i]);
-      moveHorsePhysical(helpers.randomIntFromInterval(24,29), wildHorses.allWildHorses[i]);
+      moveHorsePhysical(helpers.randomIntFromInterval(24,50), wildHorses.allWildHorses[i]);
     }
   }
     for(var b = 0; b<=playerCharacter.playerHorses.length-1; b++) {

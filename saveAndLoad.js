@@ -26,8 +26,8 @@ function saveGame() {
         //localStorage.setItem("NPCs", JSON.stringify(npcFunctionality.NPCs));
         var horseToSave = playerCharacter.playerHorses.map(horse => {
             return {
-                ...horse, // copy all properties of the horse
-                horseBase: horse.horseBase.src, // save the image src (URL), not the Image element itself
+                ...horse, 
+                horseBase: horse.horseBase.src, 
                 maneBase: horse.maneBase.src,
                 maneShade: horse.maneShade.src,
                 maneColor: horse.maneColor.src,
@@ -38,11 +38,11 @@ function saveGame() {
         });
         localStorage.setItem("playerHorses", JSON.stringify(horseToSave));
         localStorage.setItem("playerCoin", JSON.stringify(playerCharacter.playerCoin));
+        localStorage.setItem("NPCs", JSON.stringify(npcFunctionality.NPCs));
         localStorage.setItem("playerInventory", JSON.stringify(Array.from(playerCharacter.playerItems.entries())));
 }
 
 function loadGame() {
-    //npcFunctionality.NPCs = JSON.parse(localStorage.getItem("NPCs"));
     playerCharacter.playerHorses = JSON.parse(localStorage.getItem("playerHorses"));
     playerCharacter.playerHorses.forEach(horse => {
 
@@ -77,30 +77,30 @@ function loadGame() {
     });
     playerCharacter.playerCoin = JSON.parse(localStorage.getItem("playerCoin"));
     playerCharacter.playerItems =  new Map(JSON.parse(localStorage.getItem("playerInventory")));
+    npcFunctionality.NPCs = JSON.parse(localStorage.getItem("NPCs"));
     document.getElementById("enterScreen").style.display = "none";
     initializeGame();
 }
 
 function initializeGame() {
-    worldNPCs.createNPCs();
-    worldNPCs.createQuests();
     helpers.generateMap(worldMapsStore.mapStarter);
       helpers.drawSprite();
       wildHorses.createWilds();
       menus.initializeMenus();
       menus.buttonEvents();
       helpers.updateBank();
+      worldNPCs.createQuests();
 }
 
 function initializeNewGame() {
-    worldNPCs.createNPCs();
-    worldNPCs.createQuests();
     helpers.generateMap(worldMapsStore.mapStarter);
       helpers.drawSprite();
       wildHorses.createWilds();
       menus.initializeMenus();
       menus.buttonEvents();
       helpers.updateBank();
+      worldNPCs.createNPCs();
+      worldNPCs.createQuests();
 }
 
 export const gameState = {
