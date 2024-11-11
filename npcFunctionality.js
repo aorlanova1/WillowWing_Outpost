@@ -12,13 +12,11 @@ import { worldInteractions } from './worldInteractions.js';
 import { ownedHorse } from './ownedHorse.js';
 import { movement } from './movement.js';
 import { wildCatchGame } from './wildCatchingMiniGame.js';
+import { worldNPCs } from './npcDefinitions.js';
 
 
 var NPCs = [];
 var dialogueOption;
-var lvl1 = 0;
-var lvl2 = 5;
-var lvl3 = 10;
 
   function enterHome(NPCAtHome) {
     //put NPC Icon
@@ -214,7 +212,12 @@ function gossip(NPC) {
 
 
 function startQuest(NPCAtHome) {
-  var questHolder = NPCAtHome.questList[helpers.randomIntFromInterval(0,NPCAtHome.questList.length-1)];
+  var NPCQuestList = worldNPCs.getNPCQuests();
+  const NPCname = NPCAtHome.name;
+  const npcQLevel = NPCAtHome.questLevel;
+  console.log("NAME: " + NPCname + " level: " + npcQLevel);
+  const possibleQuests = NPCQuestList[NPCname][npcQLevel];
+  var questHolder = possibleQuests[0];
   addNPCDialogue(questHolder.dialogueStart);
 
   if(questHolder.constructor.name == "shopQuest") {

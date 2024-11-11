@@ -52,26 +52,6 @@ function wildCatchMiniGame(horse) {
                 horse.HorsePosRow = 10;
                 horse.horseName = prompt("Give your new horse a name!");
                 playerCharacter.playerHorses.push(horse);
-                var horseListItem = document.createElement('li');
-                horseListItem.id = horse.horseName;
-                var rideHorseButton = document.createElement('button');
-                rideHorseButton.textContent = " toggle ride ";
-                horseListItem.id = horse.horseName;
-                var displayHorseButton = document.createElement('button');
-                var openHorseCardButton = document.createElement('button');
-                var horseIconList = document.createElement("img");
-                horseIconList.setAttribute("src", horse.horseIcon);
-                displayHorseButton.innerHTML = "Toggle Display";
-                openHorseCardButton.innerHTML = "Info";
-                horseListItem.textContent =  horse.horseName +":";
-                horseListItem.appendChild(horseIconList);
-                horseListItem.appendChild(displayHorseButton);
-                horseListItem.appendChild(openHorseCardButton);
-                horseListItem.appendChild(rideHorseButton);
-                displayHorseButton.addEventListener("click", () => ownedHorse.displayHorse(horse.horseName));
-                openHorseCardButton.addEventListener("click", () => ownedHorse.openHorseCard(horse));
-                rideHorseButton.addEventListener("click", () => ownedHorse.rideHorse(horse));
-                document.getElementById("menuHorseExpandList").appendChild(horseListItem);
             }
         }
     };

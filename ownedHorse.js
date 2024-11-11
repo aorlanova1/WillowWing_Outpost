@@ -145,6 +145,33 @@ function tackHorse(horseName, item) {
     }
   }
 
+  function makeHorseMenu() {
+    playerCharacter.playerHorses.forEach(horse => {
+      if(!document.getElementById("menuHorseExpandList").contains(document.getElementById(horse.horseName))) {
+      var horseListItem = document.createElement('li');
+      horseListItem.id = horse.horseName;
+      var rideHorseButton = document.createElement('button');
+      rideHorseButton.textContent = " toggle ride ";
+      horseListItem.id = horse.horseName;
+      var displayHorseButton = document.createElement('button');
+      var openHorseCardButton = document.createElement('button');
+      var horseIconList = document.createElement("img");
+      horseIconList.setAttribute("src", horse.horseIcon);
+      displayHorseButton.innerHTML = "Toggle Display";
+      openHorseCardButton.innerHTML = "Info";
+      horseListItem.textContent =  horse.horseName +":";
+      horseListItem.appendChild(horseIconList);
+      horseListItem.appendChild(displayHorseButton);
+      horseListItem.appendChild(openHorseCardButton);
+      horseListItem.appendChild(rideHorseButton);
+      displayHorseButton.addEventListener("click", () => displayHorse(horse.horseName));
+      openHorseCardButton.addEventListener("click", () => openHorseCard(horse));
+      rideHorseButton.addEventListener("click", () => rideHorse(horse));
+      document.getElementById("menuHorseExpandList").appendChild(horseListItem);
+    }
+    });
+  }
+
 
   export const ownedHorse = {
     tackHorse,
@@ -152,5 +179,6 @@ function tackHorse(horseName, item) {
     rideHorse,
     displayHorse,
     untackHorse,
-    openHorseCard
+    openHorseCard,
+    makeHorseMenu
   }
