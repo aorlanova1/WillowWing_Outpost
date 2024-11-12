@@ -19,10 +19,12 @@ var annaQuest2;
 var annaQuest3;
 var eightballQuest1;
 var damonShop1;
+var sravanthiQuest1;
 
 var anna;
 var damon;
 var eightball;
+var sravanthi;
 
 function createQuests() {
  annaQuest1 = new classDefinitions.horseQuest("Wrangler.. I'm in need of a steed. Something with a good head on its shoulders", 
@@ -33,7 +35,8 @@ function createQuests() {
  eightballQuest1 = new classDefinitions.horseQuest("Heard you're in the horse pawning biz? Need a turbulent one, something I can slap around.", 
   "Gonna put some miles on this thang..",0,50,0,10,20,40,40,50,0,800); 
   damonShop1 = new classDefinitions.shopQuest(["Buy before you try. No refunds"], ["Luck"], new Map([[items.horseTack.saddlePads[helpers.randomIntFromInterval(1,20)],0], [items.horseTack.saddles[1],0], [items.horseTack.bridles[1],0]]));
-  //console.log("NPC QUEST LOADED: " + NPCQuests["anna"][1][1].dialogueStart);
+  sravanthiQuest1 = new classDefinitions.horseQuest("I have space in the stable to rehome a mustang. Just as long as they're at least 10 acclimated to people, I'll take 'em","This pony's gonna make someone very happy!" 
+    ,0,50,0,50,0,50,0,50,10,200); 
 }
 
 function getNPCQuests() {
@@ -46,6 +49,9 @@ function getNPCQuests() {
     },
     damon: {
       1: [damonShop1]
+    },
+    sravanthi: {
+      1: [sravanthiQuest1]
     }
   }
 }
@@ -63,6 +69,10 @@ function getNPCRelationships() {
       likedBy: [anna],
       dislikedBy: []
     },
+    sravanthi: {
+      likedBy: [anna, damon,eightball],
+      dislikedBy: []
+    },
   }
 }
 
@@ -73,6 +83,9 @@ function createNPCs() {
     npcFunctionality.NPCs.push(eightball);
      damon = new classDefinitions.NPC('damon', ["How's farm life treating you?", "Any nasty falls lately?"],["The weather, nice, eh?."],["You've been great to us."],gameImages.cactus.src,worldMapsStore.mapSevenVillage,11,2);
     npcFunctionality.NPCs.push(damon);
+    sravanthi = new classDefinitions.NPC("sravanthi",["Welcome, traveler! I'll take any horse, long as they're aclimated to humans to at least 10. Gotta have something to work with. Mustangs don't go easy"], ["You know the drill!", "The mayor is quite happy with the number of rehomed horses!", "Good to see you!"], 
+      ["Thanks to you, our outpost is getting national recognition."],gameImages.shrub1.src,worldMapsStore.mapSevenVillage,14,5);
+      npcFunctionality.NPCs.push(sravanthi);
   }
 
 
