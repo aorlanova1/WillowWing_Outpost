@@ -12,6 +12,7 @@ import { worldInteractions } from './worldInteractions.js';
 import { ownedHorse } from './ownedHorse.js';
 import { movement } from './movement.js';
 import { wildCatchGame } from './wildCatchingMiniGame.js';
+import { gameState } from './saveAndLoad.js';
 
 var expandMenu;
 var expandHorseButton;
@@ -23,6 +24,7 @@ var exitHorseCard;
 var exitExpandMenu;
 var npcMenuExpand;  
 var bankShow;
+var save;
   
   function exitMenu() {
     expandMenu.style.display = "none";
@@ -43,6 +45,7 @@ var bankShow;
     exitHorseCard = document.getElementById('exitCard');
     npcMenuExpand = document.getElementById('NPC');
     bankShow = document.getElementById('playerCoins');
+    save = document.getElementById('saveButton');
   }
 
   function buttonEvents() {
@@ -50,6 +53,7 @@ var bankShow;
     exitExpandMenu.addEventListener("click", () => exitMenu());
     exitHorseCard.addEventListener("click", () => exitMenu());
     expandInventoryButton.addEventListener("click", () => expandInventoryMenu());
+    save.addEventListener("click", () => gameState.saveGame());
   }
 
   function expandInventoryMenu() {
@@ -68,6 +72,7 @@ var bankShow;
     if (menuInventoryExpandList.style.display != "none") {
       menuInventoryExpandList.style.display = "none"
     }
+    ownedHorse.makeHorseMenu();
     menuHorseExpandList.style.display = "block"
   }
 

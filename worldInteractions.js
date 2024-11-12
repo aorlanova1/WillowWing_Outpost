@@ -87,10 +87,12 @@ function putDownItem() {
     var NPCAtHome = "";
     if(playerCharacter.activeMap[playerCharacter.activeMap.mapLayout[playerCharacter.SpriteRowPos-1][playerCharacter.SpriteColPos]] == gameImages.home) {
       console.log("Home");
+      console.log("PLAYER col: " + playerCharacter.SpriteColPos + " PLAYER row: " + playerCharacter.SpriteRowPos);
       for(var i = 0; i<npcFunctionality.NPCs.length; i++) {
+      console.log(npcFunctionality.NPCs[i].name + " col: " + npcFunctionality.NPCs[i].col + " row: " + npcFunctionality.NPCs[i].row);
         if(npcFunctionality.NPCs[i].row == playerCharacter.SpriteRowPos-1 && npcFunctionality.NPCs[i].col == playerCharacter.SpriteColPos) {
           NPCAtHome = npcFunctionality.NPCs[i];
-          console.log("the NPC is = " + NPCAtHome.row + " Col: " + NPCAtHome.col);
+          console.log("the NPC is = " + NPCAtHome.name + " Col: " + NPCAtHome.col);
           break;
         }
       }
@@ -103,6 +105,8 @@ function putDownItem() {
         knockButton.addEventListener("click", () => npcFunctionality.enterHome(NPCAtHome));
         atHomeNotify.appendChild(knockButton);
         document.getElementById("eventInterface").appendChild(atHomeNotify);
+    } else {
+      console.log("NO NPC HERE!");
     }
     }
 

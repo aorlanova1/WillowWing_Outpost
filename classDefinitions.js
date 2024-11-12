@@ -74,19 +74,17 @@ class horse {
 }
 
 class NPC {
-  constructor(name,dialogue1, dialogue2, dialogue3, likedByNeighbors, dislikedByNeighbors, art,map,col,row, questList){
+  constructor(name,dialogue1, dialogue2, dialogue3, art,map,col,row){
     this.name = name;
     this.dialogue1 = dialogue1;
     this.dialogue2 = dialogue2;
     this.dialogue3 = dialogue3;
-    this.likedByNeighbors = likedByNeighbors;
-    this.dislikedByNeighbors = dislikedByNeighbors;
     this.art = art;
     this.map = map;
     this.col = col;
     this.row = row;
-    this.questList = questList;
     this.NPCRelationship = 0;
+    this.questLevel = "";
     this.activeDialogue = "";
     this.activeQuest = "";
     this.activeQuestRequestText = "";

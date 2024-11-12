@@ -14,35 +14,84 @@ import { movement } from './movement.js';
 import { wildCatchGame } from './wildCatchingMiniGame.js';
 import { npcFunctionality } from './npcFunctionality.js';
 
+var annaQuest1;
+var annaQuest2;
+var annaQuest3;
+var eightballQuest1;
+var damonShop1;
+var sravanthiQuest1;
+
+var anna;
+var damon;
+var eightball;
+var sravanthi;
+
+function createQuests() {
+ annaQuest1 = new classDefinitions.horseQuest("Wrangler.. I'm in need of a steed. Something with a good head on its shoulders", 
+  "Thank you!",20,50,0,10,0,40,0,10,0,300); 
+ annaQuest2 = new classDefinitions.horseQuest("I was hoping you'd come around. I can take in one of your mustangs, give me your worst.", 
+  "This should be interesting!",0,50,40,50,20,50,30,50,0,500); 
+ annaQuest3 = new classDefinitions.itemQuest("I need something to make my horses like me more..", "Thanks, all work and no play makes my horses grey.", new Map([["apple",1]]),70);
+ eightballQuest1 = new classDefinitions.horseQuest("Heard you're in the horse pawning biz? Need a turbulent one, something I can slap around.", 
+  "Gonna put some miles on this thang..",0,50,0,10,20,40,40,50,0,800); 
+  damonShop1 = new classDefinitions.shopQuest(["Buy before you try. No refunds"], ["Luck"], new Map([[items.horseTack.saddlePads[helpers.randomIntFromInterval(1,20)],0], [items.horseTack.saddles[1],0], [items.horseTack.bridles[1],0]]));
+  sravanthiQuest1 = new classDefinitions.horseQuest("I have space in the stable to rehome a mustang. Just as long as they're at least 10 acclimated to people, I'll take 'em","This pony's gonna make someone very happy!" 
+    ,0,50,0,50,0,50,0,50,10,200); 
+}
+
+function getNPCQuests() {
+  return {
+    anna: {
+      1: [annaQuest1,annaQuest2, annaQuest3]
+    },
+    eightball: {
+      1: [eightballQuest1]
+    },
+    damon: {
+      1: [damonShop1]
+    },
+    sravanthi: {
+      1: [sravanthiQuest1]
+    }
+  }
+}
+function getNPCRelationships() {
+  return {
+    anna: {
+      likedBy: [damon],
+      dislikedBy: [eightball]
+    },
+    eightball: {
+      likedBy: [],
+      dislikedBy: [anna]
+    },
+    damon: {
+      likedBy: [anna],
+      dislikedBy: []
+    },
+    sravanthi: {
+      likedBy: [anna, damon,eightball],
+      dislikedBy: []
+    },
+  }
+}
+
 function createNPCs() {
-    var annaQuest1 = new classDefinitions.horseQuest("Wrangler.. I'm in need of a steed. Something with a good head on its shoulders", 
-      "Thank you!",20,50,0,10,0,40,0,10,0,300); 
-    var annaQuest2 = new classDefinitions.horseQuest("I was hoping you'd come around. I can take in one of your mustangs, give me your worst.", 
-      "This should be interesting!",0,50,40,50,20,50,30,50,0,500); 
-    var annaQuest3 = new classDefinitions.itemQuest("I need something to make my horses like me more..", "Thanks, all work and no play makes my horses grey.", new Map([["apple",1]]),70);
-    var anna = new classDefinitions.NPC("anna", ["Hey.", "Can I help you?"],["Hey, dude!"],["Happy you're here!"],[],[],gameImages.annaIcon,worldMapsStore.mapSevenVillage, 3,2,[annaQuest1,annaQuest2, annaQuest3]);
+     anna = new classDefinitions.NPC("anna", ["Hey.", "Can I help you?"],["Hey, dude!"],["Happy you're here!"],gameImages.annaIcon,worldMapsStore.mapSevenVillage, 3,2);
     npcFunctionality.NPCs.push(anna);
-  
-    var eightballQuest1 = new classDefinitions.horseQuest("Heard you're in the horse pawning biz? Need a turbulent one, something I can slap around.", 
-      "Gonna put some miles on this thang..",0,50,0,10,20,40,40,50,0,800); 
-    var eightball = new classDefinitions.NPC("eightball", ["You stick your nose in everyone's bizness?"],["Sup dopie."],["You're not one to just write people off, are you?"],[],[],gameImages.eightballIcon,worldMapsStore.mapSevenVillage, 7,2,[eightballQuest1]);
+     eightball = new classDefinitions.NPC("eightball", ["You stick your nose in everyone's bizness?"],["Sup dopie."],["You're not one to just write people off, are you?"],gameImages.eightballIcon,worldMapsStore.mapSevenVillage, 7,2);
     npcFunctionality.NPCs.push(eightball);
-  
-    var damonShop1 = new classDefinitions.shopQuest(["Buy before you try. No refunds"], ["Luck"], new Map([[items.horseTack.saddlePads[helpers.randomIntFromInterval(1,20)],0], [items.horseTack.saddles[1],0], [items.horseTack.bridles[1],0]]));
-    var damon = new classDefinitions.NPC('damon', ["How's farm life treating you?", "Any nasty falls lately?"],["The weather, nice, eh?."],["You've been great to us."],[],[],gameImages.cactus.src,worldMapsStore.mapSevenVillage,11,2,[damonShop1]);
+     damon = new classDefinitions.NPC('damon', ["How's farm life treating you?", "Any nasty falls lately?"],["The weather, nice, eh?."],["You've been great to us."],gameImages.cactus.src,worldMapsStore.mapSevenVillage,11,2);
     npcFunctionality.NPCs.push(damon);
-
-    anna.likedByNeighbors.push(damon);
-    anna.dislikedByNeighbors.push(eightball);
-
-    eightball.dislikedByNeighbors.push(anna);
-    eightball.dislikedByNeighbors.push(damon);
-
-    damon.likedByNeighbors.push(anna);
-    damon.dislikedByNeighbors.push(eightball);
+    sravanthi = new classDefinitions.NPC("sravanthi",["Welcome, traveler! I'll take any horse, long as they're aclimated to humans to at least 10. Gotta have something to work with. Mustangs don't go easy"], ["You know the drill!", "The mayor is quite happy with the number of rehomed horses!", "Good to see you!"], 
+      ["Thanks to you, our outpost is getting national recognition."],gameImages.shrub1.src,worldMapsStore.mapSevenVillage,14,5);
+      npcFunctionality.NPCs.push(sravanthi);
   }
 
 
 export const worldNPCs = {
-    createNPCs
+    createNPCs,
+    createQuests,
+    getNPCQuests,
+    getNPCRelationships
 }

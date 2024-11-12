@@ -202,10 +202,13 @@ function randomWorldWilds(min, max) {
   function checkNPCLevel(NPC) {
     if(NPC.NPCRelationship >= 0 && NPC.NPCRelationship <5) {
       NPC.activeDialogue = NPC.dialogue1;
+      NPC.questLevel = 1;
     } else if(NPC.NPCRelationship >= 5 && NPC.NPCRelationship <15) {
       NPC.activeDialogue = NPC.dialogue2;
+      NPC.questLevel = 1;
     } else if (NPC.NPCRelationship >= 15) {
       NPC.activeDialogue = NPC.dialogue3;
+      NPC.questLevel = 1;
     } 
   }
 

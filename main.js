@@ -14,6 +14,7 @@ import { ownedHorse } from './ownedHorse.js';
 import { movement } from './movement.js';
 import { wildCatchGame } from './wildCatchingMiniGame.js';
 import {worldNPCs} from './npcDefinitions.js';
+import { gameState } from './saveAndLoad.js';
 
 var INTERVAL = 50;
 var myInterval;    
@@ -23,16 +24,17 @@ function loadComplete() {
     helpers.loadCanvas();
     playerCharacter.activeMap = worldMapsStore.worldMaps.maps[worldMapsStore.worldMaps.mapLayout[playerCharacter.spriteMapRow][playerCharacter.spriteMapCol]];
     var loadingSreen = document.getElementById("enterScreen");
-    enterGame = document.getElementById("enterGame").addEventListener("click", () => {
+    document.getElementById("newGame").addEventListener("click", () => {
+      localStorage.clear();
+      gameState.initializeNewGame();
       loadingSreen.style.display = 'none';    
-      helpers.generateMap(worldMapsStore.mapStarter);
-      helpers.drawSprite();
-      wildHorses.createWilds();
-      menus.initializeMenus();
-      worldNPCs.createNPCs();
-      menus.buttonEvents();
-      helpers.updateBank();
-      myInterval = self.setInterval(function(){Tick()}, INTERVAL);})
+      });
+      document.getElementById("loadGame").addEventListener("click", () => {
+        gameState.initializeGame();
+        gameState.loadGame();
+        loadingSreen.style.display = 'none';    
+        });
+      myInterval = self.setInterval(function(){Tick()}, INTERVAL);
   }
   function Tick() {
     helpers.animationWater();
