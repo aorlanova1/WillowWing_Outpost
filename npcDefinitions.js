@@ -34,7 +34,7 @@ function createQuests() {
  annaQuest3 = new classDefinitions.itemQuest("I need something to make my horses like me more..", "Thanks, all work and no play makes my horses grey.", new Map([["apple",1]]),70);
  eightballQuest1 = new classDefinitions.horseQuest("Heard you're in the horse pawning biz? Need a turbulent one, something I can slap around.", 
   "Gonna put some miles on this thang..",0,50,0,10,20,40,40,50,0,800); 
-  damonShop1 = new classDefinitions.shopQuest(["Buy before you try. No refunds"], ["Luck"], new Map([[items.horseTack.saddlePads[helpers.randomIntFromInterval(1,20)],700], [items.horseTack.saddles[1],1000], [items.horseTack.bridles[1],800]]));
+  damonShop1 = new classDefinitions.shopQuest(["Buy before you try. No refunds"], ["Luck"], new Map([[items.horseTack.saddlePads[helpers.randomIntFromInterval(1,20)],0], [items.horseTack.saddles[1],0], [items.horseTack.bridles[1],0]]));
   sravanthiQuest1 = new classDefinitions.horseQuest("I have space in the stable to rehome a mustang. Just as long as they're at least 10 acclimated to people, I'll take 'em","This pony's gonna make someone very happy!" 
     ,0,50,0,50,0,50,0,50,10,200); 
 }

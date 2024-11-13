@@ -127,15 +127,21 @@ function randomWorldWilds(min, max) {
       playerCharacter.SpriteWidth, playerCharacter.SpriteHeight, testHorse.HorsePosCol*32, testHorse.HorsePosRow*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
       
       if(testHorse.saddlePad != "") {
-        ctx.drawImage(testHorse.saddlePad.icon,testHorse.HorseCol * playerCharacter.SpriteWidth, testHorse.HorseRow * playerCharacter.SpriteHeight, 
+        var saddlePDImg = new Image();
+        saddlePDImg.src = testHorse.saddlePad.icon;
+        ctx.drawImage(saddlePDImg,testHorse.HorseCol * playerCharacter.SpriteWidth, testHorse.HorseRow * playerCharacter.SpriteHeight, 
           playerCharacter.SpriteWidth, playerCharacter.SpriteHeight, testHorse.HorsePosCol*32, testHorse.HorsePosRow*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
       }
       if(testHorse.bridle != "") {
-        ctx.drawImage(testHorse.bridle.icon,testHorse.HorseCol * playerCharacter.SpriteWidth, testHorse.HorseRow * playerCharacter.SpriteHeight, 
+        var bridleImg = new Image();
+        bridleImg.src = testHorse.bridle.icon;
+        ctx.drawImage(bridleImg,testHorse.HorseCol * playerCharacter.SpriteWidth, testHorse.HorseRow * playerCharacter.SpriteHeight, 
           playerCharacter.SpriteWidth, playerCharacter.SpriteHeight, testHorse.HorsePosCol*32, testHorse.HorsePosRow*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
       }
       if(testHorse.saddle != "") {
-        ctx.drawImage(testHorse.saddle.icon,testHorse.HorseCol * playerCharacter.SpriteWidth, testHorse.HorseRow * playerCharacter.SpriteHeight, 
+        var saddleImg = new Image();
+        saddleImg.src = testHorse.saddle.icon
+        ctx.drawImage(saddleImg,testHorse.HorseCol * playerCharacter.SpriteWidth, testHorse.HorseRow * playerCharacter.SpriteHeight, 
           playerCharacter.SpriteWidth, playerCharacter.SpriteHeight, testHorse.HorsePosCol*32, testHorse.HorsePosRow*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
       }
 
