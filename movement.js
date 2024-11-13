@@ -305,12 +305,11 @@ function moveCharacter(key) {
   }
   if (playerCharacter.playerHorses.length != 0) {
     for(var b = 0; b<playerCharacter.playerHorses.length; b++) {
-      if (playerCharacter.playerHorses[b].spawnMap == playerCharacter.activeMap) {
+      if (playerCharacter.playerHorses[b].spawnMap === playerCharacter.activeMap) {
         helpers.animateHorse(playerCharacter.playerHorses[b]);
-      console.log(playerCharacter.playerHorses[b].horseName + " Being riden? + " + playerCharacter.playerHorses[b].horseBeingRidden);
       if(playerCharacter.playerHorses[b].horseBeingRidden == "N") {
-      moveHorsePhysical(helpers.randomIntFromInterval(28,100), playerCharacter.playerHorses[b]);
-    }
+        moveHorsePhysical(helpers.randomIntFromInterval(28,100), playerCharacter.playerHorses[b]);
+      }
       }
     }
   }

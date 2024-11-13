@@ -74,6 +74,10 @@ function loadGame() {
         horse.baseColor =  baseColoreImg
         horse.markings =  markingsImg;
         horse.gradient =  gradientImg;
+
+        if (horse.horseDisplayed == "Y") {
+            horse.spawnMap = worldMapsStore.mapSix;
+          } 
     });
     playerCharacter.playerCoin = JSON.parse(localStorage.getItem("playerCoin"));
     playerCharacter.playerItems =  new Map(JSON.parse(localStorage.getItem("playerInventory")));
