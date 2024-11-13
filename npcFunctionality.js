@@ -52,7 +52,7 @@ var dialogueOption;
     } else if (activeQuest.constructor.name == "itemQuest") {
       itemQuestCheck(NPCAtHome);
     } else if (activeQuest.constructor.name == "shopQuest") {
-      openShop(activeQuest, NPCAtHome);
+      openShop(NPCAtHome.activeQuest, NPCAtHome);
     }
   }
 
@@ -187,9 +187,9 @@ function acceptQuest(questNumber, NPC) {
   var activeQuest = questList[NPC.name][NPC.questLevel][NPC.activeQuest];
 
   if(activeQuest.constructor.name == "horseQuest") {
-  addNPCDialogue("I need a horse that is at least " + activeQuest.interestedMin + " interested and at most " + activeQuest.interestedMax + " nervousness at least " + activeQuest.nervousMin + " max "
-  + activeQuest.nervousMax + " I can handle a minimum stubborness of " + activeQuest.stubornMin + " max stuborness: " + activeQuest.stubornMax +
-  " minimum trechery: " + activeQuest.trecherousMin + " I can deal with a max trechery of " + activeQuest.trecherousMax);
+  addNPCDialogue("I need a horse that is at least: " + activeQuest.interestedMin + " interested and at most " + activeQuest.interestedMax + ". Nervousness should be at least " + activeQuest.nervousMin + " and a max of "
+  + activeQuest.nervousMax + ". I can handle a minimum stubborness of " + activeQuest.stubornMin + " but nothing above stuborness " + activeQuest.stubornMax +
+  ". A minimum trechery of " + activeQuest.trecherousMin + ". I can deal with a max trechery of " + activeQuest.trecherousMax + ". Please acclimate this horse to humans with at least, " + activeQuest.bondMin+ " bond.");
   
 } else if (activeQuest.constructor.name == "itemQuest") {
     var itemTextRequest = "I need, ";
@@ -239,7 +239,7 @@ function startQuest(NPCAtHome) {
   var questNumber = helpers.randomIntFromInterval(0, possibleQuests.length-1);
   var questHolder = possibleQuests[questNumber];
   addNPCDialogue(questHolder.dialogueStart);
-
+  console.log("quest # = " + questNumber);
   if(questHolder.constructor.name == "shopQuest") {
 
     addCharacterDialogue("I'll have a look.", "follow " + NPCAtHome.name);
