@@ -111,6 +111,7 @@ function tackHorse(horseName, item) {
 
   function untackHorse(item, horse) {
     item.ownedByPlayer++;
+    playerCharacter.playerItems.set(item.name,item);
     horse[item.type] = "";
   }
 
