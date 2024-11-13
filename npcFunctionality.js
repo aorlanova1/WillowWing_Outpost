@@ -32,7 +32,7 @@ var dialogueOption;
     document.getElementById("NPCImgHolder").appendChild(NPCIcon);
 
     //no currently active quest
-    if(NPCAtHome.activeQuest == "") {
+    if(NPCAtHome.activeQuest === "" || NPCAtHome.activeQuest == null) {
       startQuest(NPCAtHome);
     } else {
       activeQuestVisit(NPCAtHome);
