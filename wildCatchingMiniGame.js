@@ -105,7 +105,7 @@ function sendLasso(horse) {
       setTimeout(function(){
         for (var x = 0; x <= distance; x++) {
             helpers.eraseEnv(lassoPosCol, lassoPosRow+x);
-        } }, 500);
+        } }, 100);
         if(horseCaught) {
           return true;
         }
