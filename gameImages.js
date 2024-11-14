@@ -32,10 +32,41 @@ var cattails2 = new Image();
 cattails2.src = "cattails2.png";
 var flowerPatch1 = new Image();
 flowerPatch1.src = "flowers1.png";
+var beachBackground = new Image();
+beachBackground.src = "beach.png";
+var birdbath = new Image();
+birdbath.src = "birdbath.png";
+var witchBrew = new Image();
+witchBrew.src = "brew.png";
+var fireflyBottle = new Image();
+fireflyBottle.src = "fireflies.png"
+var fountain = new Image();
+fountain.src = "fountain.png";
+var fruitTree = new Image();
+fruitTree.src = "fruittree.png"
+var luvLetter = new Image();
+luvLetter.src = "luvletter.png";
+var pocketWatch = new Image();
+pocketWatch.src = "pocketwatch.png";
+var rocks = new Image();
+rocks.src = "rocks.png";
+var tree1 = new Image();
+tree1.src = "Tree1.png"
+var tree2 = new Image();
+tree2.src = "tree2.png";
+var witchHat = new Image();
+witchHat.src = "witchhat.png";
+var apple = new Image();
+apple.src= "Apple.png";
+
+
 
 //NPC art
 var annaIcon = "anna.png";
 var eightballIcon = "eightball.png";
+var damonIcon = "damon.png";
+var jigsIcon = "jigs.png";
+var mayorIcon = "mayor.png";
 
 //minigame assets
 var lasso = new Image();
@@ -377,4 +408,20 @@ export const gameImages = {
     yellowSP,
     brownSaddle,
     brownBridle,
+    beachBackground,
+    birdbath,
+    witchBrew,
+    damonIcon,
+    fireflyBottle,
+    fountain,
+    fruitTree,
+    jigsIcon,
+    luvLetter,
+    mayorIcon,
+    pocketWatch,
+    rocks,
+    tree1,
+    tree2,
+    witchHat,
+    apple
 };

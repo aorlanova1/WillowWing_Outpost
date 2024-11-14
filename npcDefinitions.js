@@ -61,10 +61,10 @@ function createNPCs() {
     npcFunctionality.NPCs.push(anna);
      eightball = new classDefinitions.NPC("eightball", ["You stick your nose in everyone's bizness?"],["Sup dopie."],["You're not one to just write people off, are you?"],gameImages.eightballIcon,worldMapsStore.mapSevenVillage, 7,2);
     npcFunctionality.NPCs.push(eightball);
-     damon = new classDefinitions.NPC('damon', ["How's farm life treating you?", "Any nasty falls lately?"],["The weather, nice, eh?."],["You've been great to us."],gameImages.cactus.src,worldMapsStore.mapSevenVillage,11,2);
+     damon = new classDefinitions.NPC('damon', ["How's farm life treating you?", "Any nasty falls lately?"],["The weather, nice, eh?."],["You've been great to us."],gameImages.damonIcon,worldMapsStore.mapSevenVillage,11,2);
     npcFunctionality.NPCs.push(damon);
     sravanthi = new classDefinitions.NPC("sravanthi",["Welcome, traveler! I'll take any horse, long as they're aclimated to humans to at least 10. Gotta have something to work with. Mustangs don't go easy"], ["You know the drill!", "The mayor is quite happy with the number of rehomed horses!", "Good to see you!"], 
-      ["Thanks to you, our outpost is getting national recognition."],gameImages.shrub1.src,worldMapsStore.mapSevenVillage,14,5);
+      ["Thanks to you, our outpost is getting national recognition."],gameImages.mayorIcon,worldMapsStore.mapSevenVillage,14,5);
       npcFunctionality.NPCs.push(sravanthi);
   }
 
