@@ -205,6 +205,12 @@ function randomWorldWilds(min, max) {
     }
   }
 
+  function clearRidenHorses() {
+    for (var i = 0; i<playerCharacter.playerHorses.length; i++) {
+      playerCharacter.playerHorses[i].horseBeingRidden = "N";
+    }
+  }
+
   function removePlayerHorse(name) {
     if (document.getElementById("menuHorseExpandList").contains(document.getElementById(name))) {
       document.getElementById("menuHorseExpandList").removeChild(document.getElementById(name));
@@ -263,5 +269,6 @@ function randomWorldWilds(min, max) {
     canvas,
     checkNPCLevel,
     notifyPlayer,
-    removePlayerHorse
+    removePlayerHorse,
+    clearRidenHorses
   }

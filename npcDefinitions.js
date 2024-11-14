@@ -55,26 +55,6 @@ function getNPCQuests() {
     }
   }
 }
-function getNPCRelationships() {
-  return {
-    anna: {
-      likedBy: [damon],
-      dislikedBy: [eightball]
-    },
-    eightball: {
-      likedBy: [],
-      dislikedBy: [anna]
-    },
-    damon: {
-      likedBy: [anna],
-      dislikedBy: []
-    },
-    sravanthi: {
-      likedBy: [anna, damon,eightball],
-      dislikedBy: []
-    },
-  }
-}
 
 function createNPCs() {
      anna = new classDefinitions.NPC("anna", ["Hey.", "Can I help you?"],["Hey, dude!"],["Happy you're here!"],gameImages.annaIcon,worldMapsStore.mapSevenVillage, 3,2);
@@ -86,6 +66,27 @@ function createNPCs() {
     sravanthi = new classDefinitions.NPC("sravanthi",["Welcome, traveler! I'll take any horse, long as they're aclimated to humans to at least 10. Gotta have something to work with. Mustangs don't go easy"], ["You know the drill!", "The mayor is quite happy with the number of rehomed horses!", "Good to see you!"], 
       ["Thanks to you, our outpost is getting national recognition."],gameImages.shrub1.src,worldMapsStore.mapSevenVillage,14,5);
       npcFunctionality.NPCs.push(sravanthi);
+  }
+
+  function getNPCRelationships() {
+    return {
+      anna: {
+        likedBy: [damon],
+        dislikedBy: [eightball]
+      },
+      eightball: {
+        likedBy: [],
+        dislikedBy: [anna]
+      },
+      damon: {
+        likedBy: [anna],
+        dislikedBy: []
+      },
+      sravanthi: {
+        likedBy: [anna, damon,eightball],
+        dislikedBy: []
+      },
+    }
   }
 
 

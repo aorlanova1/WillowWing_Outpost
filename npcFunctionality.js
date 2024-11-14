@@ -65,7 +65,7 @@ var dialogueOption;
         horsie.stuborn >= activeQuest.stubornMin && horsie.nervous <= activeQuest.stubornMax &&
         horsie.interested >= activeQuest.interestedMin && horsie.nervous <= activeQuest.interestedMax &&
         horsie.trecherous >= activeQuest.trecherousMin && horsie.nervous <= activeQuest.trecherousMax &&
-        horsie.horseTrust >= activeQuest.bondMin) {
+        horsie.horseTrust >= activeQuest.bondMin && horsie.horseBeingRidden == "N") {
           var applicableHorse = document.createElement('option');
           applicableHorse.value = horsie.horseName;
           applicableHorse.text = horsie.horseName;
@@ -131,8 +131,14 @@ function openShop(questNumber, NPC) {
 
 function purchaseItem(item, price) {
   if(price <= playerCharacter.playerCoin) {
+    if(item.name in playerCharacter.playerItems) {
+      var setThis = playerCharacter.playerItems.get(item.name);
+      setThis.ownedByPlayer++;
+      playerCharacter.playerItems.set(setThis.name,setThis);
+    }else {
     item.ownedByPlayer++;
     playerCharacter.playerItems.set(item.name,item);
+    }
     playerCharacter.playerCoin -= price;
     addNPCDialogue("Thanks");
     helpers.updateBank();
@@ -148,7 +154,7 @@ function submitHorseQuest(horseName, NPC) {
 
   addCharacterDialogue("Take good care of 'em. Thanks for the tip.","get going.");
   NPC.NPCRelationship ++;
-  gossip(NPC);
+  //gossip(NPC);
   helpers.notifyPlayer("Quest Completed! Relationship with " + NPC.name + " increased!");
   document.getElementById("characterButton").addEventListener("click", () => menus.exitMenu());
   
@@ -175,7 +181,7 @@ function submitItemQuest(NPC) {
 
   addCharacterDialogue("Enjoy. Thanks for the tip.","get going.");
   NPC.NPCRelationship ++;
-  gossip(NPC);
+  //gossip(NPC);
   helpers.notifyPlayer("Quest Completed! Relationship with " + NPC.name + " increased!");
   document.getElementById("characterButton").addEventListener("click", () => menus.exitMenu());
 
@@ -210,6 +216,7 @@ function acceptQuest(questNumber, NPC) {
 
 function gossip(NPC) {
   var relationshipList = worldNPCs.getNPCRelationships();
+  console.log(relationshipList);
   var npcLiked = relationshipList[NPC.name]["likedBy"];
   var npcDisliked = relationshipList[NPC.name]["dislikedBy"];
   var randomNum;
@@ -225,6 +232,7 @@ function gossip(NPC) {
 if (npcLiked.length > 0) {
     for (var i = 0; i<npcLiked.length; i++) {
       randomNum = helpers.randomIntFromInterval(1,3);
+      console.log(npcLiked[i].name);
       if(randomNum == 3) {
         npcLiked[i].NPCRelationship++;
         helpers.notifyPlayer("Word got around that you did " + NPC.name + " a favor! " + npcLiked[i].name + " is happy you helped! Relationship went up!");
