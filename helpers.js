@@ -205,6 +205,16 @@ function randomWorldWilds(min, max) {
     }
   }
 
+  function removePlayerHorse(name) {
+    if (document.getElementById("menuHorseExpandList").contains(document.getElementById(name))) {
+      document.getElementById("menuHorseExpandList").removeChild(document.getElementById(name));
+    }
+    playerCharacter.playerHorses = playerCharacter.playerHorses.filter(horse => horse.horseName !== name);
+    console.log("REMOVED: " + name + " " + playerCharacter.playerHorses);
+
+  }
+  
+
   function checkNPCLevel(NPC) {
     if(NPC.NPCRelationship >= 0 && NPC.NPCRelationship <5) {
       NPC.activeDialogue = NPC.dialogue1;
@@ -252,5 +262,6 @@ function randomWorldWilds(min, max) {
     ctx,
     canvas,
     checkNPCLevel,
-    notifyPlayer
+    notifyPlayer,
+    removePlayerHorse
   }

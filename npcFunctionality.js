@@ -73,10 +73,15 @@ var dialogueOption;
         } 
       })
   
+      if(dropDownMenuApplicableHorse.options.length > 0) {
       addCharacterDialogue("Got your horse.","give");
       document.getElementById("characterButton").addEventListener("click", () => submitHorseQuest(dropDownMenuApplicableHorse.value, NPCAtHome));
       document.getElementById("CharDialogueHolder").appendChild(dropDownMenuApplicableHorse);
       document.getElementById("CharDialogueHolder").appendChild(dialogueOption);
+    }else {
+      addCharacterDialogue("Still working on finding your horse.","leave");
+      document.getElementById("characterButton").addEventListener("click", () => menus.exitMenu());
+    }
   }
   
   function itemQuestCheck(NPCAtHome) {
@@ -135,7 +140,7 @@ function purchaseItem(item, price) {
 }
 
 function submitHorseQuest(horseName, NPC) {
-  document.getElementById("menuHorseExpandList").removeChild(document.getElementById(horseName));
+  helpers.removePlayerHorse(horseName);
   var questList = worldNPCs.getNPCQuests();
   var activeQuest = questList[NPC.name][NPC.questLevel][NPC.activeQuest];
   playerCharacter.playerCoin += activeQuest.reward;
@@ -208,8 +213,8 @@ function gossip(NPC) {
   var npcLiked = relationshipList[NPC.name]["likedBy"];
   var npcDisliked = relationshipList[NPC.name]["dislikedBy"];
   var randomNum;
-  if (npcDisliked.length >= 0) {
-  for (var i = 0; i<npcDisliked.length-1; i++) {
+  if (npcDisliked.length > 0) {
+  for (var i = 0; i<npcDisliked.length; i++) {
     randomNum = helpers.randomIntFromInterval(1,3);
     if(randomNum == 3) {
       npcDisliked[i].NPCRelationship --;
@@ -217,11 +222,11 @@ function gossip(NPC) {
     }
   }
 }
-if (npcLiked.length >= 0) {
-    for (var i = 0; i<npcLiked.length-1; i++) {
+if (npcLiked.length > 0) {
+    for (var i = 0; i<npcLiked.length; i++) {
       randomNum = helpers.randomIntFromInterval(1,3);
       if(randomNum == 3) {
-        NPC.npcLiked[i].NPCRelationship++;
+        npcLiked[i].NPCRelationship++;
         helpers.notifyPlayer("Word got around that you did " + NPC.name + " a favor! " + npcLiked[i].name + " is happy you helped! Relationship went up!");
       }
     }
