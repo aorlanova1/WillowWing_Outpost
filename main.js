@@ -29,11 +29,16 @@ function loadComplete() {
       gameState.initializeNewGame();
       loadingSreen.style.display = 'none';    
       });
+      if (window.localStorage.length != 0) {
       document.getElementById("loadGame").addEventListener("click", () => {
         gameState.initializeGame();
         gameState.loadGame();
+        helpers.clearRidenHorses();
         loadingSreen.style.display = 'none';    
         });
+      } else {
+        document.getElementById("loadGame").style.display = 'none';
+      }
       myInterval = self.setInterval(function(){Tick()}, INTERVAL);
   }
   function Tick() {

@@ -55,6 +55,10 @@ function tackHorse(horseName, item) {
   }
 
   function rideHorse(horse) {
+    if(horse.horseDisplayed == "Y") {
+      helpers.notifyPlayer("That horse is in the pasture. Take it out to ride.");
+      return;
+    }
     if(playerCharacter.activeRiddenHorse == "") {
         helpers.eraseHorse(horse);
     playerCharacter.activeRiddenHorse = horse;
@@ -97,6 +101,10 @@ function tackHorse(horseName, item) {
   function displayHorse(horseName) {
     for(var i = 0; i<playerCharacter.playerHorses.length; i++) {
       if(playerCharacter.playerHorses[i].horseName == horseName && playerCharacter.playerHorses[i].horseDisplayed == "N") {
+        if(playerCharacter.playerHorses[i].horseBeingRidden == "Y") {
+          helpers.notifyPlayer("That horse being ridden. Dismount to put it in the field.");
+          return;
+        }
         playerCharacter.playerHorses[i].spawnMap = worldMapsStore.mapSix;
         playerCharacter.playerHorses[i].HorsePosCol = 5;
         playerCharacter.playerHorses[i].HorsePosRow = 5;
@@ -110,9 +118,17 @@ function tackHorse(horseName, item) {
   }
 
   function untackHorse(item, horse) {
+    if(item.name in playerCharacter.playerItems) {
+      var setThis = playerCharacter.playerItems.get(item.name);
+      setThis.ownedByPlayer++;
+      playerCharacter.playerItems.set(setThis.name,setThis);
+    }else {
     item.ownedByPlayer++;
     playerCharacter.playerItems.set(item.name,item);
+    }
     horse[item.type] = "";
+    menus.exitMenu();
+    helpers.notifyPlayer("You've removed a " + item.name + " from " + horse.horseName);
   }
 
   function openHorseCard(horse) {
