@@ -24,10 +24,12 @@ function moveCharacter(key) {
           playerCharacter.SpriteRow = 3;	
         }
           helpers.eraseSprite();
+          helpers.animateCharacter()
           playerCharacter.SpriteColPos += .5;
           helpers.drawSprite();
         setTimeout(() => {
           helpers.eraseSprite();
+          helpers.animateCharacter();
           playerCharacter.SpriteColPos += .5;
           helpers.drawSprite();
           worldInteractions.putDownItem();
@@ -65,11 +67,13 @@ function moveCharacter(key) {
             playerCharacter.SpriteRow = 3;	
           }
           helpers.eraseSprite();
+          helpers.animateCharacter();
           playerCharacter.SpriteColPos -= .5;
           helpers.drawSprite();
         setTimeout(() => {
           helpers.eraseSprite();
           playerCharacter.SpriteColPos -= .5;
+          helpers.animateCharacter();
           helpers.drawSprite();
           worldInteractions.putDownItem();
           worldInteractions.checkSuroundings();
@@ -101,11 +105,13 @@ function moveCharacter(key) {
         if(playerCharacter.activeRiddenHorse == "") {
           playerCharacter.SpriteRow = 3;
         helpers.eraseSprite();
+        helpers.animateCharacter();
         playerCharacter.SpriteRowPos -= .5;
         helpers.drawSprite();
       setTimeout(() => {
         helpers.eraseSprite();
         playerCharacter.SpriteRowPos -= .5;
+        helpers.animateCharacter();
         helpers.drawSprite();
         worldInteractions.putDownItem();
         worldInteractions.checkSuroundings();
@@ -134,11 +140,13 @@ function moveCharacter(key) {
       if(playerCharacter.activeRiddenHorse == "") {
         playerCharacter.SpriteRow = 0;	
         helpers.eraseSprite();
+        helpers.animateCharacter();
         playerCharacter.SpriteRowPos += .5;
         helpers.drawSprite();
       setTimeout(() => {
         helpers.eraseSprite();
         playerCharacter.SpriteRowPos += .5;
+        helpers.animateCharacter();
         helpers.drawSprite();
         worldInteractions.putDownItem();
         worldInteractions.checkSuroundings();

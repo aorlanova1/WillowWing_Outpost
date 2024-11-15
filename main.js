@@ -44,7 +44,6 @@ function loadComplete() {
   function Tick() {
     helpers.animationWater();
     movement.moveHorses();
-    helpers.animateCharacter();
   }
 
   document['onkeydown'] = function(event) {

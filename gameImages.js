@@ -58,6 +58,8 @@ var witchHat = new Image();
 witchHat.src = "witchhat.png";
 var apple = new Image();
 apple.src= "Apple.png";
+var abandonedHome = new Image();
+abandonedHome.src = "abandonedHome.png";
 
 
 
@@ -423,5 +425,6 @@ export const gameImages = {
     tree1,
     tree2,
     witchHat,
-    apple
+    apple,
+    abandonedHome
 };

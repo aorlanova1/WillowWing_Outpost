@@ -119,6 +119,11 @@
     clear: left;
 }
 
+.Beach {
+    background-image: url('beach.png');
+    clear: left;
+}
+
 .Game {
     background-color: blue;
     clear: left;
