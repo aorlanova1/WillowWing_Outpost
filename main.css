@@ -94,9 +94,10 @@
 }
 #eventInterface {
     height: 100px !important;
-    width: 640px !important;
+    width: 600px !important;
     overflow: scroll;
-    background-color: bisque;
+    border-radius: 2%;
+    background-color: rosybrown;
     margin-top: 472px;
 }
 
