@@ -100,6 +100,10 @@ function randomWorldWilds(min, max) {
         }  else if(playerCharacter.activeMap[playerCharacter.activeMap.mapLayout[i][j]] == gameImages.waterRiverUp) {
           WaterPondSpriteCol = helpers.randomIntFromInterval(0,15);
           drawWater(gameImages.waterRiverUp, i, j);
+        } else if (playerCharacter.activeMap[playerCharacter.activeMap.mapLayout[i][j]] == gameImages.fountain) {
+          WaterPondSpriteCol = helpers.randomIntFromInterval(0,1);
+          eraseEnv(j, i);
+          drawWater(gameImages.fountain, i, j);
         }
       }
     }
@@ -189,9 +193,7 @@ function randomWorldWilds(min, max) {
 
   function animateCharacter() {
     if(playerCharacter.activeRiddenHorse == "") {
-      playerCharacter.SpriteCol = Math.round(Math.random());
-    eraseSprite();
-    drawSprite();
+      playerCharacter.SpriteCol = playerCharacter.SpriteCol===0 ? 1:0;
   } else {
     playerCharacter.SpriteCol = playerCharacter.activeRiddenHorse.HorseCol;
   }

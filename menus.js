@@ -25,6 +25,7 @@ var exitExpandMenu;
 var npcMenuExpand;  
 var bankShow;
 var save;
+var toggleSound;
   
   function exitMenu() {
     expandMenu.style.display = "none";
@@ -46,6 +47,7 @@ var save;
     npcMenuExpand = document.getElementById('NPC');
     bankShow = document.getElementById('playerCoins');
     save = document.getElementById('saveButton');
+    toggleSound = document.getElementById('sound');
   }
 
   function buttonEvents() {
@@ -88,6 +90,7 @@ var save;
     exitExpandMenu,
     npcMenuExpand,
     bankShow,
+    toggleSound,
     exitMenu,
     initializeMenus,
     buttonEvents,

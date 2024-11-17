@@ -24,10 +24,12 @@ function moveCharacter(key) {
           playerCharacter.SpriteRow = 3;	
         }
           helpers.eraseSprite();
+          helpers.animateCharacter()
           playerCharacter.SpriteColPos += .5;
           helpers.drawSprite();
         setTimeout(() => {
           helpers.eraseSprite();
+          helpers.animateCharacter();
           playerCharacter.SpriteColPos += .5;
           helpers.drawSprite();
           worldInteractions.putDownItem();
@@ -65,11 +67,13 @@ function moveCharacter(key) {
             playerCharacter.SpriteRow = 3;	
           }
           helpers.eraseSprite();
+          helpers.animateCharacter();
           playerCharacter.SpriteColPos -= .5;
           helpers.drawSprite();
         setTimeout(() => {
           helpers.eraseSprite();
           playerCharacter.SpriteColPos -= .5;
+          helpers.animateCharacter();
           helpers.drawSprite();
           worldInteractions.putDownItem();
           worldInteractions.checkSuroundings();
@@ -101,11 +105,13 @@ function moveCharacter(key) {
         if(playerCharacter.activeRiddenHorse == "") {
           playerCharacter.SpriteRow = 3;
         helpers.eraseSprite();
+        helpers.animateCharacter();
         playerCharacter.SpriteRowPos -= .5;
         helpers.drawSprite();
       setTimeout(() => {
         helpers.eraseSprite();
         playerCharacter.SpriteRowPos -= .5;
+        helpers.animateCharacter();
         helpers.drawSprite();
         worldInteractions.putDownItem();
         worldInteractions.checkSuroundings();
@@ -134,11 +140,13 @@ function moveCharacter(key) {
       if(playerCharacter.activeRiddenHorse == "") {
         playerCharacter.SpriteRow = 0;	
         helpers.eraseSprite();
+        helpers.animateCharacter();
         playerCharacter.SpriteRowPos += .5;
         helpers.drawSprite();
       setTimeout(() => {
         helpers.eraseSprite();
         playerCharacter.SpriteRowPos += .5;
+        helpers.animateCharacter();
         helpers.drawSprite();
         worldInteractions.putDownItem();
         worldInteractions.checkSuroundings();
@@ -169,6 +177,7 @@ function moveCharacter(key) {
       case 28:  // Right arrow was pressed 
        if (playerCharacter.SpriteColPos >= 19 && playerCharacter.spriteMapCol < worldMapsStore.worldMaps.mapSize.cols && worldMapsStore.worldMaps.mapLayout[playerCharacter.spriteMapRow][playerCharacter.spriteMapCol+1] != 0) { 	
         helpers.eraseSprite();
+        playerCharacter.SpriteRow = 1;
         playerCharacter.activeMap = worldMapsStore.worldMaps.maps[worldMapsStore.worldMaps.mapLayout[playerCharacter.spriteMapRow][playerCharacter.spriteMapCol+1]];
         playerCharacter.spriteMapCol += 1;
         playerCharacter.SpriteColPos = 0;
@@ -187,6 +196,7 @@ function moveCharacter(key) {
       case 29:  // Left arrow, ASCII 29 
       if (playerCharacter.SpriteColPos >= 0 && playerCharacter.spriteMapCol > 0 && worldMapsStore.worldMaps.mapLayout[playerCharacter.spriteMapRow][playerCharacter.spriteMapCol-1] != 0) { 	
         helpers.eraseSprite();
+        playerCharacter.SpriteRow = 2;
         playerCharacter.activeMap = worldMapsStore.worldMaps.maps[worldMapsStore.worldMaps.mapLayout[playerCharacter.spriteMapRow][playerCharacter.spriteMapCol-1]];
         playerCharacter.spriteMapCol -= 1;
         playerCharacter.SpriteColPos = 19;
@@ -205,6 +215,7 @@ function moveCharacter(key) {
       case 30:  // up arrow was pressed 
       if (playerCharacter.SpriteRowPos <= 0 && playerCharacter.spriteMapRow > 0 && worldMapsStore.worldMaps.mapLayout[playerCharacter.spriteMapRow-1][playerCharacter.spriteMapCol] != 0) { 	
         helpers.eraseSprite();
+        playerCharacter.SpriteRow = 3;
         playerCharacter.activeMap = worldMapsStore.worldMaps.maps[worldMapsStore.worldMaps.mapLayout[playerCharacter.spriteMapRow-1][playerCharacter.spriteMapCol]];
         playerCharacter.spriteMapRow -= 1;
         playerCharacter.SpriteRowPos = 14;
@@ -223,6 +234,7 @@ function moveCharacter(key) {
       case 31:  // down arrow was pressed 
       if (playerCharacter.SpriteRowPos >= 14 && playerCharacter.spriteMapRow < worldMapsStore.worldMaps.mapSize.rows && worldMapsStore.worldMaps.mapLayout[playerCharacter.spriteMapRow+1][playerCharacter.spriteMapCol] != 0) { 	
         helpers.eraseSprite();
+        playerCharacter.SpriteRow = 0;
         playerCharacter.activeMap = worldMapsStore.worldMaps.maps[worldMapsStore.worldMaps.mapLayout[playerCharacter.spriteMapRow+1][playerCharacter.spriteMapCol]];
         playerCharacter.spriteMapRow += 1;
         playerCharacter.SpriteRowPos = 0;
