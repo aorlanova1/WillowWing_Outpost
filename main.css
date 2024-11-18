@@ -4,6 +4,10 @@
     position: absolute;
 }
 
+#container {
+    margin-left: 28%;
+}
+
 #buttonMenu {
     position: absolute;
     height: 20px;
