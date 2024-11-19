@@ -10,7 +10,7 @@ var possibleItems = {
       },
       2: {
         name: "apple",
-        icon: "",
+        icon: "Apple.png",
         type: "Feed",
         ownedByPlayer: 0,
       },
