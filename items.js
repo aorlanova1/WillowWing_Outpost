@@ -4,7 +4,7 @@ var possibleItems = {
     Background: {
       1: {
         name: "seedling",
-        icon: "",
+        icon: "seedlings.png",
         type: "Enviromental",
         ownedByPlayer: 0,
       },
@@ -18,7 +18,7 @@ var possibleItems = {
     Swamp: {
       1: {
         name: "lilly",
-        icon: "",
+        icon: "lillyItem.png",
         type: "Enviromental",
         ownedByPlayer: 0,
       }
