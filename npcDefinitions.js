@@ -57,14 +57,15 @@ function getNPCQuests() {
 }
 
 function createNPCs() {
-     anna = new classDefinitions.NPC("anna", ["Hey.", "Can I help you?"],["Hey, dude!"],["Happy you're here!"],gameImages.annaIcon,worldMapsStore.mapSevenVillage, 3,2);
+     anna = new classDefinitions.NPC("anna", ["Hey.", "Can I help you?"],["Hey, dude!", "We haven't had many new people move in. We hope the mustang program will put us on the map.", "Newcomers aren't welcome.. By most. We've been a tight knit community for a while. I don't mind, though, this place needs more living souls. And I like you!"]
+      ,["Happy you're here!", "Ah!! Come in, have a seat!", "Has Damon said anything about me to you? He's been a bit standoff-ish as of late."],gameImages.annaIcon,worldMapsStore.mapSevenVillage, 3,2);
     npcFunctionality.NPCs.push(anna);
-     eightball = new classDefinitions.NPC("eightball", ["You stick your nose in everyone's bizness?"],["Sup dopie."],["You're not one to just write people off, are you?"],gameImages.eightballIcon,worldMapsStore.mapSevenVillage, 7,2);
+     eightball = new classDefinitions.NPC("eightball", ["You stick your nose in everyone's bizness?"],["Sup dopie.", "Those two.. Anna, Damon? Yeah they've got it bad for each other. Even a stonecold player like me, tried playing cupid. Got sent to the curb, typical, but do you know how mind jogglin it is to live between those two?? Kindergarden I tell YA. KINDERGARDEN!"],["You're not one to just write people off, are you?"],gameImages.eightballIcon,worldMapsStore.mapSevenVillage, 7,2);
     npcFunctionality.NPCs.push(eightball);
-     damon = new classDefinitions.NPC('damon', ["How's farm life treating you?", "Any nasty falls lately?"],["The weather, nice, eh?."],["You've been great to us."],gameImages.damonIcon,worldMapsStore.mapSevenVillage,11,2);
+     damon = new classDefinitions.NPC('damon', ["How's farm life treating you?", "Any nasty falls lately?"],["The weather, nice, eh?.", ""],["You've been great to us."],gameImages.damonIcon,worldMapsStore.mapSevenVillage,11,2);
     npcFunctionality.NPCs.push(damon);
     sravanthi = new classDefinitions.NPC("sravanthi",["Welcome, traveler! I'll take any horse, long as they're aclimated to humans to at least 10. Gotta have something to work with. Mustangs don't go easy"], ["You know the drill!", "The mayor is quite happy with the number of rehomed horses!", "Good to see you!"], 
-      ["Thanks to you, our outpost is getting national recognition."],gameImages.mayorIcon,worldMapsStore.mapSevenVillage,14,5);
+      ["Thanks to you, our outpost is getting national recognition."],gameImages.sravanthiIcon,worldMapsStore.mapSevenVillage,14,5);
       npcFunctionality.NPCs.push(sravanthi);
   }
 

@@ -60,6 +60,37 @@ var apple = new Image();
 apple.src= "Apple.png";
 var abandonedHome = new Image();
 abandonedHome.src = "abandonedHome.png";
+var birchTrees = new Image();
+birchTrees.src = "birch.png"
+
+var bench = new Image();
+bench.src = "bench.png";
+var path = new Image();
+path.src = "path.png";
+var purpFlower = new Image();
+purpFlower.src = "purpFlower.png";
+var savannah = new Image();
+savannah.src = "savannah.png";
+var statue = new Image();
+statue.src = "statue.png";
+var stoneHome= new Image();
+stoneHome.src = "stoneHome.png";
+var table = new Image();
+table.src = "table.png";
+var tower = new Image();
+tower.src = "tower.png";
+var tree3 = new Image();
+tree3.src = "tree3.png";
+var tree4 = new Image();
+tree4.src = "tree4.png";
+var tree5 = new Image();
+tree5.src = "tree5.png";
+var tree6 = new Image();
+tree6.src = "tree6.png";
+var yellowFlower = new Image();
+yellowFlower.src = "yellowFlower.png";
+var flowers = new Image();
+flowers.src = "flowers.png";
 
 
 
@@ -69,6 +100,8 @@ var eightballIcon = "eightball.png";
 var damonIcon = "damon.png";
 var jigsIcon = "jigs.png";
 var mayorIcon = "mayor.png";
+var sravanthiIcon = "void.png";
+var scratIcon = "Scrat.png"
 
 //minigame assets
 var lasso = new Image();
@@ -426,5 +459,23 @@ export const gameImages = {
     tree2,
     witchHat,
     apple,
-    abandonedHome
+    abandonedHome,
+    sravanthiIcon,
+    birchTrees,
+    scratIcon,
+    bench,
+    path,
+    purpFlower,
+    savannah,
+    scratIcon,
+    statue,
+    stoneHome,
+    table,
+    tower,
+    tree3,
+    tree4,
+    tree5,
+    tree6,
+    yellowFlower,
+    flowers
 };

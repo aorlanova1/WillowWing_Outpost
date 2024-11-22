@@ -129,6 +129,16 @@
     clear: left;
 }
 
+.Path {
+    background-image: url('path.png');
+    clear: left;
+}
+
+.Savannah {
+    background-image: url('savannah.png');
+    clear: left;
+}
+
 .Game {
     background-color: blue;
     clear: left;
