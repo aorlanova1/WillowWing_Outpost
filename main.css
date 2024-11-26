@@ -4,6 +4,10 @@
     position: absolute;
 }
 
+* {
+    font-family:'Times New Roman', Times, serif;
+   }
+
 #container {
     margin-left: 28%;
 }
@@ -94,7 +98,7 @@
     display: block;
     height: 480px;
     width: 640px;
-    background: linear-gradient(to left, #665454 50%, #9c63a4 50%);
+    background-image: url('main.png');
 }
 #eventInterface {
     height: 100px !important;
@@ -136,6 +140,16 @@
 
 .Savannah {
     background-image: url('savannah.png');
+    clear: left;
+}
+
+.PlainGrass {
+    background-image: url('GrassOnly.png');
+    clear: left;
+}
+
+.WildBeach {
+    background-image: url('WildBeach.png');
     clear: left;
 }
 

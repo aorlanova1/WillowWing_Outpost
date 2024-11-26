@@ -100,6 +100,9 @@ function randomWorldWilds(min, max) {
         }  else if(playerCharacter.activeMap[playerCharacter.activeMap.mapLayout[i][j]] == gameImages.waterRiverUp) {
           WaterPondSpriteCol = helpers.randomIntFromInterval(0,15);
           drawWater(gameImages.waterRiverUp, i, j);
+        }  else if(playerCharacter.activeMap[playerCharacter.activeMap.mapLayout[i][j]] == gameImages.crops) {
+          WaterPondSpriteCol = helpers.randomIntFromInterval(0,15);
+          drawWater(gameImages.crops, i, j);
         } else if (playerCharacter.activeMap[playerCharacter.activeMap.mapLayout[i][j]] == gameImages.fountain) {
           WaterPondSpriteCol = helpers.randomIntFromInterval(0,1);
           eraseEnv(j, i);

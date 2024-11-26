@@ -85,7 +85,10 @@ function putDownItem() {
     document.getElementById("eventInterface").removeChild(document.getElementById("knock"));
     }
     var NPCAtHome = "";
-    if(playerCharacter.activeMap[playerCharacter.activeMap.mapLayout[playerCharacter.SpriteRowPos-1][playerCharacter.SpriteColPos]] == gameImages.home) {
+    if(playerCharacter.activeMap[playerCharacter.activeMap.mapLayout[playerCharacter.SpriteRowPos-1][playerCharacter.SpriteColPos]] == gameImages.home
+      || playerCharacter.activeMap[playerCharacter.activeMap.mapLayout[playerCharacter.SpriteRowPos-1][playerCharacter.SpriteColPos]] == gameImages.stoneHome
+      || playerCharacter.activeMap[playerCharacter.activeMap.mapLayout[playerCharacter.SpriteRowPos-1][playerCharacter.SpriteColPos]] == gameImages.tower
+    ) {
       console.log("Home");
       console.log("PLAYER col: " + playerCharacter.SpriteColPos + " PLAYER row: " + playerCharacter.SpriteRowPos);
       for(var i = 0; i<npcFunctionality.NPCs.length; i++) {

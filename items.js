@@ -8,12 +8,6 @@ var possibleItems = {
         type: "Enviromental",
         ownedByPlayer: 0,
       },
-      2: {
-        name: "apple",
-        icon: "Apple.png",
-        type: "Feed",
-        ownedByPlayer: 0,
-      },
     },
     Swamp: {
       1: {
@@ -22,7 +16,65 @@ var possibleItems = {
         type: "Enviromental",
         ownedByPlayer: 0,
       }
-    }
+    },
+    Savannah: {
+      1: {
+        name: "magic prairie flower",
+        icon: "yellowFlower.png",
+        type: "Enviromental",
+        ownedByPlayer: 0,
+      },
+      2: {
+        name: "magic stardust flower",
+        icon: "purpFlower.png",
+        type: "Enviromental",
+        ownedByPlayer: 0,
+      },
+    },
+    PlainGrass: {
+      1: {
+        name: "apple",
+        icon: "Apple.png",
+        type: "Feed",
+        ownedByPlayer: 0,
+      },
+    },
+    Grass: {
+      1: {
+        name: "apple",
+        icon: "Apple.png",
+        type: "Feed",
+        ownedByPlayer: 0,
+      },
+    },
+    Path: {
+      1: {
+        name: "luvletter",
+        icon: "luvletter.png",
+        type: "Enviromental",
+        ownedByPlayer: 0,
+      },
+      2: {
+        name: "witch's hat",
+        icon: "witchhat.png",
+        type: "Enviromental",
+        ownedByPlayer: 0,
+      },
+      3: {
+        name: "mysterious brew",
+        icon: "brew.png",
+        type: "Enviromental",
+        ownedByPlayer: 0,
+      },
+    },
+    StoneSwamp: {
+      1: {
+        name: "geode",
+        icon: "geode.png",
+        type: "Enviromental",
+        ownedByPlayer: 0,
+      },
+    },
   }
 
 var horseTack = {

@@ -91,6 +91,12 @@ var yellowFlower = new Image();
 yellowFlower.src = "yellowFlower.png";
 var flowers = new Image();
 flowers.src = "flowers.png";
+var cacti = new Image();
+cacti.src = "cacti.png";
+var crops = new Image();
+crops.src = "crops.png";
+var wheelbarrow = new Image();
+wheelbarrow.src = "wheelbarrow.png";
 
 
 
@@ -477,5 +483,8 @@ export const gameImages = {
     tree5,
     tree6,
     yellowFlower,
-    flowers
+    flowers,
+    cacti,
+    crops,
+    wheelbarrow
 };

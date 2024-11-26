@@ -20,11 +20,16 @@ var annaQuest3;
 var eightballQuest1;
 var damonShop1;
 var sravanthiQuest1;
+var scratQuest1;
+var jigsQuest1;
+var jigsQuest2;
 
 var anna;
 var damon;
 var eightball;
 var sravanthi;
+var jigs;
+var Scrat;
 
 function createQuests() {
  annaQuest1 = new classDefinitions.horseQuest("Wrangler.. I'm in need of a steed. Something with a good head on its shoulders", 
@@ -37,6 +42,9 @@ function createQuests() {
   damonShop1 = new classDefinitions.shopQuest(["Buy before you try. No refunds"], ["Luck"], new Map([[items.horseTack.saddlePads[helpers.randomIntFromInterval(1,20)],0], [items.horseTack.saddles[1],0], [items.horseTack.bridles[1],0]]));
   sravanthiQuest1 = new classDefinitions.horseQuest("I have space in the stable to rehome a mustang. Just as long as they're at least 10 acclimated to people, I'll take 'em","This pony's gonna make someone very happy!" 
     ,0,50,0,50,0,50,0,50,10,200); 
+  scratQuest1 = new classDefinitions.itemQuest("Jigs has the memory of a goldfish. Mind picking up those drawings he leaves out. EVERYWHERE", "Thanks. This will put off another visit from those damn enviromentalists", new Map([["luvletter",10]]), 170);
+  jigsQuest1 = new classDefinitions.itemQuest("Eat", "...", new Map([["apple",10]]), 170);
+  jigsQuest2 = new classDefinitions.itemQuest("Shiny..Rock", "...", new Map([["geode",1]]), 70);
 }
 
 function getNPCQuests() {
@@ -52,6 +60,12 @@ function getNPCQuests() {
     },
     sravanthi: {
       1: [sravanthiQuest1]
+    },
+    jigs: {
+      1: [jigsQuest1,jigsQuest2]
+    },
+    Scrat: {
+      1: [scratQuest1]
     }
   }
 }
@@ -67,6 +81,12 @@ function createNPCs() {
     sravanthi = new classDefinitions.NPC("sravanthi",["Welcome, traveler! I'll take any horse, long as they're aclimated to humans to at least 10. Gotta have something to work with. Mustangs don't go easy"], ["You know the drill!", "The mayor is quite happy with the number of rehomed horses!", "Good to see you!"], 
       ["Thanks to you, our outpost is getting national recognition."],gameImages.sravanthiIcon,worldMapsStore.mapSevenVillage,14,5);
       npcFunctionality.NPCs.push(sravanthi);
+    jigs = new classDefinitions.NPC("jigs",["..", "Jigs"], ["...", "Happy day", "Happy life."],
+      ["God emporer Scratman taught Jigs make talk", "Shiny rocks, potion, warm sun on scales", "Have you seen her?"],gameImages.jigsIcon,worldMapsStore.mapNineteen,16, 4);
+      npcFunctionality.NPCs.push(jigs);
+      Scrat = new classDefinitions.NPC("Scrat",["I don't appreciate being bothered.", "You're playing a dangerout game"], ["Jigs is my boy. Mess with him and you'll regret it", "If Jigs asks for a horse, just walk away."],
+        ["Sunburns hurt.", "You're slightly better than darkness.", "Don't worry, I don't find you appetizing."],gameImages.scratIcon,worldMapsStore.mapNineteen,2, 3);
+        npcFunctionality.NPCs.push(Scrat);
   }
 
   function getNPCRelationships() {
