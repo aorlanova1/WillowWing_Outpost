@@ -23,7 +23,7 @@ function fillInventoryMenu() {
       var listItem = document.createElement('li'); 
       listItem.id = "inventoryItem";
       listItem.textContent = itemName + ", qty: " + item.ownedByPlayer;
-      if (item.icon != "") {
+      if (item.icon != "" && !(item.type == "saddlePad" || item.type == "saddle" || item.type == "bridle")) {
         var itemIcom = new Image();
         itemIcom.src = item.icon;
         listItem.appendChild(itemIcom);

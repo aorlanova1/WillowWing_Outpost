@@ -34,7 +34,7 @@ var dialogueOption;
     //no currently active quest
     if(NPCAtHome.activeQuest === "" || NPCAtHome.activeQuest == null) {
       var questOrHi = helpers.randomIntFromInterval(1,50);
-      if(questOrHi <20) {
+      if(questOrHi <20 && !(NPCAtHome.name == 'mayor')) {
       startQuest(NPCAtHome);
     }else {
       justSayingHi(NPCAtHome);

@@ -30,6 +30,7 @@ var eightball;
 var sravanthi;
 var jigs;
 var Scrat;
+var mayor;
 
 function createQuests() {
  annaQuest1 = new classDefinitions.horseQuest("Wrangler.. I'm in need of a steed. Something with a good head on its shoulders", 
@@ -71,22 +72,31 @@ function getNPCQuests() {
 }
 
 function createNPCs() {
-     anna = new classDefinitions.NPC("anna", ["Hey.", "Can I help you?"],["Hey, dude!", "We haven't had many new people move in. We hope the mustang program will put us on the map.", "Newcomers aren't welcome.. By most. We've been a tight knit community for a while. I don't mind, though, this place needs more living souls. And I like you!"]
+     anna = new classDefinitions.NPC("anna", ["Hey.", "Can I help you?"],
+      ["Hey, dude!", "We haven't had many new people move in. We hope the mustang program will put us on the map.", "Newcomers aren't welcome.. By most. We've been a tight knit community for a while. I don't mind, though, this place needs more living souls. And I like you!"]
       ,["Happy you're here!", "Ah!! Come in, have a seat!", "Has Damon said anything about me to you? He's been a bit standoff-ish as of late."],gameImages.annaIcon,worldMapsStore.mapSevenVillage, 3,2);
     npcFunctionality.NPCs.push(anna);
-     eightball = new classDefinitions.NPC("eightball", ["You stick your nose in everyone's bizness?"],["Sup dopie.", "Those two.. Anna, Damon? Yeah they've got it bad for each other. Even a stonecold player like me, tried playing cupid. Got sent to the curb, typical, but do you know how mind jogglin it is to live between those two?? Kindergarden I tell YA. KINDERGARDEN!"],["You're not one to just write people off, are you?"],gameImages.eightballIcon,worldMapsStore.mapSevenVillage, 7,2);
+     eightball = new classDefinitions.NPC("eightball", ["You stick your nose in everyone's bizness?"],
+      ["Sup dopie.", "Those two.. Anna, Damon? Yeah they've got it bad for each other. Even a stonecold player like me, tried playing cupid. Got sent to the curb, typical, but do you know how mind jogglin it is to live between those two?? Kindergarden I tell YA. KINDERGARDEN!"],
+      ["You're not one to just write people off, are you?"],gameImages.eightballIcon,worldMapsStore.mapSevenVillage, 7,2);
     npcFunctionality.NPCs.push(eightball);
-     damon = new classDefinitions.NPC('damon', ["How's farm life treating you?", "Any nasty falls lately?"],["The weather, nice, eh?.", ""],["You've been great to us."],gameImages.damonIcon,worldMapsStore.mapSevenVillage,11,2);
+     damon = new classDefinitions.NPC('damon', ["How's farm life treating you?", "Any nasty falls lately?"],
+      ["The weather, nice, eh?.", ""],
+      ["You've been great to us."],gameImages.damonIcon,worldMapsStore.mapSevenVillage,11,2);
     npcFunctionality.NPCs.push(damon);
-    sravanthi = new classDefinitions.NPC("sravanthi",["Welcome, traveler! I'll take any horse, long as they're aclimated to humans to at least 10. Gotta have something to work with. Mustangs don't go easy"], ["You know the drill!", "The mayor is quite happy with the number of rehomed horses!", "Good to see you!"], 
+    sravanthi = new classDefinitions.NPC("sravanthi",["Welcome to my home.. and office! Budget's tight."], 
+      ["You know the drill!", "The mayor is quite happy with the number of rehomed horses!", "Good to see you!"], 
       ["Thanks to you, our outpost is getting national recognition."],gameImages.sravanthiIcon,worldMapsStore.mapSevenVillage,14,5);
       npcFunctionality.NPCs.push(sravanthi);
     jigs = new classDefinitions.NPC("jigs",["..", "Jigs"], ["...", "Happy day", "Happy life."],
       ["God emporer Scratman taught Jigs make talk", "Shiny rocks, potion, warm sun on scales", "Have you seen her?"],gameImages.jigsIcon,worldMapsStore.mapNineteen,16, 4);
       npcFunctionality.NPCs.push(jigs);
-      Scrat = new classDefinitions.NPC("Scrat",["I don't appreciate being bothered.", "You're playing a dangerout game"], ["Jigs is my boy. Mess with him and you'll regret it", "If Jigs asks for a horse, just walk away."],
+      Scrat = new classDefinitions.NPC("Scrat",["I don't appreciate being bothered.", "You're playing a dangerout game coming here"],
+         ["Jigs is my boy. Mess with him and you'll regret it", "If Jigs asks for a horse, just walk away."],
         ["Sunburns hurt.", "You're slightly better than darkness.", "Don't worry, I don't find you appetizing."],gameImages.scratIcon,worldMapsStore.mapNineteen,2, 3);
         npcFunctionality.NPCs.push(Scrat);
+      mayor = new classDefinitions.NPC("mayor", ["Another fine day on the outpost.."],[],[],gameImages.mayorIcon, worldMapsStore.mapFive,4,2);
+      npcFunctionality.NPCs.push(mayor);
   }
 
   function getNPCRelationships() {

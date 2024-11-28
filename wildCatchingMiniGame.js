@@ -51,6 +51,7 @@ function wildCatchMiniGame(horse) {
                 horse.HorsePosCol = 10;
                 horse.HorsePosRow = 10;
                 horse.horseName = prompt("Give your new horse a name!");
+                helpers.validateHorseName(horse);
                 playerCharacter.playerHorses.push(horse);
             }
         }

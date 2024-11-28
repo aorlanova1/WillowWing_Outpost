@@ -175,6 +175,22 @@ function randomWorldWilds(min, max) {
 
   }
 
+  function validateHorseName(horse) {
+    var duplicate = false;
+    for (var i = 0; i<playerCharacter.playerHorses.length; i++) {
+      if(horse.horseName == playerCharacter.playerHorses[i].horseName) {
+        duplicate = true;
+        break;
+      }
+    }
+    if(duplicate) {
+      horse.horseName = prompt("That name is already taken. Choose again.");
+      validateHorseName(horse);
+    } else {
+      return;
+    }
+  }
+
   function eraseHorse(testHorse) {
     ctx.clearRect(testHorse.HorsePosCol*32, testHorse.HorsePosRow*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
   };
@@ -275,5 +291,6 @@ function randomWorldWilds(min, max) {
     checkNPCLevel,
     notifyPlayer,
     removePlayerHorse,
-    clearRidenHorses
+    clearRidenHorses,
+    validateHorseName
   }
