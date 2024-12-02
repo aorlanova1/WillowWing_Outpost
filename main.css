@@ -65,10 +65,10 @@
 #NPC {
     position: fixed;
     margin-left: 160px;
-    margin-top: 100px;
+    margin-top: 70px;
     display: none;
     overflow: scroll;
-    height: 300px;
+    height: 350px;
     width: 390px;
     background: whitesmoke;    
 }

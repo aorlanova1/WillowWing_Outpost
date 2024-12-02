@@ -19,7 +19,7 @@ function tackHorse(horseName, item) {
     for(var i = 0; i<playerCharacter.playerHorses.length; i++) {
       if(playerCharacter.playerHorses[i].horseName == horseName) {
         if(playerCharacter.playerHorses[i][tackType] != "") {
-          playerCharacter.playerHorses[i][tackType].ownedByPlayer++;
+          untackHorse(item,playerCharacter.playerHorses[i]);
         }
         playerCharacter.playerHorses[i][tackType] = item;
         item.ownedByPlayer--;

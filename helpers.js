@@ -17,6 +17,7 @@ import { wildCatchGame } from './wildCatchingMiniGame.js';
 var WaterPondSpriteCol = 0;  
 var ctx;
 var canvas;
+var music;
 
 function loadCanvas() {
   canvas = document.getElementById("theCanvas");
@@ -255,6 +256,23 @@ function randomWorldWilds(min, max) {
     } 
   }
 
+  function loadSound() {
+    music = new Audio('outpost.wav');
+    music.loop = true;
+  }
+
+  function playSound() {
+    music.play();
+  }
+
+  function toggleSoundButton() {
+    if (music.paused) {
+      playSound();
+    } else {
+      music.pause();
+    }
+  }
+
   function notifyPlayer(text) {
     var notif = document.createElement('li');
     notif.textContent = text;
@@ -292,5 +310,9 @@ function randomWorldWilds(min, max) {
     notifyPlayer,
     removePlayerHorse,
     clearRidenHorses,
-    validateHorseName
+    validateHorseName,
+    music,
+    loadSound,
+    playSound,
+    toggleSoundButton
   }

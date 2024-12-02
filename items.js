@@ -10,26 +10,26 @@ var possibleItems = {
       },
     },
     Swamp: {
-      1: {
-        name: "lilly",
-        icon: "lillyItem.png",
-        type: "Enviromental",
-        ownedByPlayer: 0,
-      }
     },
     Savannah: {
       1: {
-        name: "magic prairie flower",
+        name: "prairie flower",
         icon: "yellowFlower.png",
         type: "Enviromental",
         ownedByPlayer: 0,
       },
       2: {
-        name: "magic stardust flower",
+        name: "stardust flower",
         icon: "purpFlower.png",
         type: "Enviromental",
         ownedByPlayer: 0,
       },
+      3: {
+        name: "lilly",
+        icon: "lillyItem.png",
+        type: "Enviromental",
+        ownedByPlayer: 0,
+      }
     },
     PlainGrass: {
       1: {
@@ -206,7 +206,19 @@ var horseTack = {
         icon: gameImages.brownSaddle.src,
         type: "saddle",
         ownedByPlayer: 0,
-      }
+      },
+      2: {
+        name: "black saddle",
+        icon: gameImages.blackSaddle.src,
+        type: "saddle",
+        ownedByPlayer: 0,
+      },
+      3: {
+        name: "cream saddle",
+        icon: gameImages.creamSaddle.src,
+        type: "saddle",
+        ownedByPlayer: 0,
+      },
     },
     bridles: {
       1: {
@@ -214,7 +226,19 @@ var horseTack = {
         icon: gameImages.brownBridle.src,
         type: "bridle",
         ownedByPlayer: 0,
-      }
+      },
+      2: {
+        name: "black bridle",
+        icon: gameImages.blackBridle.src,
+        type: "bridle",
+        ownedByPlayer: 0,
+      },
+      3: {
+        name: "cream bridle",
+        icon: gameImages.creamBridle.src,
+        type: "bridle",
+        ownedByPlayer: 0,
+      },
     } 
   }
 

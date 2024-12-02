@@ -26,6 +26,7 @@ var dialogueOption;
     }
     document.getElementById("exitNPCCard").addEventListener("click", () => menus.exitMenu());
     document.getElementById("NPC").style.display = "block";
+    document.getElementById("NPCName").textContent = NPCAtHome.name;
     var NPCIcon = document.createElement("img");
     NPCIcon.id = "NPCIcon";
     NPCIcon.setAttribute("src", NPCAtHome.art);

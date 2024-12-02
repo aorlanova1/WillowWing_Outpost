@@ -56,6 +56,7 @@ var toggleSound;
     exitHorseCard.addEventListener("click", () => exitMenu());
     expandInventoryButton.addEventListener("click", () => expandInventoryMenu());
     save.addEventListener("click", () => gameState.saveGame());
+    toggleSound.addEventListener("click", () => helpers.toggleSoundButton());
   }
 
   function expandInventoryMenu() {

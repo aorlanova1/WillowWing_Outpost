@@ -325,10 +325,19 @@ yellowSP.src = "saddlePads/yellow.png";
 //saddles
 var brownSaddle = new Image();
 brownSaddle.src = "saddles/brown.png";
+var blackSaddle = new Image();
+blackSaddle.src = "saddles/black.png";
+var creamSaddle = new Image();
+creamSaddle.src = "saddles/cream.png";
 
 //bridles
 var brownBridle = new Image();
 brownBridle.src = "bridles/brown.png";
+var blackBridle = new Image();
+blackBridle.src = "bridles/black.png";
+var creamBridle = new Image();
+creamBridle.src = "bridles/cream.png";
+
 
 // Export all assets as a single object
 export const gameImages = {
@@ -448,7 +457,11 @@ export const gameImages = {
     whiteSP,
     yellowSP,
     brownSaddle,
+    blackSaddle,
+    creamSaddle,
     brownBridle,
+    blackBridle,
+    creamBridle,
     beachBackground,
     birdbath,
     witchBrew,
