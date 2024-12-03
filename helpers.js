@@ -17,6 +17,7 @@ import { wildCatchGame } from './wildCatchingMiniGame.js';
 var WaterPondSpriteCol = 0;  
 var ctx;
 var canvas;
+var music;
 
 function loadCanvas() {
   canvas = document.getElementById("theCanvas");
@@ -100,6 +101,9 @@ function randomWorldWilds(min, max) {
         }  else if(playerCharacter.activeMap[playerCharacter.activeMap.mapLayout[i][j]] == gameImages.waterRiverUp) {
           WaterPondSpriteCol = helpers.randomIntFromInterval(0,15);
           drawWater(gameImages.waterRiverUp, i, j);
+        }  else if(playerCharacter.activeMap[playerCharacter.activeMap.mapLayout[i][j]] == gameImages.crops) {
+          WaterPondSpriteCol = helpers.randomIntFromInterval(0,15);
+          drawWater(gameImages.crops, i, j);
         } else if (playerCharacter.activeMap[playerCharacter.activeMap.mapLayout[i][j]] == gameImages.fountain) {
           WaterPondSpriteCol = helpers.randomIntFromInterval(0,1);
           eraseEnv(j, i);
@@ -172,6 +176,22 @@ function randomWorldWilds(min, max) {
 
   }
 
+  function validateHorseName(horse) {
+    var duplicate = false;
+    for (var i = 0; i<playerCharacter.playerHorses.length; i++) {
+      if(horse.horseName == playerCharacter.playerHorses[i].horseName) {
+        duplicate = true;
+        break;
+      }
+    }
+    if(duplicate) {
+      horse.horseName = prompt("That name is already taken. Choose again.");
+      validateHorseName(horse);
+    } else {
+      return;
+    }
+  }
+
   function eraseHorse(testHorse) {
     ctx.clearRect(testHorse.HorsePosCol*32, testHorse.HorsePosRow*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
   };
@@ -236,6 +256,23 @@ function randomWorldWilds(min, max) {
     } 
   }
 
+  function loadSound() {
+    music = new Audio('outpost.wav');
+    music.loop = true;
+  }
+
+  function playSound() {
+    music.play();
+  }
+
+  function toggleSoundButton() {
+    if (music.paused) {
+      playSound();
+    } else {
+      music.pause();
+    }
+  }
+
   function notifyPlayer(text) {
     var notif = document.createElement('li');
     notif.textContent = text;
@@ -272,5 +309,10 @@ function randomWorldWilds(min, max) {
     checkNPCLevel,
     notifyPlayer,
     removePlayerHorse,
-    clearRidenHorses
+    clearRidenHorses,
+    validateHorseName,
+    music,
+    loadSound,
+    playSound,
+    toggleSoundButton
   }

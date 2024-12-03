@@ -40,6 +40,8 @@ function loadComplete() {
         document.getElementById("loadGame").style.display = 'none';
       }
       myInterval = self.setInterval(function(){Tick()}, INTERVAL);
+      helpers.loadSound();
+      helpers.playSound();
   }
   function Tick() {
     helpers.animationWater();

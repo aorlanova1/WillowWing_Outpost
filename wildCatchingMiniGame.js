@@ -18,7 +18,7 @@ var lassoCol;
 
 function wildCatchMiniGame(horse) {
     if (miniGameActive) return; // Prevent starting another mini-game
-
+    helpers.notifyPlayer("To catch the wild, press spacebar to send your lasso! You'll have 5 attempts to try to get the lasso on the horse.")
     miniGameActive = true; // Set the flag to true
     var miniGameEventLog = document.createElement('li');
     var activeMapHolder = playerCharacter.activeMap;
@@ -51,6 +51,7 @@ function wildCatchMiniGame(horse) {
                 horse.HorsePosCol = 10;
                 horse.HorsePosRow = 10;
                 horse.horseName = prompt("Give your new horse a name!");
+                helpers.validateHorseName(horse);
                 playerCharacter.playerHorses.push(horse);
             }
         }

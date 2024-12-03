@@ -26,6 +26,7 @@ var dialogueOption;
     }
     document.getElementById("exitNPCCard").addEventListener("click", () => menus.exitMenu());
     document.getElementById("NPC").style.display = "block";
+    document.getElementById("NPCName").textContent = NPCAtHome.name;
     var NPCIcon = document.createElement("img");
     NPCIcon.id = "NPCIcon";
     NPCIcon.setAttribute("src", NPCAtHome.art);
@@ -33,10 +34,21 @@ var dialogueOption;
 
     //no currently active quest
     if(NPCAtHome.activeQuest === "" || NPCAtHome.activeQuest == null) {
+      var questOrHi = helpers.randomIntFromInterval(1,50);
+      if(questOrHi <20 && !(NPCAtHome.name == 'mayor')) {
       startQuest(NPCAtHome);
+    }else {
+      justSayingHi(NPCAtHome);
+    }
     } else {
       activeQuestVisit(NPCAtHome);
     }
+  }
+
+  function justSayingHi(NPCAtHome) {
+    addNPCDialogue(NPCAtHome.activeDialogue[helpers.randomIntFromInterval(0,(NPCAtHome.activeDialogue.length)-1)]);
+    addCharacterDialogue("See ya.","leave");
+    document.getElementById("characterButton").addEventListener("click", () => menus.exitMenu());
   }
 
   function activeQuestVisit(NPCAtHome) {
@@ -129,7 +141,7 @@ function openShop(questNumber, NPC) {
   document.getElementById("NPCDialogue").appendChild(tackSelection);
 }
 
-function purchaseItem(item, price) {
+function purchaseItem(item, price,NPC) {
   if(price <= playerCharacter.playerCoin) {
     if(item.name in playerCharacter.playerItems) {
       var setThis = playerCharacter.playerItems.get(item.name);
@@ -141,6 +153,7 @@ function purchaseItem(item, price) {
     }
     playerCharacter.playerCoin -= price;
     addNPCDialogue("Thanks");
+    NPC.activeQuest = "";
     helpers.updateBank();
   }
 }

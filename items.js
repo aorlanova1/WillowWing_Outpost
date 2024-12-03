@@ -4,25 +4,77 @@ var possibleItems = {
     Background: {
       1: {
         name: "seedling",
-        icon: "",
+        icon: "seedlings.png",
         type: "Enviromental",
-        ownedByPlayer: 0,
-      },
-      2: {
-        name: "apple",
-        icon: "",
-        type: "Feed",
         ownedByPlayer: 0,
       },
     },
     Swamp: {
+    },
+    Savannah: {
       1: {
+        name: "prairie flower",
+        icon: "yellowFlower.png",
+        type: "Enviromental",
+        ownedByPlayer: 0,
+      },
+      2: {
+        name: "stardust flower",
+        icon: "purpFlower.png",
+        type: "Enviromental",
+        ownedByPlayer: 0,
+      },
+      3: {
         name: "lilly",
-        icon: "",
+        icon: "lillyItem.png",
         type: "Enviromental",
         ownedByPlayer: 0,
       }
-    }
+    },
+    PlainGrass: {
+      1: {
+        name: "apple",
+        icon: "Apple.png",
+        type: "Feed",
+        ownedByPlayer: 0,
+      },
+    },
+    Grass: {
+      1: {
+        name: "apple",
+        icon: "Apple.png",
+        type: "Feed",
+        ownedByPlayer: 0,
+      },
+    },
+    Path: {
+      1: {
+        name: "luvletter",
+        icon: "luvletter.png",
+        type: "Enviromental",
+        ownedByPlayer: 0,
+      },
+      2: {
+        name: "witch's hat",
+        icon: "witchhat.png",
+        type: "Enviromental",
+        ownedByPlayer: 0,
+      },
+      3: {
+        name: "mysterious brew",
+        icon: "brew.png",
+        type: "Enviromental",
+        ownedByPlayer: 0,
+      },
+    },
+    StoneSwamp: {
+      1: {
+        name: "geode",
+        icon: "geode.png",
+        type: "Enviromental",
+        ownedByPlayer: 0,
+      },
+    },
   }
 
 var horseTack = {
@@ -154,7 +206,19 @@ var horseTack = {
         icon: gameImages.brownSaddle.src,
         type: "saddle",
         ownedByPlayer: 0,
-      }
+      },
+      2: {
+        name: "black saddle",
+        icon: gameImages.blackSaddle.src,
+        type: "saddle",
+        ownedByPlayer: 0,
+      },
+      3: {
+        name: "cream saddle",
+        icon: gameImages.creamSaddle.src,
+        type: "saddle",
+        ownedByPlayer: 0,
+      },
     },
     bridles: {
       1: {
@@ -162,7 +226,19 @@ var horseTack = {
         icon: gameImages.brownBridle.src,
         type: "bridle",
         ownedByPlayer: 0,
-      }
+      },
+      2: {
+        name: "black bridle",
+        icon: gameImages.blackBridle.src,
+        type: "bridle",
+        ownedByPlayer: 0,
+      },
+      3: {
+        name: "cream bridle",
+        icon: gameImages.creamBridle.src,
+        type: "bridle",
+        ownedByPlayer: 0,
+      },
     } 
   }
 

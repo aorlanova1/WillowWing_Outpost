@@ -23,6 +23,11 @@ function fillInventoryMenu() {
       var listItem = document.createElement('li'); 
       listItem.id = "inventoryItem";
       listItem.textContent = itemName + ", qty: " + item.ownedByPlayer;
+      if (item.icon != "" && !(item.type == "saddlePad" || item.type == "saddle" || item.type == "bridle")) {
+        var itemIcom = new Image();
+        itemIcom.src = item.icon;
+        listItem.appendChild(itemIcom);
+      }
       if(item.type == "Feed") {
         var dropDownFeedMenu = document.createElement('SELECT');
         var feedHorseButton = document.createElement('button');

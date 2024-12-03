@@ -1,0 +1,9 @@
+table, th, td {
+    border: 1px solid black;
+    width: 800px;
+    margin-left: 22%;
+    background-color: whitesmoke;
+  }
+  body {
+    background-color: azure;
+  }
