@@ -257,7 +257,7 @@ function randomWorldWilds(min, max) {
   }
 
   function loadSound() {
-    music = new Audio('outpost.wav');
+    music = new Audio('willow-wing.wav');
     music.loop = true;
   }
 
