@@ -106,7 +106,7 @@ var eightballIcon = "eightball.png";
 var damonIcon = "damon.png";
 var jigsIcon = "jigs.png";
 var mayorIcon = "mayor.png";
-var sravanthiIcon = "void.png";
+var sravanthiIcon = "sravanthi.png";
 var scratIcon = "Scrat.png"
 
 //minigame assets
