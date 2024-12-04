@@ -23,7 +23,6 @@ import {worldNPCs} from './npcDefinitions.js';
 
 
 function saveGame() {
-        //localStorage.setItem("NPCs", JSON.stringify(npcFunctionality.NPCs));
         var horseToSave = playerCharacter.playerHorses.map(horse => {
             return {
                 ...horse, 

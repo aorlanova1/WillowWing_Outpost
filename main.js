@@ -31,7 +31,6 @@ function loadComplete() {
       });
       if (window.localStorage.length != 0) {
       document.getElementById("loadGame").addEventListener("click", () => {
-        gameState.initializeGame();
         gameState.loadGame();
         helpers.clearRidenHorses();
         loadingSreen.style.display = 'none';    
@@ -39,10 +38,11 @@ function loadComplete() {
       } else {
         document.getElementById("loadGame").style.display = 'none';
       }
-      myInterval = self.setInterval(function(){Tick()}, INTERVAL);
       helpers.loadSound();
       helpers.playSound();
+      myInterval = self.setInterval(function(){Tick()}, INTERVAL);
   }
+
   function Tick() {
     helpers.animationWater();
     movement.moveHorses();
