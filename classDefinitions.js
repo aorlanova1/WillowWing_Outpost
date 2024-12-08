@@ -88,8 +88,7 @@ class NPC {
     this.activeDialogue = "";
     this.activeQuest = "";
     this.activeQuestRequestText = "";
-    this.lastQuestCompletedTime = "";
-  }
+    }
 }
 
 export const classDefinitions = {

@@ -24,7 +24,7 @@ function moveCharacter(key) {
           playerCharacter.SpriteRow = 3;	
         }
           helpers.eraseSprite();
-          helpers.animateCharacter()
+          helpers.animateCharacter();
           playerCharacter.SpriteColPos += .5;
           helpers.drawSprite();
         setTimeout(() => {

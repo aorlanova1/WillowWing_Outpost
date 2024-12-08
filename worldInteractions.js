@@ -32,7 +32,7 @@ function putDownItem() {
     var randNumber = helpers.randomIntFromInterval(1,120);
     if (randNumber <=10) {
       var biome = playerCharacter.activeMap.mapBackground;
-      var itemValue = items.possibleItems[biome][helpers.randomIntFromInterval(1,2)];
+      var itemValue = items.possibleItems[biome][helpers.randomIntFromInterval(1,3)];
       var worldItemNotify = document.createElement('li');
       var collectItemButton = document.createElement('button');
       collectItemButton.innerHTML = "collect";

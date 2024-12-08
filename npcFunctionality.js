@@ -153,7 +153,8 @@ function purchaseItem(item, price,NPC) {
     }
     playerCharacter.playerCoin -= price;
     addNPCDialogue("Thanks");
-    NPC.activeQuest = "";
+    NPC.NPCRelationship++;
+    //NPC.activeQuest = "";
     helpers.updateBank();
   }
 }
