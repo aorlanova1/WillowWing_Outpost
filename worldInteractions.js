@@ -67,9 +67,15 @@ function putDownItem() {
   }
 
   function collectItem(itemToCollect) {
+    var playersItem = playerCharacter.playerItems.has(itemToCollect.item.name) ? playerCharacter.playerItems.get(itemToCollect.item.name) : "";
+    if(playersItem == "") {
     itemToCollect.item.ownedByPlayer++;
     console.log(itemToCollect.item.name + "   " + itemToCollect.item.ownedByPlayer);
     playerCharacter.playerItems.set(itemToCollect.item.name, itemToCollect.item);
+  } else {
+    playersItem.ownedByPlayer++;
+    playerCharacter.playerItems.set(playersItem.name, playersItem);
+  }
   
     for(var i = 0; i<worldItems.length; i++) {
       if(playerCharacter.spriteMapCol == worldItems[i].itemMapCol && playerCharacter.spriteMapRow == worldItems[i].itemMapRow

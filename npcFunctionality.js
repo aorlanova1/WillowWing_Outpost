@@ -219,7 +219,7 @@ function acceptQuest(questNumber, NPC) {
 } else if (activeQuest.constructor.name == "itemQuest") {
     var itemTextRequest = "I need, ";
     activeQuest.itemRequest.forEach(function(value, key) {
-      itemTextRequest += value + " " + key +"s ";
+      itemTextRequest += value + " " + key +"s, ";
     });
     addNPCDialogue(itemTextRequest);
   }
