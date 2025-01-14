@@ -257,7 +257,7 @@ function randomWorldWilds(min, max) {
   }
 
   function loadSound() {
-    music = new Audio('willow-wing.wav');
+    music = new Audio('assetsSound/willow-wing.wav');
     music.loop = true;
   }
 

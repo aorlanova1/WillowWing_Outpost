@@ -98,7 +98,7 @@
     display: block;
     height: 480px;
     width: 640px;
-    background-image: url('main.png');
+    background-image: url('assetsImg/main.png');
 }
 #eventInterface {
     height: 100px !important;
@@ -110,46 +110,46 @@
 }
 
 .Background {
-    background-image: url('background.png');
+    background-image: url('assetsImg/background.png');
     clear: left;
 }
 .Swamp {
-    background-image: url('swamp.png');
+    background-image: url('assetsImg/swamp.png');
     clear: left;
 }
 
 .StoneSwamp {
-    background-image: url('StoneSwamp.png');
+    background-image: url('assetsImg/StoneSwamp.png');
     clear: left;
 }
 
 .Grass {
-    background-image: url('Grass.png');
+    background-image: url('assetsImg/Grass.png');
     clear: left;
 }
 
 .Beach {
-    background-image: url('beach.png');
+    background-image: url('assetsImg/beach.png');
     clear: left;
 }
 
 .Path {
-    background-image: url('path.png');
+    background-image: url('assetsImg/path.png');
     clear: left;
 }
 
 .Savannah {
-    background-image: url('savannah.png');
+    background-image: url('assetsImg/savannah.png');
     clear: left;
 }
 
 .PlainGrass {
-    background-image: url('GrassOnly.png');
+    background-image: url('assetsImg/GrassOnly.png');
     clear: left;
 }
 
 .WildBeach {
-    background-image: url('WildBeach.png');
+    background-image: url('assetsImg/WildBeach.png');
     clear: left;
 }
 

@@ -34,7 +34,7 @@ var possibleItems = {
     PlainGrass: {
       1: {
         name: "apple",
-        icon: "Apple.png",
+        icon: "assetsImg/Apple.png",
         type: "Feed",
         ownedByPlayer: 0,
       },
@@ -42,7 +42,7 @@ var possibleItems = {
     Grass: {
       1: {
         name: "apple",
-        icon: "Apple.png",
+        icon: "assetsImg/Apple.png",
         type: "Feed",
         ownedByPlayer: 0,
       },
