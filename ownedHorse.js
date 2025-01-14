@@ -66,7 +66,7 @@ function tackHorse(horseName, item) {
     playerCharacter.activeRiddenHorse.spawnMap = playerCharacter.activeMap;
     playerCharacter.activeRiddenHorse.HorsePosCol = playerCharacter.SpriteColPos;
     playerCharacter.activeRiddenHorse.HorsePosRow = playerCharacter.SpriteRowPos;
-    gameImages.SpriteImage.src = "Riding.png";
+    gameImages.SpriteImage.src = "assetsImg/Riding.png";
     helpers.eraseSprite();
     helpers.drawHorse(playerCharacter.activeRiddenHorse);
     helpers.drawSprite();
@@ -78,7 +78,7 @@ function tackHorse(horseName, item) {
     playerCharacter.activeRiddenHorse = "";
     helpers.eraseHorse(playerCharacter.activeRiddenHorse);
     helpers.eraseSprite();
-    gameImages.SpriteImage.src = "Character.png";
+    gameImages.SpriteImage.src = "assetsImg/Character.png";
     helpers.drawSprite();
   } else {
     playerCharacter.activeRiddenHorse.horseBeingRidden = "N";
@@ -91,7 +91,7 @@ function tackHorse(horseName, item) {
     playerCharacter.activeRiddenHorse.spawnMap = playerCharacter.activeMap;
     playerCharacter.activeRiddenHorse.HorsePosCol = playerCharacter.SpriteColPos;
     playerCharacter.activeRiddenHorse.HorsePosRow = playerCharacter.SpriteRowPos;
-    gameImages.SpriteImage.src = "Riding.png";
+    gameImages.SpriteImage.src = "assetsImg/Riding.png";
     helpers.eraseSprite();
     helpers.drawHorse(playerCharacter.activeRiddenHorse);
     helpers.drawSprite();
