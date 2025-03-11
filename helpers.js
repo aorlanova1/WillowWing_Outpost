@@ -31,7 +31,7 @@ function randomIntFromInterval(min, max) {
 function randomIntFromIntervalForWilds(horseInput) { 
     var row = Math.floor(Math.random() * (14));
     var col = Math.floor(Math.random() * (19));
-    if (horseInput.spawnMap.mapLayout[row][col] == 0 && horseInput.spawnMap.mapLayout[row] != playerCharacter.SpriteRowPos && horseInput.spawnMap.mapLayout[col] != playerCharacter.SpriteColPos) {
+    if (horseInput.spawnMap.mapLayout[row][col] == 0) {
         horseInput.HorsePosRow = row;
         horseInput.HorsePosCol = col;
     } else {
@@ -39,15 +39,20 @@ function randomIntFromIntervalForWilds(horseInput) {
     }
 }
 
-function randomWorldWilds(min, max) { 
-    var wildMap = Math.floor(Math.random() * (max - min + 1) + min);
-    while(wildMap != 100) {
-      if(wildMap != 6 && wildMap != 7) {
-      return wildMap;
-    } else {
-      wildMap = Math.floor(Math.random() * (max - min + 1) + min);
-    }
-  }}
+function randomWorldWilds(horse, minRow, maxRow, minCol, maxCol) { 
+  var wildMapCol = Math.floor(Math.random() * (maxCol - minCol + 1) + minCol);
+  var wildMapRow = Math.floor(Math.random() * (maxRow - minRow + 1) + minRow);
+  while(wildMapRow != 100) {
+    if((wildMapRow != 3 && wildMapCol != 1)) {
+      horse.HorseMapPosCol = wildMapCol;
+      horse.HorseMapPosRow = wildMapRow;
+      horse.spawnMap = worldMapsStore.worldMaps.maps[worldMapsStore.worldMaps.mapLayout[wildMapRow][wildMapCol]];;
+      return;
+  } else {
+   wildMapCol = Math.floor(Math.random() * (maxCol - minCol + 1) + minCol);
+   wildMapRow = Math.floor(Math.random() * (maxRow - minRow + 1) + minRow);
+  }
+}}
 
   function updateBank() {
     document.getElementById("playerCoins").textContent = playerCharacter.playerCoin;
@@ -63,10 +68,12 @@ function randomWorldWilds(min, max) {
 
   function generateMap(map) {
     var itemHolder;
+    console.log("Map background: " + map.mapBackground)
     document.getElementById("theCanvas").className = map.mapBackground;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (var i = 0; i<15; i++) {
       for (var j = 0; j < 20; j++) {
+        //console.log(worldMapsStore.worldMaps.maps[worldMapsStore.worldMaps.mapLayout[0][2]]);
         if(playerCharacter.activeMap.mapLayout[i][j] != 0 && playerCharacter.activeMap.mapLayout[i][j] > 0) {
           itemHolder = playerCharacter.activeMap[playerCharacter.activeMap.mapLayout[i][j]];
           drawEnv(itemHolder, i, j)
@@ -221,7 +228,7 @@ function randomWorldWilds(min, max) {
 
   function findWildHorseIndex() {
     for (var i = 0; i<5; i++) {
-      if (wildHorses.allWildHorses[i].spawnMap == worldMapsStore.catchWild) {
+      if (wildHorses.allWildHorses[i].HorseMapPosRow == -1) {
         return i;
       }
     }

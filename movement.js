@@ -18,7 +18,7 @@ function moveCharacter(key) {
       case 28:  // Right arrow was pressed 
        if (playerCharacter.SpriteColPos < 19 && ((playerCharacter.activeMap.mapLayout[playerCharacter.SpriteRowPos][playerCharacter.SpriteColPos+1] == 0))) { 
         if(playerCharacter.activeRiddenHorse == "") {
-        if(playerCharacter.activeMap != worldMapsStore.catchWild) {  
+        if(playerCharacter.spriteMapRow != -1) {    
           playerCharacter.SpriteRow = 1;	
         } else {
           playerCharacter.SpriteRow = 3;	
@@ -39,7 +39,7 @@ function moveCharacter(key) {
         }, 150);
       } else {
         helpers.eraseSprite();
-        if(playerCharacter.activeMap != worldMapsStore.catchWild) {  
+        if(playerCharacter.spriteMapRow != -1) {   
           playerCharacter.SpriteRow = 1;	
         } else {
           playerCharacter.SpriteRow = 3;	
@@ -61,7 +61,7 @@ function moveCharacter(key) {
       case 29:  // Left arrow, ASCII 29 
        if (playerCharacter.SpriteColPos > 0 && ((playerCharacter.activeMap.mapLayout[playerCharacter.SpriteRowPos][playerCharacter.SpriteColPos-1] == 0))){  
         if (playerCharacter.activeRiddenHorse == "") {
-          if(playerCharacter.activeMap != worldMapsStore.catchWild) {  
+          if(playerCharacter.spriteMapRow != -1) {  
             playerCharacter.SpriteRow = 2;	
           } else {
             playerCharacter.SpriteRow = 3;	
@@ -82,7 +82,7 @@ function moveCharacter(key) {
         }, 150);
       } else {
         helpers.eraseSprite();
-        if(playerCharacter.activeMap != worldMapsStore.catchWild) {  
+        if(playerCharacter.spriteMapRow != -1) {   
           playerCharacter.SpriteRow = 2;	
         } else {
           playerCharacter.SpriteRow = 3;	
@@ -186,6 +186,7 @@ function moveCharacter(key) {
           playerCharacter.activeRiddenHorse.spawnMap = playerCharacter.activeMap;
           playerCharacter.activeRiddenHorse.HorsePosCol = playerCharacter.SpriteColPos;
           playerCharacter.activeRiddenHorse.HorsePosRow = playerCharacter.SpriteRowPos;
+          playerCharacter.activeRiddenHorse.HorseMapPosCol++;
           helpers.drawHorse(playerCharacter.activeRiddenHorse);
         }
         helpers.drawSprite();
@@ -205,6 +206,7 @@ function moveCharacter(key) {
           playerCharacter.activeRiddenHorse.spawnMap = playerCharacter.activeMap;
           playerCharacter.activeRiddenHorse.HorsePosCol = playerCharacter.SpriteColPos;
           playerCharacter.activeRiddenHorse.HorsePosRow = playerCharacter.SpriteRowPos;
+          playerCharacter.activeRiddenHorse.HorseMapPosCol--;
           helpers.drawHorse(playerCharacter.activeRiddenHorse);
         }
         helpers.drawSprite();
@@ -224,6 +226,7 @@ function moveCharacter(key) {
           playerCharacter.activeRiddenHorse.spawnMap = playerCharacter.activeMap;
           playerCharacter.activeRiddenHorse.HorsePosCol = playerCharacter.SpriteColPos;
           playerCharacter.activeRiddenHorse.HorsePosRow = playerCharacter.SpriteRowPos;
+          playerCharacter.activeRiddenHorse.HorseMapPosRow--;
           helpers.drawHorse(playerCharacter.activeRiddenHorse);
         }
         helpers.drawSprite();
@@ -243,6 +246,7 @@ function moveCharacter(key) {
           playerCharacter.activeRiddenHorse.spawnMap = playerCharacter.activeMap;
           playerCharacter.activeRiddenHorse.HorsePosCol = playerCharacter.SpriteColPos;
           playerCharacter.activeRiddenHorse.HorsePosRow = playerCharacter.SpriteRowPos;
+          playerCharacter.activeRiddenHorse.HorseMapPosRow++;
           helpers.drawHorse(playerCharacter.activeRiddenHorse);
         }
         helpers.drawSprite();
@@ -255,7 +259,7 @@ function moveCharacter(key) {
 
 
   function moveHorsePhysical(key, horse) {
-    if (horse.spawnMap == playerCharacter.activeMap) {
+    if ((horse.HorseMapPosRow == playerCharacter.spriteMapRow && horse.HorseMapPosCol == playerCharacter.spriteMapCol)) {
     switch (key) {
       case 28:  // Right arrow was pressed 
        if (horse.HorsePosCol < 19 && (playerCharacter.activeMap.mapLayout[horse.HorsePosRow][horse.HorsePosCol+1] == 0)) { 	
@@ -307,17 +311,20 @@ function moveCharacter(key) {
 
   function moveHorses() {
     for (var i = 0; i<5; i++) {
-      if (wildHorses.allWildHorses[i].spawnMap == playerCharacter.activeMap && playerCharacter.activeMap != worldMapsStore.catchWild) {
+      console.log("Horsie Map Row: " + wildHorses.allWildHorses[i].HorseMapPosRow + " col: " + wildHorses.allWildHorses[i].HorseMapPosCol);
+      if (wildHorses.allWildHorses[i].HorseMapPosRow === playerCharacter.spriteMapRow && wildHorses.allWildHorses[i].HorseMapPosCol === playerCharacter.spriteMapCol
+         && playerCharacter.spriteMapRow != 3 && playerCharacter.spriteMapCol != 1) {
         helpers.animateHorse(wildHorses.allWildHorses[i]);
       moveHorsePhysical(helpers.randomIntFromInterval(28,100), wildHorses.allWildHorses[i]);
-    } else if(wildHorses.allWildHorses[i].spawnMap == worldMapsStore.catchWild && playerCharacter.activeMap == worldMapsStore.catchWild)  {
+    } else if(wildHorses.allWildHorses[i].HorseMapPosRow == playerCharacter.spriteMapRow && wildHorses.allWildHorses[i].HorseMapPosCol == playerCharacter.spriteMapCol
+      && playerCharacter.spriteMapRow == 3 && playerCharacter.spriteMapCol == 1)  {
         helpers.animateHorse(wildHorses.allWildHorses[i]);
       moveHorsePhysical(helpers.randomIntFromInterval(24,35), wildHorses.allWildHorses[i]);
     }
   }
   if (playerCharacter.playerHorses.length != 0) {
     for(var b = 0; b<playerCharacter.playerHorses.length; b++) {
-      if (playerCharacter.playerHorses[b].spawnMap === playerCharacter.activeMap) {
+      if  (playerCharacter.playerHorses[b].HorseMapPosRow == playerCharacter.spriteMapRow && playerCharacter.playerHorses[b].HorseMapPosCol == playerCharacter.spriteMapCol) {
         helpers.animateHorse(playerCharacter.playerHorses[b]);
       if(playerCharacter.playerHorses[b].horseBeingRidden == "N") {
         moveHorsePhysical(helpers.randomIntFromInterval(28,100), playerCharacter.playerHorses[b]);

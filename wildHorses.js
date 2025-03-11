@@ -19,11 +19,12 @@ var allWildHorses = [];
 function createHorse() {
     var holder = new classDefinitions.horse(horsePhysical.horseAttributes.horseBase[1],horsePhysical.horseAttributes.maneBase[1],horsePhysical.horseAttributes.maneShade[1],
       horsePhysical.horseAttributes.maneColor[helpers.randomIntFromInterval(1,16)],horsePhysical.horseAttributes.baseColor[helpers.randomIntFromInterval(1,16)],
-      horsePhysical.horseAttributes.markings[helpers.randomIntFromInterval(1,13)], horsePhysical.horseAttributes.gradient[helpers.randomIntFromInterval(1,16)], worldMapsStore.worldMaps.maps[helpers.randomWorldWilds(1, 21)], 
+      horsePhysical.horseAttributes.markings[helpers.randomIntFromInterval(1,13)], horsePhysical.horseAttributes.gradient[helpers.randomIntFromInterval(1,16)], 
       helpers.randomIntFromInterval(0,50), helpers.randomIntFromInterval(0,50), helpers.randomIntFromInterval(0,50), helpers.randomIntFromInterval(0,50));
+      helpers.randomWorldWilds(holder, 0,3,0,4);
       helpers.randomIntFromIntervalForWilds(holder);
-    
-    return holder;
+
+      return holder;
     }
     
     function createWilds() {
@@ -36,7 +37,7 @@ function createHorse() {
     
     function spawnWilds() {
       for(var i = 0; i<allWildHorses.length; i++) {
-        if (allWildHorses[i].spawnMap == playerCharacter.activeMap) {
+        if (allWildHorses[i].HorseMapPosRow == playerCharacter.spriteMapRow && allWildHorses[i].HorseMapPosCol == playerCharacter.spriteMapCol) {
             helpers.drawHorse(allWildHorses[i]);
         }
       }
