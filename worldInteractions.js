@@ -123,7 +123,8 @@ function putDownItem() {
 
   function isPlayerOnWild() {
     for (var i = 0; i<5; i++) {
-      if (wildHorses.allWildHorses[i].spawnMap == playerCharacter.activeMap && wildHorses.allWildHorses[i].HorsePosCol == playerCharacter.SpriteColPos && wildHorses.allWildHorses[i].HorsePosRow == playerCharacter.SpriteRowPos) {
+      if (wildHorses.allWildHorses[i].HorseMapPosRow == playerCharacter.spriteMapRow && wildHorses.allWildHorses[i].HorseMapPosCol == playerCharacter.spriteMapCol
+        && wildHorses.allWildHorses[i].HorsePosCol == playerCharacter.SpriteColPos && wildHorses.allWildHorses[i].HorsePosRow == playerCharacter.SpriteRowPos) {
         onWildEvent(wildHorses.allWildHorses[i]);
       }
     }

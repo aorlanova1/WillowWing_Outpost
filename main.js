@@ -27,20 +27,21 @@ function loadComplete() {
     document.getElementById("newGame").addEventListener("click", () => {
       localStorage.clear();
       gameState.initializeNewGame();
-      loadingSreen.style.display = 'none';    
+      loadingSreen.style.display = 'none';   
+      myInterval = self.setInterval(function(){Tick()}, INTERVAL); 
       });
       if (window.localStorage.length != 0) {
       document.getElementById("loadGame").addEventListener("click", () => {
         gameState.loadGame();
         helpers.clearRidenHorses();
-        loadingSreen.style.display = 'none';    
+        loadingSreen.style.display = 'none';   
+        myInterval = self.setInterval(function(){Tick()}, INTERVAL); 
         });
       } else {
         document.getElementById("loadGame").style.display = 'none';
       }
       helpers.loadSound();
       helpers.playSound();
-      myInterval = self.setInterval(function(){Tick()}, INTERVAL);
   }
 
   function Tick() {

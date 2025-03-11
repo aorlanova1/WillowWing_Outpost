@@ -1,3 +1,4 @@
+
 class horseQuest {
   constructor(dialogueStart, dialogueEnd,interestedMin, interestedMax,nervousMin, nervousMax, stubornMin, stubornMax,trecherousMin, trecherousMax,bondMin, reward) {
     this.dialogueStart = dialogueStart;
@@ -43,7 +44,7 @@ class item {
 }
 
 class horse {
-  constructor(horseBase,maneBase,maneShade,maneColor,baseColor,markings, gradient, spawnMap,interested,nervous,stuborn,trecherous) {
+  constructor(horseBase,maneBase,maneShade,maneColor,baseColor,markings, gradient,interested,nervous,stuborn,trecherous) {
   this.horseBase = horseBase;
   this.maneBase = maneBase;
   this.maneShade = maneShade;
@@ -51,7 +52,7 @@ class horse {
   this.baseColor = baseColor;
   this.markings = markings;
   this.gradient = gradient;
-  this.spawnMap = spawnMap;
+  this.spawnMap = "";
   this.interested = interested;
   this.nervous = nervous;
   this.stuborn = stuborn;
@@ -60,6 +61,8 @@ class horse {
   this.HorseCol = 0;
   this.MaxHorseSpriteRow = 4;
   this.MaxHorseSpriteCol = 1;
+  this.HorseMapPosRow = null;
+  this.HorseMapPosCol = null;
   this.HorsePosRow = 0;
   this.HorsePosCol = 0;
   this.horseTrust = 0;

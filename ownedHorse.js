@@ -66,6 +66,8 @@ function tackHorse(horseName, item) {
     playerCharacter.activeRiddenHorse.spawnMap = playerCharacter.activeMap;
     playerCharacter.activeRiddenHorse.HorsePosCol = playerCharacter.SpriteColPos;
     playerCharacter.activeRiddenHorse.HorsePosRow = playerCharacter.SpriteRowPos;
+    playerCharacter.activeRiddenHorse.HorseMapPosRow = playerCharacter.spriteMapRow;
+    playerCharacter.activeRiddenHorse.HorseMapPosCol = playerCharacter.spriteMapCol;
     gameImages.SpriteImage.src = "assetsImg/Riding.png";
     helpers.eraseSprite();
     helpers.drawHorse(playerCharacter.activeRiddenHorse);
@@ -75,6 +77,8 @@ function tackHorse(horseName, item) {
     playerCharacter.activeRiddenHorse.spawnMap = "";
     playerCharacter.activeRiddenHorse.HorsePosCol = 10;
     playerCharacter.activeRiddenHorse.HorsePosRow = 10;
+    playerCharacter.activeRiddenHorse.HorseMapPosRow = null;
+    playerCharacter.activeRiddenHorse.HorseMapPosCol = null;
     playerCharacter.activeRiddenHorse = "";
     helpers.eraseHorse(playerCharacter.activeRiddenHorse);
     helpers.eraseSprite();
@@ -85,12 +89,16 @@ function tackHorse(horseName, item) {
     playerCharacter.activeRiddenHorse.spawnMap = "";
     playerCharacter.activeRiddenHorse.HorsePosCol = 10;
     playerCharacter.activeRiddenHorse.HorsePosRow = 10;
+    playerCharacter.activeRiddenHorse.HorseMapPosRow = null;
+    playerCharacter.activeRiddenHorse.HorseMapPosCol = null;
     helpers.eraseHorse(playerCharacter.activeRiddenHorse);
     playerCharacter.activeRiddenHorse = horse;
     horse.horseBeingRidden = "Y";
     playerCharacter.activeRiddenHorse.spawnMap = playerCharacter.activeMap;
     playerCharacter.activeRiddenHorse.HorsePosCol = playerCharacter.SpriteColPos;
     playerCharacter.activeRiddenHorse.HorsePosRow = playerCharacter.SpriteRowPos;
+    playerCharacter.activeRiddenHorse.HorseMapPosRow = playerCharacter.spriteMapRow;
+    playerCharacter.activeRiddenHorse.HorseMapPosCol = playerCharacter.spriteMapCol;
     gameImages.SpriteImage.src = "assetsImg/Riding.png";
     helpers.eraseSprite();
     helpers.drawHorse(playerCharacter.activeRiddenHorse);
@@ -106,11 +114,15 @@ function tackHorse(horseName, item) {
           return;
         }
         playerCharacter.playerHorses[i].spawnMap = worldMapsStore.mapSix;
+        playerCharacter.playerHorses[i].HorseMapPosRow = 3;
+        playerCharacter.playerHorses[i].HorseMapPosCol = 1;
         playerCharacter.playerHorses[i].HorsePosCol = 5;
         playerCharacter.playerHorses[i].HorsePosRow = 5;
         playerCharacter.playerHorses[i].horseDisplayed = "Y";
       } else if(playerCharacter.playerHorses[i].horseName == horseName && playerCharacter.playerHorses[i].horseDisplayed == "Y") {
         playerCharacter.playerHorses[i].spawnMap = 0;
+        playerCharacter.playerHorses[i].HorseMapPosRow = null;
+        playerCharacter.playerHorses[i].HorseMapPosCol = null;
         helpers.eraseEnv(playerCharacter.playerHorses[i].HorsePosCol,playerCharacter.playerHorses[i].HorsePosRow);
         playerCharacter.playerHorses[i].horseDisplayed = "N";
       }

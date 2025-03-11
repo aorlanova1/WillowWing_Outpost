@@ -798,7 +798,7 @@ var mapStarter = {
     },
     mapSize: {
      rows: 4,
-     cols: 4,
+     cols: 5,
     },
     mapLayout: 
     [[14,8,12,13,15],
@@ -820,5 +820,4 @@ var mapStarter = {
     catchWild,
     worldMaps,
     mapNineteen
-
   }

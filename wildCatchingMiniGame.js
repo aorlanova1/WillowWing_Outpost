@@ -21,19 +21,31 @@ function wildCatchMiniGame(horse) {
     helpers.notifyPlayer("To catch the wild, press spacebar to send your lasso! You'll have 5 attempts to try to get the lasso on the horse.")
     miniGameActive = true; // Set the flag to true
     var miniGameEventLog = document.createElement('li');
+
     var activeMapHolder = playerCharacter.activeMap;
+    var activeMapRowHolder = playerCharacter.spriteMapRow;
+    var activeMapColHolder = playerCharacter.spriteMapCol;
+
     playerCharacter.SpriteColPos = 9;
     playerCharacter.SpriteRowPos = 9;
     horse.HorsePosCol = 9;
     horse.HorsePosRow = 6;
     var attempts = 0;
     playerCharacter.activeMap = worldMapsStore.catchWild;
+    playerCharacter.spriteMapRow = -1;
+    playerCharacter.spriteMapCol = -1;
     if(playerCharacter.activeRiddenHorse != "") {
       playerCharacter.activeRiddenHorse.spawnMap = playerCharacter.activeMap;
       playerCharacter.activeRiddenHorse.HorsePosCol = playerCharacter.SpriteColPos;
       playerCharacter.activeRiddenHorse.HorsePosRow = playerCharacter.SpriteRowPos;
+      playerCharacter.activeRiddenHorse.HorseMapPosRow = -1;
+      playerCharacter.activeRiddenHorse.HorseMapPosCol = -1;
     }
+
     horse.spawnMap = playerCharacter.activeMap;
+    horse.HorseMapPosRow = -1;
+    horse.HorseMapPosCol = -1;
+
     console.log('entered wild mini attempts: ' + attempts);
     helpers.generateMap(worldMapsStore.catchWild);
 
@@ -45,11 +57,6 @@ function wildCatchMiniGame(horse) {
                 endMiniGame("You've failed to catch a wild!", horse, activeMapHolder);
             } else if (sendLasso(horse)) {
                 endMiniGame("You've caught a wild! It took " + attempts + " attempts", horse, activeMapHolder);
-                wildHorses.allWildHorses.splice(helpers.findWildHorseIndex(), 1);
-                wildHorses.createWilds();
-                horse.spawnMap = 0;
-                horse.HorsePosCol = 10;
-                horse.HorsePosRow = 10;
                 horse.horseName = prompt("Give your new horse a name!");
                 helpers.validateHorseName(horse);
                 playerCharacter.playerHorses.push(horse);
@@ -60,14 +67,23 @@ function wildCatchMiniGame(horse) {
     document.addEventListener('keyup', keyUpHandler);
 
     function endMiniGame(message, horse, activeMapHolder) {
+      document.removeEventListener('keyup', keyUpHandler); // Remove the event listener
         attempts = 0;
         wildHorses.allWildHorses.splice(helpers.findWildHorseIndex(), 1);
         wildHorses.createWilds();
-        miniGameActive = false; // Reset the flag
+        horse.spawnMap = 0;
+        horse.HorseMapPosRow = null;
+        horse.HorseMapPosCol = null;
+        horse.HorsePosCol = 10;
+        horse.HorsePosRow = 10;
         playerCharacter.activeMap = activeMapHolder;
+        playerCharacter.spriteMapRow = activeMapRowHolder;
+        playerCharacter.spriteMapCol = activeMapColHolder;
         helpers.generateMap(playerCharacter.activeMap);
         if(playerCharacter.activeRiddenHorse != "") {
           playerCharacter.activeRiddenHorse.spawnMap = activeMapHolder;
+          playerCharacter.activeRiddenHorse.HorseMapPosRow = activeMapRowHolder;
+          playerCharacter.activeRiddenHorse.HorseMapPosCol = activeMapColHolder;
           helpers.eraseSprite();
           helpers.drawHorse(playerCharacter.activeRiddenHorse);
           helpers.drawSprite();
@@ -77,9 +93,9 @@ function wildCatchMiniGame(horse) {
         }
         miniGameEventLog.textContent = message;
         document.getElementById('eventInterface').appendChild(miniGameEventLog);
-        document.removeEventListener('keyup', keyUpHandler); // Remove the event listener
         setTimeout(function() {
           document.getElementById('eventInterface').removeChild(miniGameEventLog);
+          miniGameActive = false; // Reset the flag
       }, 5000);
     }
 }
