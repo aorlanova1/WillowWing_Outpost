@@ -37,6 +37,10 @@ function saveGame() {
                 HorseMapPosCol: horse.HorseMapPosCol,
                 HorsePosRow: horse.HorsePosRow,
                 HorsePosCol: horse.HorsePosCol,
+                saddlePad: convertTackToSrc(horse.saddlePad),
+                saddle: convertTackToSrc(horse.saddle),
+                bridle: convertTackToSrc(horse.bridle),
+                horseSpriteSheet: horse.horseSpriteSheet.src
             };
         });
         localStorage.setItem("playerHorses", JSON.stringify(horseToSave));
@@ -47,6 +51,15 @@ function saveGame() {
         localStorage.setItem("spriteMapRow", JSON.stringify(playerCharacter.spriteMapRow));
         localStorage.setItem("SpriteColPos", JSON.stringify(playerCharacter.SpriteColPos));
         localStorage.setItem("SpriteColRow", JSON.stringify(playerCharacter.SpriteRowPos));
+}
+
+function convertTackToSrc(item) {
+   if(item.icon instanceof Image) {
+    item.icon = item.icon.src;
+    return item;
+   } else {
+    return item;
+   }
 }
 
 function loadGame() {

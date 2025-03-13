@@ -46,7 +46,7 @@ function createQuests() {
  eightballQuest1 = new classDefinitions.horseQuest("Heard you're in the horse pawning biz? Need a turbulent one, something I can slap around.", 
   "Gonna put some miles on this thang..",0,50,0,10,20,40,40,50,0,800); 
   eightballQuest2 = new classDefinitions.itemQuest("Been lookin for a special lady. Problem is, she's a bit hard to reach. I'll do ya good if you gimme a hand.","Gone. Without a trace.. But I'll see you soon, let our hearts commence- Oh, here take this and bounce. I've got my work cut out for me", new Map([["witch's hat",1]]),100); 
-  damonShop1 = new classDefinitions.shopQuest(["Buy before you try. No refunds"], ["Luck"], new Map([[items.horseTack.saddlePads[helpers.randomIntFromInterval(1,20)],100], [items.horseTack.saddles[helpers.randomIntFromInterval(1,3)],200], [items.horseTack.bridles[helpers.randomIntFromInterval(1,3)],150]]));
+  damonShop1 = new classDefinitions.shopQuest(["Buy before you try. No refunds"], ["Luck"], new Map([[items.horseTack.saddlePads[helpers.randomIntFromInterval(1,20)],0], [items.horseTack.saddles[helpers.randomIntFromInterval(1,3)],0], [items.horseTack.bridles[helpers.randomIntFromInterval(1,3)],0]]));
   sravanthiQuest1 = new classDefinitions.horseQuest("I have space in the stable to rehome a mustang. Just as long as they're at least 10 acclimated to people, I'll take 'em","This pony's gonna make someone very happy!" 
     ,0,50,0,50,0,50,0,50,10,200); 
   scratQuest1 = new classDefinitions.itemQuest("Jigs has the memory of a goldfish. Mind picking up those drawings he leaves out. EVERYWHERE", "Thanks. This will put off another visit from those damn enviromentalists", new Map([["luvletter",10]]), 170);

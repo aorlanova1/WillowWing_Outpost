@@ -126,61 +126,91 @@ function randomWorldWilds(horse, minRow, maxRow, minCol, maxCol) {
 
   function drawHorse(testHorse) {
 
-    ctx.drawImage(testHorse.baseColor,testHorse.HorseCol * playerCharacter.SpriteWidth, testHorse.HorseRow * playerCharacter.SpriteHeight, 
-      playerCharacter.SpriteWidth, playerCharacter.SpriteHeight, testHorse.HorsePosCol*32, testHorse.HorsePosRow*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
-    ctx.drawImage(testHorse.gradient,testHorse.HorseCol * playerCharacter.SpriteWidth, testHorse.HorseRow * playerCharacter.SpriteHeight, 
-      playerCharacter.SpriteWidth, playerCharacter.SpriteHeight, testHorse.HorsePosCol*32, testHorse.HorsePosRow*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
-    ctx.drawImage(testHorse.markings,testHorse.HorseCol * playerCharacter.SpriteWidth, testHorse.HorseRow * playerCharacter.SpriteHeight, 
-      playerCharacter.SpriteWidth, playerCharacter.SpriteHeight, testHorse.HorsePosCol*32, testHorse.HorsePosRow*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
-    ctx.drawImage(testHorse.horseBase,testHorse.HorseCol * playerCharacter.SpriteWidth, testHorse.HorseRow * playerCharacter.SpriteHeight, 
-      playerCharacter.SpriteWidth, playerCharacter.SpriteHeight, testHorse.HorsePosCol*32, testHorse.HorsePosRow*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
-    ctx.drawImage(testHorse.maneBase,testHorse.HorseCol * playerCharacter.SpriteWidth, testHorse.HorseRow * playerCharacter.SpriteHeight, 
-      playerCharacter.SpriteWidth, playerCharacter.SpriteHeight, testHorse.HorsePosCol*32, testHorse.HorsePosRow*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
-    ctx.drawImage(testHorse.maneColor,testHorse.HorseCol * playerCharacter.SpriteWidth, testHorse.HorseRow * playerCharacter.SpriteHeight, 
-      playerCharacter.SpriteWidth, playerCharacter.SpriteHeight, testHorse.HorsePosCol*32, testHorse.HorsePosRow*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
-    ctx.drawImage(testHorse.maneShade,testHorse.HorseCol * playerCharacter.SpriteWidth, testHorse.HorseRow * playerCharacter.SpriteHeight, 
-      playerCharacter.SpriteWidth, playerCharacter.SpriteHeight, testHorse.HorsePosCol*32, testHorse.HorsePosRow*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
-      
-      if(testHorse.saddlePad != "") {
-        var saddlePDImg = new Image();
-        saddlePDImg.src = testHorse.saddlePad.icon;
-        ctx.drawImage(saddlePDImg,testHorse.HorseCol * playerCharacter.SpriteWidth, testHorse.HorseRow * playerCharacter.SpriteHeight, 
-          playerCharacter.SpriteWidth, playerCharacter.SpriteHeight, testHorse.HorsePosCol*32, testHorse.HorsePosRow*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
-      }
-      if(testHorse.bridle != "") {
-        var bridleImg = new Image();
-        bridleImg.src = testHorse.bridle.icon;
-        ctx.drawImage(bridleImg,testHorse.HorseCol * playerCharacter.SpriteWidth, testHorse.HorseRow * playerCharacter.SpriteHeight, 
-          playerCharacter.SpriteWidth, playerCharacter.SpriteHeight, testHorse.HorsePosCol*32, testHorse.HorsePosRow*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
-      }
-      if(testHorse.saddle != "") {
-        var saddleImg = new Image();
-        saddleImg.src = testHorse.saddle.icon
-        ctx.drawImage(saddleImg,testHorse.HorseCol * playerCharacter.SpriteWidth, testHorse.HorseRow * playerCharacter.SpriteHeight, 
-          playerCharacter.SpriteWidth, playerCharacter.SpriteHeight, testHorse.HorsePosCol*32, testHorse.HorsePosRow*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
-      }
-
-
-      if (testHorse.horseIcon == "") {
-      var x = testHorse.HorsePosCol*32; 
-      var y = testHorse.HorsePosRow*32;  
-      var width = 32;
-      var height = 32;
-
-      var imageData = ctx.getImageData(x, y, width, height);
+    if(testHorse.horseSpriteSheet == "") {
+      var x = 0; 
+      var y = 0;  
+      var width = 64;
+      var height = 128;
 
       var tempCanvas = document.createElement('canvas');
       tempCanvas.width = width;
       tempCanvas.height = height;
       var tempCtx = tempCanvas.getContext('2d');
 
+      tempCtx.drawImage(testHorse.baseColor, 0, 0);
+      tempCtx.drawImage(testHorse.gradient, 0, 0);
+      tempCtx.drawImage(testHorse.markings, 0, 0);
+      tempCtx.drawImage(testHorse.horseBase, 0, 0);
+      tempCtx.drawImage(testHorse.maneBase, 0, 0);
+      tempCtx.drawImage(testHorse.maneColor, 0, 0);
+      tempCtx.drawImage(testHorse.maneShade, 0, 0);
+
+      var imageData = tempCtx.getImageData(x, y, width, height);
+      console.log(imageData);
+
       tempCtx.putImageData(imageData, 0, 0);
 
       var savedImageDataURL = tempCanvas.toDataURL();
 
-      testHorse.horseIcon = savedImageDataURL;
+      testHorse.horseSpriteSheet = savedImageDataURL;  
+
+      if (testHorse.horseIcon == "") {
+        var x = 0;
+        var y = 0;
+        var width = 32;
+        var height = 32;
+  
+        var imageData = tempCtx.getImageData(x, y, width, height);
+  
+        var tempCanvas = document.createElement('canvas');
+        var tempCtx = tempCanvas.getContext('2d');
+        tempCanvas.width = width;
+        tempCanvas.height = height;
+        tempCtx.putImageData(imageData, 0, 0);
+
+        testHorse.horseIcon = tempCanvas.toDataURL();
+      }
+
+      tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+    } 
+    
+    if (!(testHorse.horseSpriteSheet instanceof Image)) {
+        var tempHold = testHorse.horseSpriteSheet;
+        testHorse.horseSpriteSheet = new Image();
+        testHorse.horseSpriteSheet.src = tempHold;
     }
 
+    ctx.drawImage(testHorse.horseSpriteSheet,testHorse.HorseCol * playerCharacter.SpriteWidth, testHorse.HorseRow * playerCharacter.SpriteHeight, 
+      playerCharacter.SpriteWidth, playerCharacter.SpriteHeight, testHorse.HorsePosCol*32, testHorse.HorsePosRow*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
+
+
+    if(testHorse.saddlePad != "") {
+      if (!(testHorse.saddlePad.icon instanceof Image)) {
+        var tempHold = testHorse.saddlePad.icon;
+        testHorse.saddlePad.icon = new Image();
+        testHorse.saddlePad.icon.src = tempHold;
+      }
+      ctx.drawImage(testHorse.saddlePad.icon,testHorse.HorseCol * playerCharacter.SpriteWidth, testHorse.HorseRow * playerCharacter.SpriteHeight, 
+        playerCharacter.SpriteWidth, playerCharacter.SpriteHeight, testHorse.HorsePosCol*32, testHorse.HorsePosRow*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
+      }
+    if(testHorse.bridle != "") {
+      if (!(testHorse.bridle.icon instanceof Image)) {
+        var tempHold = testHorse.bridle.icon;
+        testHorse.bridle.icon = new Image();
+        testHorse.bridle.icon.src = tempHold;
+      }
+      ctx.drawImage(testHorse.bridle.icon,testHorse.HorseCol * playerCharacter.SpriteWidth, testHorse.HorseRow * playerCharacter.SpriteHeight, 
+        playerCharacter.SpriteWidth, playerCharacter.SpriteHeight, testHorse.HorsePosCol*32, testHorse.HorsePosRow*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
+  }
+    if(testHorse.saddle != "") {
+      if(!(testHorse.saddle.icon instanceof Image)) {
+        var tempHold = testHorse.saddle.icon;
+        testHorse.saddle.icon = new Image();
+        testHorse.saddle.icon.src = tempHold;
+      }
+      ctx.drawImage(testHorse.saddle.icon,testHorse.HorseCol * playerCharacter.SpriteWidth, testHorse.HorseRow * playerCharacter.SpriteHeight, 
+        playerCharacter.SpriteWidth, playerCharacter.SpriteHeight, testHorse.HorsePosCol*32, testHorse.HorsePosRow*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
+    }
   }
 
   function validateHorseName(horse) {
