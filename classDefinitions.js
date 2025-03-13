@@ -68,6 +68,7 @@ class horse {
   this.horseTrust = 0;
   this.horseName = "unnamed";
   this.horseIcon = "";
+  this.horseSpriteSheet = "";
   this.horseDisplayed = "N";
   this.horseBeingRidden = "N";
   this.saddlePad = "";

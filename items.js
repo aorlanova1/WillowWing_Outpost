@@ -4,7 +4,7 @@ var possibleItems = {
     Background: {
       1: {
         name: "seedling",
-        icon: "seedlings.png",
+        icon: "assetsImg/seedlings.png",
         type: "Enviromental",
         ownedByPlayer: 0,
       },
@@ -14,19 +14,19 @@ var possibleItems = {
     Savannah: {
       1: {
         name: "prairie flower",
-        icon: "yellowFlower.png",
+        icon: "assetsImg/yellowFlower.png",
         type: "Enviromental",
         ownedByPlayer: 0,
       },
       2: {
         name: "stardust flower",
-        icon: "purpFlower.png",
+        icon: "assetsImg/purpFlower.png",
         type: "Enviromental",
         ownedByPlayer: 0,
       },
       3: {
         name: "lilly",
-        icon: "lillyItem.png",
+        icon: "assetsImg/lillyItem.png",
         type: "Enviromental",
         ownedByPlayer: 0,
       }
@@ -50,19 +50,19 @@ var possibleItems = {
     Path: {
       1: {
         name: "luvletter",
-        icon: "luvletter.png",
+        icon: "assetsImg/luvletter.png",
         type: "Enviromental",
         ownedByPlayer: 0,
       },
       2: {
         name: "witch's hat",
-        icon: "witchhat.png",
+        icon: "assetsImg/witchhat.png",
         type: "Enviromental",
         ownedByPlayer: 0,
       },
       3: {
         name: "mysterious brew",
-        icon: "brew.png",
+        icon: "assetsImg/brew.png",
         type: "Enviromental",
         ownedByPlayer: 0,
       },
@@ -70,7 +70,7 @@ var possibleItems = {
     StoneSwamp: {
       1: {
         name: "geode",
-        icon: "geode.png",
+        icon: "assetsImg/geode.png",
         type: "Enviromental",
         ownedByPlayer: 0,
       },
