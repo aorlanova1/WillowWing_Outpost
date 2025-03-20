@@ -10,6 +10,15 @@ var horseAttributes = {
     maneShade: {
       1: gameImages.maneShade
     },
+    horseDynamicBase: {
+      1: gameImages.horseBaseDyna
+    },
+    horseDynamicMane: {
+      1: gameImages.maneDyna
+    },
+    horseDynamicManeShade: {
+      1: gameImages.maneShadeDyna
+    },
     maneColor: {
       1: gameImages.ManeCBay,
       2: gameImages.ManeCBrown,

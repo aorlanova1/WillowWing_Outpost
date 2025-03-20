@@ -1,4 +1,3 @@
-
 class horseQuest {
   constructor(dialogueStart, dialogueEnd,interestedMin, interestedMax,nervousMin, nervousMax, stubornMin, stubornMax,trecherousMin, trecherousMax,bondMin, reward) {
     this.dialogueStart = dialogueStart;

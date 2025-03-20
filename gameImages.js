@@ -1,4 +1,15 @@
 
+//dynamic recolor:
+
+var horseBaseDyna = new Image();
+horseBaseDyna.src = "horse/horseBaseDyna.png";
+var maneDyna = new Image();
+maneDyna.src = "horse/ManeDyna.png";
+var maneShadeDyna = new Image();
+maneShadeDyna.src = "horse/ManeShadeDyna.png";
+var colorMapBody = new Image();
+colorMapBody.src = "horse/colorMapBody.png";
+
 // world assets:
 var SpriteImage = new Image();   
 SpriteImage.src   = "assetsImg/Character.png";
@@ -499,5 +510,9 @@ export const gameImages = {
     flowers,
     cacti,
     crops,
-    wheelbarrow
+    wheelbarrow,
+    horseBaseDyna,
+    colorMapBody,
+    maneDyna,
+    maneShadeDyna
 };
