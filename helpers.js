@@ -12,6 +12,7 @@ import { worldInteractions } from './worldInteractions.js';
 import { ownedHorse } from './ownedHorse.js';
 import { movement } from './movement.js';
 import { wildCatchGame } from './wildCatchingMiniGame.js';
+import {horseRecoloring} from './recoloringHorses.js';
 
 //water pond  
 var WaterPondSpriteCol = 0;  
@@ -127,51 +128,29 @@ function randomWorldWilds(horse, minRow, maxRow, minCol, maxCol) {
   function drawHorse(testHorse) {
 
     if(testHorse.horseSpriteSheet == "") {
-      var x = 0; 
-      var y = 0;  
-      var width = 64;
-      var height = 128;
 
-      var tempCanvas = document.createElement('canvas');
-      tempCanvas.width = width;
-      tempCanvas.height = height;
-      var tempCtx = tempCanvas.getContext('2d');
+      horseRecoloring.colorHorse(testHorse);
 
-      tempCtx.drawImage(testHorse.baseColor, 0, 0);
-      tempCtx.drawImage(testHorse.gradient, 0, 0);
-      tempCtx.drawImage(testHorse.markings, 0, 0);
-      tempCtx.drawImage(testHorse.horseBase, 0, 0);
-      tempCtx.drawImage(testHorse.maneBase, 0, 0);
-      tempCtx.drawImage(testHorse.maneColor, 0, 0);
-      tempCtx.drawImage(testHorse.maneShade, 0, 0);
-
-      var imageData = tempCtx.getImageData(x, y, width, height);
-      console.log(imageData);
-
-      tempCtx.putImageData(imageData, 0, 0);
-
-      var savedImageDataURL = tempCanvas.toDataURL();
-
-      testHorse.horseSpriteSheet = savedImageDataURL;  
 
       if (testHorse.horseIcon == "") {
         var x = 0;
         var y = 0;
         var width = 32;
         var height = 32;
+        var horseIconPic = new Image();
+        horseIconPic.src = testHorse.horseSpriteSheet;
   
-        var imageData = tempCtx.getImageData(x, y, width, height);
-  
-        var tempCanvas = document.createElement('canvas');
-        var tempCtx = tempCanvas.getContext('2d');
-        tempCanvas.width = width;
-        tempCanvas.height = height;
-        tempCtx.putImageData(imageData, 0, 0);
+        horseIconPic.onload = function () {
+        var tempCanvas1 = document.createElement('canvas');
+        var tempCtx1 = tempCanvas1.getContext('2d');
+        tempCanvas1.width = width;
+        tempCanvas1.height = height;
+        tempCtx1.drawImage(horseIconPic, 0, 0);
 
-        testHorse.horseIcon = tempCanvas.toDataURL();
+        testHorse.horseIcon = tempCanvas1.toDataURL();
+        tempCtx1.clearRect(0, 0, tempCanvas1.width, tempCanvas1.height);
+        }
       }
-
-      tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
     } 
     
     if (!(testHorse.horseSpriteSheet instanceof Image)) {
