@@ -46,13 +46,11 @@ function wildCatchMiniGame(horse) {
     horse.HorseMapPosRow = -1;
     horse.HorseMapPosCol = -1;
 
-    console.log('entered wild mini attempts: ' + attempts);
     helpers.generateMap(worldMapsStore.catchWild);
 
     const keyUpHandler = event => {
         if (event.code === 'Space' && playerCharacter.activeMap == worldMapsStore.catchWild) {
             attempts++;
-            console.log('Space pressed, attempts: ' + attempts);
             if (attempts == 6) { 
                 endMiniGame("You've failed to catch a wild!", horse, activeMapHolder);
             } else if (sendLasso(horse)) {

@@ -311,7 +311,6 @@ function moveCharacter(key) {
 
   function moveHorses() {
     for (var i = 0; i<5; i++) {
-      console.log("Horsie Map Row: " + wildHorses.allWildHorses[i].HorseMapPosRow + " col: " + wildHorses.allWildHorses[i].HorseMapPosCol);
       if (wildHorses.allWildHorses[i].HorseMapPosRow === playerCharacter.spriteMapRow && wildHorses.allWildHorses[i].HorseMapPosCol === playerCharacter.spriteMapCol
          && playerCharacter.spriteMapRow != 3 && playerCharacter.spriteMapCol != 1) {
         helpers.animateHorse(wildHorses.allWildHorses[i]);

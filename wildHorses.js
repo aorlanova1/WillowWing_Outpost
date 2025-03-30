@@ -12,15 +12,37 @@ import { worldInteractions } from './worldInteractions.js';
 import { ownedHorse } from './ownedHorse.js';
 import { movement } from './movement.js';
 import { wildCatchGame } from './wildCatchingMiniGame.js';
+import { geneticsHelper } from './horseGeneticHelper.js';
 
 // Store all wild horses, max of 5. 
 var allWildHorses = [];
 
+function createHorseTESTING() {
+  var holder = new classDefinitions.horse(horsePhysical.horseAttributes.horseDynamicBase[1], horsePhysical.horseAttributes.horseDynamicMane[1],horsePhysical.horseAttributes.horseDynamicManeShade[1],
+    helpers.randomIntFromInterval(0,50), helpers.randomIntFromInterval(0,50), helpers.randomIntFromInterval(0,50), helpers.randomIntFromInterval(0,50));
+    geneticsHelper.createGenetics(holder);
+    holder.horseName = "peanut";
+    holder.HorseMapPosCol = 1;
+    holder.HorseMapPosRow = 2;
+    holder.HorsePosCol =10;
+    holder.HorsePosRow = 10;
+    playerCharacter.playerHorses.push(holder);
+
+    var holder1 = new classDefinitions.horse(horsePhysical.horseAttributes.horseDynamicBase[1], horsePhysical.horseAttributes.horseDynamicMane[1],horsePhysical.horseAttributes.horseDynamicManeShade[1],
+      helpers.randomIntFromInterval(0,50), helpers.randomIntFromInterval(0,50), helpers.randomIntFromInterval(0,50), helpers.randomIntFromInterval(0,50));
+      geneticsHelper.createGenetics(holder1);
+      holder1.horseName = "vasyk";
+      holder1.HorseMapPosCol = 1;
+      holder1.HorseMapPosRow = 2;
+      holder1.HorsePosCol =10;
+      holder1.HorsePosRow = 10;
+      playerCharacter.playerHorses.push(holder1);
+  }
+
 function createHorse() {
     var holder = new classDefinitions.horse(horsePhysical.horseAttributes.horseDynamicBase[1], horsePhysical.horseAttributes.horseDynamicMane[1],horsePhysical.horseAttributes.horseDynamicManeShade[1],
-      horsePhysical.horseAttributes.maneColor[helpers.randomIntFromInterval(1,16)],horsePhysical.horseAttributes.baseColor[helpers.randomIntFromInterval(1,16)],
-      horsePhysical.horseAttributes.markings[helpers.randomIntFromInterval(1,13)], horsePhysical.horseAttributes.gradient[helpers.randomIntFromInterval(1,16)], 
       helpers.randomIntFromInterval(0,50), helpers.randomIntFromInterval(0,50), helpers.randomIntFromInterval(0,50), helpers.randomIntFromInterval(0,50));
+      geneticsHelper.createGenetics(holder);
       helpers.randomWorldWilds(holder, 0,3,0,4);
       helpers.randomIntFromIntervalForWilds(holder);
 
@@ -31,7 +53,6 @@ function createHorse() {
         while (allWildHorses.length < 5) {
             allWildHorses.push(createHorse());
         }
-        console.log("new horses generated! " + allWildHorses.length);
       spawnWilds();
     }
     
@@ -48,5 +69,6 @@ export const wildHorses = {
     allWildHorses,
     createHorse,
     createWilds,
-    spawnWilds
+    spawnWilds,
+    createHorseTESTING
 }

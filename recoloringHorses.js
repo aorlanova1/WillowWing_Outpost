@@ -2,6 +2,7 @@ import { horsePhysical } from './horseAttributes.js';
 import { helpers } from './helpers.js';
 import { gameImages } from './gameImages.js';
 import { horseRecoloringPatterns } from './recoloringPatterns.js';
+import { geneticsHelper } from './horseGeneticHelper.js';
 
 var width = 64;
 var height = 128;
@@ -28,29 +29,34 @@ function colorToString(colorData) {
     return `${colorData.data[0]},${colorData.data[1]},${colorData.data[2]},${colorData.data[3]}`;
 }
 
- function colorHorse(horse) {
+ async function colorHorse(horse) {
 
     var x = 0; 
     var y = 0;  
 
+
     //call coloring functions here
     //body
-    var r = helpers.randomIntFromInterval(0,255);
-    var g = helpers.randomIntFromInterval(0,255);
-    var b = helpers.randomIntFromInterval(0,255);
+    var colorBody = geneticsHelper.getColor(horse.redBodyExpress,horse.greenBodyExpress,horse.blueBodyExpress,horse.greyBodyExpress,
+        horse.redBodyLevel,horse.blueBodyLevel,horse.greenBodyLevel);
+    var r = colorBody[0];
+    var g = colorBody[1];
+    var b = colorBody[2];
     var a = 100;
-    horseRecoloringPatterns.colorBody(r,g,b,a, horse);
+     horseRecoloringPatterns.colorBody(r,g,b,a, horse);
     //pattern 
-    r = helpers.randomIntFromInterval(0,255);
-    g = helpers.randomIntFromInterval(0,255);
-    b = helpers.randomIntFromInterval(0,255);
+    r = 255;
+    g = 255;
+    b = 255;
     var a = 100;
-    horseRecoloringPatterns.backSpots(r,g,b,a, horse);
+    geneticsHelper.callPatterns(r,g,b,a,horse);
 
     //mane
-    r = helpers.randomIntFromInterval(0,255);
-    g = helpers.randomIntFromInterval(0,255);
-    b = helpers.randomIntFromInterval(0,255);
+    var colorMane = geneticsHelper.getColor(horse.redManeExpress,horse.greenManeExpress,horse.blueManeExpress,horse.greyManeExpress,
+        horse.redManeLevel,horse.blueManeLevel,horse.greenManeLevel);
+    r = colorMane[0];
+    g = colorMane[1];
+    b = colorMane[2];
     var a = 100;
     horseRecoloringPatterns.colorMane(r,g,b,a, horse);
 
@@ -58,7 +64,7 @@ function colorToString(colorData) {
    g = helpers.randomIntFromInterval(0,255);
    b = helpers.randomIntFromInterval(0,255);
    var a = 100;
-   horseRecoloringPatterns.drawEyes(r,g,b,a);
+    horseRecoloringPatterns.drawEyes(r,g,b,a);
 
     var savedImageDataURL = horseHolder.toDataURL();
 
@@ -74,11 +80,15 @@ function colorToString(colorData) {
 function color(canvasCtx, id, x1, y1, probabilityOfExpression, finitePattern, finiteLimit) {
     var stack = [];
     var x1y1Colored = false;
+    var limitColorTries = 0;
     var finiteTries = {state: 0};
     while (!x1y1Colored) {
+        if((finitePattern && (finiteTries.state >= finiteLimit))) {
+            break;
+        } 
         if((probabilityOfExpression === 100 && canvasCtx.getImageData(x1, y1, 1, 1).data[3] === 0) ||
         (probabilityOfExpression != 100 && !visitedPixels.has(`${x1},${y1}`) && 
-        canvasCtx.getImageData(x1, y1, 1, 1).data[3] === 0)) {
+        (canvasCtx.getImageData(x1, y1, 1, 1).data[3] === 0))) {
             if (probabilityOfExpression == 100) {
             canvasCtx.putImageData( id, x1, y1 );
             } else {
@@ -88,7 +98,7 @@ function color(canvasCtx, id, x1, y1, probabilityOfExpression, finitePattern, fi
             stack.push([x1,y1]);
         } else if((probabilityOfExpression === 100 && canvasCtx.getImageData(x1 +1, y1, 1, 1).data[3]  === 0) ||
         (probabilityOfExpression != 100 && !visitedPixels.has(`${x1+1},${y1}`)&& 
-        canvasCtx.getImageData(x1+1, y1, 1, 1).data[3] === 0)) {
+        (canvasCtx.getImageData(x1+1, y1, 1, 1).data[3] === 0))) {
             x1=x1+1;
             if (probabilityOfExpression == 100) {
                 canvasCtx.putImageData( id, x1, y1 );
@@ -99,7 +109,7 @@ function color(canvasCtx, id, x1, y1, probabilityOfExpression, finitePattern, fi
                 stack.push([x1,y1]);
          } else if((probabilityOfExpression === 100 && canvasCtx.getImageData(x1 -1, y1, 1, 1).data[3]  === 0) ||
          (probabilityOfExpression != 100 && !visitedPixels.has(`${x1-1},${y1}`)&& 
-            canvasCtx.getImageData(x1-1, y1, 1, 1).data[3] === 0)) {
+            (canvasCtx.getImageData(x1-1, y1, 1, 1).data[3] === 0))) {
             x1=x1-1;
             if (probabilityOfExpression == 100) {
                 canvasCtx.putImageData( id, x1, y1 );
@@ -110,7 +120,7 @@ function color(canvasCtx, id, x1, y1, probabilityOfExpression, finitePattern, fi
                 stack.push([x1,y1]);
         }else if( (probabilityOfExpression === 100 && canvasCtx.getImageData(x1, y1 - 1, 1, 1).data[3]  === 0) ||
         (probabilityOfExpression != 100 && !visitedPixels.has(`${x1},${y1-1}`) && 
-        canvasCtx.getImageData(x1, y1-1, 1, 1).data[3] === 0))  {
+        (canvasCtx.getImageData(x1, y1-1, 1, 1).data[3] === 0)))  {
             y1=y1-1;
             if (probabilityOfExpression == 100) {
                 canvasCtx.putImageData( id, x1, y1 );
@@ -121,7 +131,7 @@ function color(canvasCtx, id, x1, y1, probabilityOfExpression, finitePattern, fi
                 stack.push([x1,y1]);
          } else if((probabilityOfExpression === 100 && canvasCtx.getImageData(x1, y1 + 1, 1, 1).data[3]  === 0) ||
          (probabilityOfExpression != 100 && !visitedPixels.has(`${x1},${y1+1}`) && 
-         canvasCtx.getImageData(x1, y1+1, 1, 1).data[3] === 0)) {
+         (canvasCtx.getImageData(x1, y1+1, 1, 1).data[3] === 0))) {
             y1=y1+1;
             if (probabilityOfExpression == 100) {
                 canvasCtx.putImageData( id, x1, y1 );
@@ -141,25 +151,28 @@ function color(canvasCtx, id, x1, y1, probabilityOfExpression, finitePattern, fi
             x1y1Colored = true;
         }
          }
-
-        if(finiteTries.state >5000 || (finitePattern && (finiteTries.state > finiteLimit))) {
-            break;
-        } 
+         limitColorTries++;
+    }
+    if(finitePattern) {
+        finiteTries.state = 0;
     }
 }
+
 function colorPattern(x1,y1,id,canvasCtx, probabilityOfExpression, colorMap, finitePattern,finiteTries,finiteLimit) {
+    console.log("coloring Pattern");
     var colorAtPoint = horseColorMapCtx.getImageData(x1, y1, 1, 1);
     var colorStringKey = colorToString(colorAtPoint);
-    console.log("color: " + colorStringKey + " point x: " + x1 + " point y: " +y1);
     if (colorMap.has(colorStringKey)) {
         if (colorMap.get(colorStringKey) != 0) {
+            console.log("old location Pattern");
         canvasCtx.putImageData( id, x1, y1 );
     }
     } else {
-        if((helpers.randomIntFromInterval(0,100) <= probabilityOfExpression && (finitePattern && (finiteTries.state <= finiteLimit)))
-        || (helpers.randomIntFromInterval(0,100) <= probabilityOfExpression && !finitePattern)) {
+        if((helpers.randomIntFromInterval(0,100) < probabilityOfExpression && (finitePattern && (finiteTries.state < finiteLimit)))
+        || (helpers.randomIntFromInterval(0,100) < probabilityOfExpression && !finitePattern)) {
             colorMap.set(colorStringKey, 1); 
             canvasCtx.putImageData(id, x1, y1);
+            console.log("new location Pattern");
             finiteTries.state++;
         } else if((finitePattern && (finiteTries.state <= finiteLimit)) || !finitePattern){
             colorMap.set(colorStringKey, 0);
@@ -172,6 +185,8 @@ function colorPattern(x1,y1,id,canvasCtx, probabilityOfExpression, colorMap, fin
 export const horseRecoloring = {
     horseHolder,
     horseHolderCtx,
+    visitedPixels,
     colorHorse,
+    colorMap,
     color
   }
