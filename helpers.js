@@ -69,12 +69,10 @@ function randomWorldWilds(horse, minRow, maxRow, minCol, maxCol) {
 
   function generateMap(map) {
     var itemHolder;
-    console.log("Map background: " + map.mapBackground)
     document.getElementById("theCanvas").className = map.mapBackground;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (var i = 0; i<15; i++) {
       for (var j = 0; j < 20; j++) {
-        //console.log(worldMapsStore.worldMaps.maps[worldMapsStore.worldMaps.mapLayout[0][2]]);
         if(playerCharacter.activeMap.mapLayout[i][j] != 0 && playerCharacter.activeMap.mapLayout[i][j] > 0) {
           itemHolder = playerCharacter.activeMap[playerCharacter.activeMap.mapLayout[i][j]];
           drawEnv(itemHolder, i, j)
@@ -243,6 +241,14 @@ function randomWorldWilds(horse, minRow, maxRow, minCol, maxCol) {
     }
   }
 
+  function findHorseByName(name) {
+    for (var i = 0; i<playerCharacter.playerHorses.length; i++) {
+      if (playerCharacter.playerHorses[i].horseName == name) {
+        return playerCharacter.playerHorses[i];
+      }
+    }
+  }
+
   function clearRidenHorses() {
     for (var i = 0; i<playerCharacter.playerHorses.length; i++) {
       playerCharacter.playerHorses[i].horseBeingRidden = "N";
@@ -254,7 +260,6 @@ function randomWorldWilds(horse, minRow, maxRow, minCol, maxCol) {
       document.getElementById("menuHorseExpandList").removeChild(document.getElementById(name));
     }
     playerCharacter.playerHorses = playerCharacter.playerHorses.filter(horse => horse.horseName !== name);
-    console.log("REMOVED: " + name + " " + playerCharacter.playerHorses);
 
   }
   
@@ -330,5 +335,6 @@ function randomWorldWilds(horse, minRow, maxRow, minCol, maxCol) {
     music,
     loadSound,
     playSound,
-    toggleSoundButton
+    toggleSoundButton,
+    findHorseByName
   }

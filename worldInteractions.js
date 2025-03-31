@@ -70,7 +70,6 @@ function putDownItem() {
     var playersItem = playerCharacter.playerItems.has(itemToCollect.item.name) ? playerCharacter.playerItems.get(itemToCollect.item.name) : "";
     if(playersItem == "") {
     itemToCollect.item.ownedByPlayer++;
-    console.log(itemToCollect.item.name + "   " + itemToCollect.item.ownedByPlayer);
     playerCharacter.playerItems.set(itemToCollect.item.name, itemToCollect.item);
   } else {
     playersItem.ownedByPlayer++;
@@ -95,13 +94,9 @@ function putDownItem() {
       || playerCharacter.activeMap[playerCharacter.activeMap.mapLayout[playerCharacter.SpriteRowPos-1][playerCharacter.SpriteColPos]] == gameImages.stoneHome
       || playerCharacter.activeMap[playerCharacter.activeMap.mapLayout[playerCharacter.SpriteRowPos-1][playerCharacter.SpriteColPos]] == gameImages.tower
     ) {
-      console.log("Home");
-      console.log("PLAYER col: " + playerCharacter.SpriteColPos + " PLAYER row: " + playerCharacter.SpriteRowPos);
       for(var i = 0; i<npcFunctionality.NPCs.length; i++) {
-      console.log(npcFunctionality.NPCs[i].name + " col: " + npcFunctionality.NPCs[i].col + " row: " + npcFunctionality.NPCs[i].row);
         if(npcFunctionality.NPCs[i].row == playerCharacter.SpriteRowPos-1 && npcFunctionality.NPCs[i].col == playerCharacter.SpriteColPos) {
           NPCAtHome = npcFunctionality.NPCs[i];
-          console.log("the NPC is = " + NPCAtHome.name + " Col: " + NPCAtHome.col);
           break;
         }
       }
@@ -114,9 +109,7 @@ function putDownItem() {
         knockButton.addEventListener("click", () => npcFunctionality.enterHome(NPCAtHome));
         atHomeNotify.appendChild(knockButton);
         document.getElementById("eventInterface").appendChild(atHomeNotify);
-    } else {
-      console.log("NO NPC HERE!");
-    }
+    } 
     }
 
   }

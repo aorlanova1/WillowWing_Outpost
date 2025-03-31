@@ -43,14 +43,49 @@ class item {
 }
 
 class horse {
-  constructor(horseBase,maneBase,maneShade,maneColor,baseColor,markings, gradient,interested,nervous,stuborn,trecherous) {
+  constructor(horseBase,maneBase,interested,nervous,stuborn,trecherous) {
   this.horseBase = horseBase;
   this.maneBase = maneBase;
-  this.maneShade = maneShade;
-  this.maneColor = maneColor;
-  this.baseColor = baseColor;
-  this.markings = markings;
-  this.gradient = gradient;
+  this.species = "H";
+
+  this.redBodyExpress = "";
+  this.greenBodyExpress = "";
+  this.blueBodyExpress = "";
+  this.greyBodyExpress = "";
+  this.redBodyLevel = "";
+  this.blueBodyLevel = "";
+  this.greenBodyLevel = "";
+
+  this.redManeExpress = "";
+  this.greenManeExpress = "";
+  this.blueManeExpress = "";
+  this.greyManeExpress = "";
+  this.redManeLevel = "";
+  this.blueManeLevel = "";
+  this.greenManeLevel = "";
+
+  this.faceMarkingGene1 = "";
+  this.faceMarkingGene2 = "";
+  this.faceMarkingGene3 = "";
+  this.neckMarkingGene1 = "";
+  this.neckMarkingGene2 = "";
+  this.chestMarkingGene1 = "";
+  this.chestMarkingGene2 = "";
+  this.bodyMarkingGene1 = "";
+  this.bodyMarkingGene2 = "";
+  this.bodyMarkingGene3 = "";
+  this.rumpMarkingGene1 = "";
+  this.rumpMarkingGene2 = "";
+  this.frontLegMarkingGene1 = "";
+  this.frontLegMarkingGene2 = "";
+  this.frontLegMarkingGene3 = "";
+  this.backLegMarkingGene1 = "";
+  this.backLegMarkingGene2 = "";
+  this.backLegMarkingGene3 = "";
+  this.leftExpressionGene = "";
+  this.rightExpressionGene = "";
+
+
   this.spawnMap = "";
   this.interested = interested;
   this.nervous = nervous;

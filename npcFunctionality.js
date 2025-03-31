@@ -230,7 +230,6 @@ function acceptQuest(questNumber, NPC) {
 
 function gossip(NPC) {
   var relationshipList = worldNPCs.getNPCRelationships();
-  console.log(relationshipList);
   var npcLiked = relationshipList[NPC.name]["likedBy"];
   var npcDisliked = relationshipList[NPC.name]["dislikedBy"];
   var randomNum;
@@ -246,7 +245,6 @@ function gossip(NPC) {
 if (npcLiked.length > 0) {
     for (var i = 0; i<npcLiked.length; i++) {
       randomNum = helpers.randomIntFromInterval(1,3);
-      console.log(npcLiked[i].name);
       if(randomNum == 3) {
         npcLiked[i].NPCRelationship++;
         helpers.notifyPlayer("Word got around that you did " + NPC.name + " a favor! " + npcLiked[i].name + " is happy you helped! Relationship went up!");
@@ -261,12 +259,10 @@ function startQuest(NPCAtHome) {
   var NPCQuestList = worldNPCs.getNPCQuests();
   const NPCname = NPCAtHome.name;
   const npcQLevel = NPCAtHome.questLevel;
-  console.log("NAME: " + NPCname + " level: " + npcQLevel);
   const possibleQuests = NPCQuestList[NPCname][npcQLevel];
   var questNumber = helpers.randomIntFromInterval(0, possibleQuests.length-1);
   var questHolder = possibleQuests[questNumber];
   addNPCDialogue(questHolder.dialogueStart);
-  console.log("quest # = " + questNumber);
   if(questHolder.constructor.name == "shopQuest") {
 
     addCharacterDialogue("I'll have a look.", "follow " + NPCAtHome.name);

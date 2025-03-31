@@ -28,11 +28,6 @@ function saveGame() {
                 ...horse, 
                 horseBase: horse.horseBase.src, 
                 maneBase: horse.maneBase.src,
-                maneShade: horse.maneShade.src,
-                maneColor: horse.maneColor.src,
-                baseColor: horse.baseColor.src,
-                markings: horse.markings.src,
-                gradient: horse.gradient.src,
                 HorseMapPosRow: horse.HorseMapPosRow,
                 HorseMapPosCol: horse.HorseMapPosCol,
                 HorsePosRow: horse.HorsePosRow,
@@ -69,31 +64,17 @@ function loadGame() {
         const horseBaseImg = new Image(); 
         horseBaseImg.src = horse.horseBase; 
 
-        const maneShadeImg = new Image(); 
-        maneShadeImg.src = horse.maneShade; 
-
-        const maneColorImg = new Image(); 
-        maneColorImg.src = horse.maneColor; 
-
-        const baseColoreImg = new Image(); 
-        baseColoreImg.src = horse.baseColor; 
-
-        const markingsImg = new Image(); 
-        markingsImg.src = horse.markings; 
-
-        const gradientImg = new Image(); 
-        gradientImg.src = horse.gradient; 
-
         const maneBaseImg = new Image(); 
         maneBaseImg.src = horse.maneBase; 
 
         horse.horseBase = horseBaseImg;
         horse.maneBase =  maneBaseImg;
-        horse.maneShade =  maneShadeImg;
-        horse.maneColor = maneColorImg;
-        horse.baseColor =  baseColoreImg
-        horse.markings =  markingsImg;
-        horse.gradient =  gradientImg;
+
+        const horseSpriteSheet = new Image();
+        horseSpriteSheet.src = horse.horseSpriteSheet;
+        horseSpriteSheet.onload = function() {
+            horse.horseSpriteSheet = horseSpriteSheet;
+        };
         horse.spawnMap = horse.HorseMapPosRow != null ? worldMapsStore.worldMaps.maps[worldMapsStore.worldMaps.mapLayout[horse.HorseMapPosRow][horse.HorseMapPosCol]] : 0;
     });
     playerCharacter.playerCoin = JSON.parse(localStorage.getItem("playerCoin"));
