@@ -69,6 +69,12 @@ function loadGame() {
 
         horse.horseBase = horseBaseImg;
         horse.maneBase =  maneBaseImg;
+
+        const horseSpriteSheet = new Image();
+        horseSpriteSheet.src = horse.horseSpriteSheet;
+        horseSpriteSheet.onload = function() {
+            horse.horseSpriteSheet = horseSpriteSheet;
+        };
         horse.spawnMap = horse.HorseMapPosRow != null ? worldMapsStore.worldMaps.maps[worldMapsStore.worldMaps.mapLayout[horse.HorseMapPosRow][horse.HorseMapPosCol]] : 0;
     });
     playerCharacter.playerCoin = JSON.parse(localStorage.getItem("playerCoin"));
@@ -85,7 +91,6 @@ function loadGame() {
 
 function initializeGame() {
     wildHorses.createWilds();
-    wildHorses.createHorseTESTING();
     helpers.generateMap(playerCharacter.activeMap);
       helpers.drawSprite();
       menus.initializeMenus();
@@ -96,7 +101,6 @@ function initializeGame() {
 
 function initializeNewGame() {
     wildHorses.createWilds();
-    wildHorses.createHorseTESTING();
     helpers.generateMap(playerCharacter.activeMap);
       helpers.drawSprite();
       menus.initializeMenus();

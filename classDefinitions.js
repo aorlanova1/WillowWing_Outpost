@@ -56,7 +56,7 @@ class horse {
   this.blueBodyLevel = "";
   this.greenBodyLevel = "";
 
-  this.redManeExpress
+  this.redManeExpress = "";
   this.greenManeExpress = "";
   this.blueManeExpress = "";
   this.greyManeExpress = "";

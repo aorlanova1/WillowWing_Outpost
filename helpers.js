@@ -241,6 +241,14 @@ function randomWorldWilds(horse, minRow, maxRow, minCol, maxCol) {
     }
   }
 
+  function findHorseByName(name) {
+    for (var i = 0; i<playerCharacter.playerHorses.length; i++) {
+      if (playerCharacter.playerHorses[i].horseName == name) {
+        return playerCharacter.playerHorses[i];
+      }
+    }
+  }
+
   function clearRidenHorses() {
     for (var i = 0; i<playerCharacter.playerHorses.length; i++) {
       playerCharacter.playerHorses[i].horseBeingRidden = "N";
@@ -275,7 +283,7 @@ function randomWorldWilds(horse, minRow, maxRow, minCol, maxCol) {
   }
 
   function playSound() {
-    //music.play();
+    music.play();
   }
 
   function toggleSoundButton() {
@@ -327,5 +335,6 @@ function randomWorldWilds(horse, minRow, maxRow, minCol, maxCol) {
     music,
     loadSound,
     playSound,
-    toggleSoundButton
+    toggleSoundButton,
+    findHorseByName
   }
