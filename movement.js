@@ -312,13 +312,13 @@ function moveCharacter(key) {
   function moveHorses() {
     for (var i = 0; i<5; i++) {
       if (wildHorses.allWildHorses[i].HorseMapPosRow === playerCharacter.spriteMapRow && wildHorses.allWildHorses[i].HorseMapPosCol === playerCharacter.spriteMapCol
-         && playerCharacter.spriteMapRow != 3 && playerCharacter.spriteMapCol != 1) {
+         && playerCharacter.spriteMapRow != -1 && playerCharacter.spriteMapCol != -1) {
         helpers.animateHorse(wildHorses.allWildHorses[i]);
       moveHorsePhysical(helpers.randomIntFromInterval(28,100), wildHorses.allWildHorses[i]);
     } else if(wildHorses.allWildHorses[i].HorseMapPosRow == playerCharacter.spriteMapRow && wildHorses.allWildHorses[i].HorseMapPosCol == playerCharacter.spriteMapCol
-      && playerCharacter.spriteMapRow == 3 && playerCharacter.spriteMapCol == 1)  {
+      && playerCharacter.spriteMapRow == -1 && playerCharacter.spriteMapCol == -1)  {
         helpers.animateHorse(wildHorses.allWildHorses[i]);
-      moveHorsePhysical(helpers.randomIntFromInterval(24,35), wildHorses.allWildHorses[i]);
+      moveHorsePhysical(helpers.randomIntFromInterval(28,35), wildHorses.allWildHorses[i]);
     }
   }
   if (playerCharacter.playerHorses.length != 0) {

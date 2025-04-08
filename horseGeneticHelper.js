@@ -35,8 +35,6 @@ var geneEnum = {
         2: horseRecoloringPatterns.legsBackBoth1,
         3: horseRecoloringPatterns.legsBackBoth2,
     }
-    //leftExpressionGene:
-    //rightExpressionGene:
 }
 
 var allGenes = ["faceMarking", "neckMarking", "chestMarking", "bodyMarking", "rumpMarking", "frontLegMarking", "backLegMarking"];

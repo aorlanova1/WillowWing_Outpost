@@ -168,9 +168,9 @@ function colorMane(r,g,b,a, horse) {
 }
 
 function drawEyes(r,g,b,a) {
-    d[0]   = r;
-    d[1]   = g;
-    d[2]   = b;
+    d[0]   = 0;
+    d[1]   = 0;
+    d[2]   = 0;
     d[3]   = 255;
     tempCtx.fillStyle = "rgba("+r+","+g+","+b+","+(a/255)+")";
     tempCtx.putImageData( id, 6, 8 );
@@ -181,6 +181,21 @@ function drawEyes(r,g,b,a) {
     tempCtx.putImageData( id, 19, 103 );
     tempCtx.putImageData( id, 45, 103 );
     tempCtx.putImageData( id, 51, 103 );
+
+    d[0]   = 200;
+    d[1]   = 200;
+    d[2]   = 200;
+    d[3]   = 100;
+
+    tempCtx.putImageData( id, 6, 9 );
+    tempCtx.putImageData( id, 38, 9);
+    tempCtx.putImageData( id, 25, 41 );
+    tempCtx.putImageData( id, 57, 41 );
+
+    tempCtx.putImageData( id, 5, 8 );
+    tempCtx.putImageData( id, 37, 8);
+    tempCtx.putImageData( id, 26, 40 );
+    tempCtx.putImageData( id, 58, 40 );
 
     horseRecoloring.horseHolderCtx.drawImage(tempCanvas, 0, 0);
 

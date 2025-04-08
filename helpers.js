@@ -202,6 +202,104 @@ function randomWorldWilds(horse, minRow, maxRow, minCol, maxCol) {
       horse.horseName = prompt("That name is already taken. Choose again.");
       validateHorseName(horse);
     } else {
+      console.log(
+        horse.horseName + " GENETICS: " +
+        "[" +
+        horse.redBodyExpress +
+        "]" +
+        "[" +
+        horse.greenBodyExpress +
+        "]" +
+        "[" +
+        horse.blueBodyExpress +
+        "]" +
+        "[" +
+        horse.greyBodyExpress +
+        "]" +
+        "[" +
+        horse.redBodyLevel +
+        "]" +
+        "[" +
+        horse.blueBodyLevel +
+        "]" +
+        "[" +
+        horse.greenBodyLevel +
+        "]" + " " + " " +
+      
+        "[" +
+        horse.redManeExpress +
+        "]" +
+        "[" +
+        horse.greenManeExpress +
+        "]" +
+        "[" +
+        horse.blueManeExpress +
+        "]" +
+        "[" +
+        horse.greyManeExpress +
+        "]" +
+        "[" +
+        horse.redManeLevel +
+        "]" +
+        "[" +
+        horse.blueManeLevel +
+        "]" +
+        "[" +
+        horse.greenManeLevel +
+        "]" + " " + " " +
+      
+        "[" +
+        horse.faceMarkingGene1 +
+        " " +
+        horse.faceMarkingGene2 +
+        " " +
+        horse.faceMarkingGene3 +
+        "]" +
+        "[" +
+        horse.neckMarkingGene1 +
+        " " +
+        horse.neckMarkingGene2 +
+        "]" +
+        "[" +
+        horse.chestMarkingGene1 +
+        " " +
+        horse.chestMarkingGene2 +
+        "]" +
+        "[" +
+        horse.bodyMarkingGene1 +
+        " " +
+        horse.bodyMarkingGene2 +
+        " " +
+        horse.bodyMarkingGene3 +
+        "]" +
+        "[" +
+        horse.rumpMarkingGene1 +
+        " " +
+        horse.rumpMarkingGene2 +
+        "]" +
+        "[" +
+        horse.frontLegMarkingGene1 +
+        " " +
+        horse.frontLegMarkingGene2 +
+        " " +
+        horse.frontLegMarkingGene3 +
+        "]" +
+        "[" +
+        horse.backLegMarkingGene1 +
+        " " +
+        horse.backLegMarkingGene2 +
+        " " +
+        horse.backLegMarkingGene3 +
+        "]" +
+        " " +
+        " " +
+        "[" +
+        horse.leftExpressionGene +
+        "]" +
+        "[" +
+        horse.rightExpressionGene +
+        "]" 
+      )
       return;
     }
   }

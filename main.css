@@ -4,12 +4,32 @@
     position: absolute;
 }
 
+canvas {
+    image-rendering:pixelated;
+}
+
 * {
-    font-family:'Times New Roman', Times, serif;
+    font-family: "Cinzel", serif;
    }
 
+   button {
+    transition: background-color 0.6s ease;
+    border-radius: 5px;
+  }
+  button:hover {
+    background-color: rgb(255, 225, 57);
+  }
+
 #container {
-    margin-left: 28%;
+    border-radius: 3px;
+    position: fixed; /* ← changed from default/static */
+    top: 0;
+    left: 0;
+    margin-left: 23%;
+    transform: scale(1.2);
+    transform-origin: top left;
+    width: 700px; /* match your canvas */
+    height: 540px;
 }
 
 #buttonMenu {
@@ -35,9 +55,17 @@
 }
 
 #eventContainer {
+    border-radius: 3px;
+    border-width: 3px 3px;
+    border-style: solid;
+    border-color: rgb(147, 63, 2);
+    width: 700px;
+    height: 300px;
     display: flex;
     flex-direction: column-reverse;
     overflow: auto;
+    background-color: rosybrown;
+    margin-top: 530px; 
 }
 
 #menuExpand {
@@ -96,61 +124,78 @@
 #enterScreen {
     position: fixed;
     display: block;
-    height: 480px;
-    width: 640px;
+    height: 540px;
+    width: 700px;
+    background-repeat: no-repeat;
+    background-size: cover;
     background-image: url('assetsImg/main.png');
 }
 #eventInterface {
-    height: 100px !important;
-    width: 600px !important;
     overflow: scroll;
-    border-radius: 2%;
-    background-color: rosybrown;
-    margin-top: 472px;
+    margin-top: 5px;
+    height: 300px;
 }
 
 .Background {
     background-image: url('assetsImg/background.png');
     clear: left;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .Swamp {
     background-image: url('assetsImg/swamp.png');
     clear: left;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .StoneSwamp {
     background-image: url('assetsImg/StoneSwamp.png');
     clear: left;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .Grass {
     background-image: url('assetsImg/Grass.png');
     clear: left;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .Beach {
     background-image: url('assetsImg/beach.png');
     clear: left;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .Path {
     background-image: url('assetsImg/path.png');
     clear: left;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .Savannah {
     background-image: url('assetsImg/savannah.png');
     clear: left;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .PlainGrass {
     background-image: url('assetsImg/GrassOnly.png');
     clear: left;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .WildBeach {
     background-image: url('assetsImg/WildBeach.png');
     clear: left;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .Game {
