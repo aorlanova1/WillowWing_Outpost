@@ -4,6 +4,19 @@
     position: absolute;
 }
 
+#theSkyCanvas {
+    background-color: rgb(3, 160, 251);
+    margin-left: 32px;
+    border-radius: 3px;
+    border-width: 3px 3px;
+    border-style: solid;
+    border-color: rgb(147, 63, 2);
+}
+
+#theSkyCanvasTime {
+    margin-left: 30px;
+}
+
 canvas {
     image-rendering:pixelated;
 }
@@ -118,7 +131,7 @@ canvas {
 
 #theSecondCanvas {
     background-color: rgb(10, 0, 59);
-    opacity: .001;
+    opacity: .7;
     position: absolute;
 }
 #enterScreen {

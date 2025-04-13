@@ -15,6 +15,7 @@ import { movement } from './movement.js';
 import { wildCatchGame } from './wildCatchingMiniGame.js';
 import {worldNPCs} from './npcDefinitions.js';
 import { gameState } from './saveAndLoad.js';
+import { skyUpdates } from './skyCanvas.js';
 
 var INTERVAL = 50;
 var myInterval;    
@@ -42,6 +43,17 @@ function loadComplete() {
       }
       helpers.loadSound();
       helpers.playSound();
+      const skyCanvasTime = document.getElementById("theSkyCanvasTime");
+      if (skyCanvasTime) {
+        const updateTime = () => {
+          skyCanvasTime.textContent = new Date().toLocaleString();
+        };
+        updateTime();
+        setInterval(updateTime, 1000); // update every second
+      }
+    
+      skyUpdates.updatesky();
+      setInterval(skyUpdates.updatesky, 360000); 
   }
 
   function Tick() {
@@ -69,5 +81,5 @@ function loadComplete() {
     }
   };
 
-window.onload = loadComplete();
+window.onload = loadComplete;
       

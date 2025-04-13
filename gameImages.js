@@ -112,13 +112,13 @@ wheelbarrow.src = "assetsImg/wheelbarrow.png";
 
 
 //NPC art
-var annaIcon = "assetsImg/anna.png";
+var annaIcon = "assetsImg/annaIcon.png";
 var eightballIcon = "assetsImg/eightball.png";
-var damonIcon = "assetsImg/damon.png";
-var jigsIcon = "assetsImg/jigs.png";
+var damonIcon = "assetsImg/damonIcon.png";
+var jigsIcon = "assetsImg/jigsIcon.png";
 var mayorIcon = "assetsImg/mayor.png";
 var sravanthiIcon = "assetsImg/sravanthi.png";
-var scratIcon = "assetsImg/Scrat.png"
+var scratIcon = "assetsImg/scratIcon.png"
 
 //minigame assets
 var lasso = new Image();

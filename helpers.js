@@ -40,6 +40,10 @@ function randomIntFromIntervalForWilds(horseInput) {
     }
 }
 
+function getTime() {
+  return new Date();
+}
+
 function randomWorldWilds(horse, minRow, maxRow, minCol, maxCol) { 
   var wildMapCol = Math.floor(Math.random() * (maxCol - minCol + 1) + minCol);
   var wildMapRow = Math.floor(Math.random() * (maxRow - minRow + 1) + minRow);
@@ -434,5 +438,6 @@ function randomWorldWilds(horse, minRow, maxRow, minCol, maxCol) {
     loadSound,
     playSound,
     toggleSoundButton,
-    findHorseByName
+    findHorseByName,
+    getTime
   }
