@@ -75,6 +75,27 @@ function loadGame() {
         horseSpriteSheet.onload = function() {
             horse.horseSpriteSheet = horseSpriteSheet;
         };
+        if(horse.saddle != "") {
+        const horseTackSaddle = new Image();
+        horseTackSaddle.src = horse.saddle;
+        horseTackSaddle.onload = function() {
+            horse.saddle = horseTackSaddle;
+        };
+         }
+        if(horse.bridle != "") {
+            const horseTackBridle = new Image();
+            horseTackBridle.src = horse.bridle;
+            horseTackBridle.onload = function() {
+                horse.bridle = horseTackBridle;
+            };
+        }
+        if(horse.saddlePad != "") {
+            const horseTackSaddlePad = new Image();
+            horseTackSaddlePad.src = horse.saddlePad;
+            horseTackSaddlePad.onload = function() {
+                horse.saddlePad = horseTackSaddlePad;
+            };
+        }
         horse.spawnMap = horse.HorseMapPosRow != null ? worldMapsStore.worldMaps.maps[worldMapsStore.worldMaps.mapLayout[horse.HorseMapPosRow][horse.HorseMapPosCol]] : 0;
     });
     playerCharacter.playerCoin = JSON.parse(localStorage.getItem("playerCoin"));

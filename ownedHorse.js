@@ -191,7 +191,10 @@ function tackHorse(horseName, item) {
     }
 
 
-    if(!document.getElementById("selectPartner").contains(document.getElementById("dropDownBreedMenu"))) {
+    if(document.getElementById("selectPartner").contains(document.getElementById("dropDownBreedMenu"))) {
+      document.getElementById("selectPartner").removeChild(document.getElementById("dropDownBreedMenu"));
+      document.getElementById("selectPartner").removeChild(document.getElementById("breedButton"));
+    }
       var dropDownBreedMenu = document.createElement('SELECT');
       dropDownBreedMenu.id = "dropDownBreedMenu";
       var submitBreed = document.createElement('button');
@@ -212,38 +215,8 @@ function tackHorse(horseName, item) {
       });
       document.getElementById("selectPartner").appendChild(dropDownBreedMenu);
       document.getElementById("selectPartner").appendChild(submitBreed);
-  } else {
-    // Remove old dropdown and submit button first
-    document.getElementById("selectPartner").removeChild(document.getElementById("dropDownBreedMenu"));
-    document.getElementById("selectPartner").removeChild(document.getElementById("breedButton"));
-
-    // Create new dropdown and submit button again
-    dropDownBreedMenu = document.createElement('SELECT');
-    dropDownBreedMenu.id = "dropDownBreedMenu";
-    submitBreed = document.createElement('button');
-    submitBreed.id = "breedButton";
-    submitBreed.textContent = "Breed";
-
-    playerCharacter.playerHorses.forEach(horsie => {
-      if (horsie.horseName != horse.horseName) {
-        var horseToBreed = document.createElement('option');
-        horseToBreed.id = horsie.horseName;
-        horseToBreed.value = horsie.horseName;
-        horseToBreed.text = horsie.horseName;
-        dropDownBreedMenu.add(horseToBreed);
-      }
-    });
-
-    submitBreed.addEventListener("click", () => {
-      var horse1 = helpers.findHorseByName(dropDownBreedMenu.value);
-      breedTwoHorses(horse1, horse);
-    });
-
-    // Reattach the new dropdown and submit button
-    document.getElementById("selectPartner").appendChild(dropDownBreedMenu);
-    document.getElementById("selectPartner").appendChild(submitBreed);
-  }
-  }
+  } 
+  
 
   function makeHorseMenu() {
     playerCharacter.playerHorses.forEach(horse => {
