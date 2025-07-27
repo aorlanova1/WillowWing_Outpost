@@ -385,7 +385,7 @@ function randomWorldWilds(horse, minRow, maxRow, minCol, maxCol) {
   }
 
   function playSound() {
-    music.play();
+    //music.play();
   }
 
   function toggleSoundButton() {

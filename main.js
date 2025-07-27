@@ -54,6 +54,8 @@ function loadComplete() {
     
       skyUpdates.updatesky();
       setInterval(skyUpdates.updatesky, 360000); 
+      skyUpdates.animateWeather();
+      setInterval(skyUpdates.animateWeather, 100); 
   }
 
   function Tick() {

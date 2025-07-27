@@ -1,14 +1,60 @@
+import { rainbowFact } from "./rainbowFactory.js";
+
 var skyCanvas = document.getElementById("theSkyCanvas");
 if (skyCanvas) {
     var skyCtx = skyCanvas.getContext("2d");
   }
 
-
+var weather = {
+    cloudLevel: "",
+    rainLevel: "",
+}
 
 function updatesky() {
     if (skyCanvas) {
         updateColor();
     }
+    weather.cloudLevel = Math.floor(Math.random() * 50);
+    weather.rainLevel = Math.floor(Math.random() * 50);
+}
+
+function animateWeather() {
+    skyCtx.clearRect(0, 0, 250, 200);
+    if(rainbowFact.clouds.length == 0) {
+        if(weather.cloudLevel >0) {
+            rainbowFact.makeClouds(weather.cloudLevel);
+        }
+    }
+    if(rainbowFact.rainSky.length == 0) {
+        if(weather.rainLevel >0) {
+            rainbowFact.makeRainSky(weather.rainLevel);
+        }
+    }
+    rainbowFact.clouds.forEach(cloud => {
+        if (cloud.x >= -200 && cloud.x < 250) {
+            skyCtx.drawImage(cloud.icon, cloud.x, cloud.y);
+            cloud.x++
+        } else {
+            cloud.x = -199;
+        }
+    });
+    var d = [];
+    d[0]   = 100;
+    d[1]   = 105;
+    d[2]   = 255;
+    d[3]   = 200;
+    skyCtx.strokeStyle = "rgba("+d[0]+","+d[1] +","+d[2]+","+(d[3]/255)+")";
+    rainbowFact.rainSky.forEach(rainDrop => {
+        if(rainDrop[1] < 250) {
+            skyCtx.beginPath(); 
+            skyCtx.moveTo(rainDrop[0], rainDrop[1]); 
+            skyCtx.lineTo(rainDrop[0], rainDrop[1]+5); 
+            skyCtx.stroke();
+            rainDrop[1] += 20;
+        } else {
+            rainDrop[1] = 0;
+        }
+    });
 }
 
 function updateColor() {
@@ -133,5 +179,6 @@ function updateColor() {
 }
   
 export const skyUpdates = {
-    updatesky
+    updatesky,
+    animateWeather
 }
