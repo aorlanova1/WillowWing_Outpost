@@ -3,7 +3,6 @@ import { worldMapsStore } from './maps.js';
 import { items } from './items.js';
 import { horsePhysical } from './horseAttributes.js';
 import { classDefinitions } from './classDefinitions.js';
-import {npcFunctionality} from './npcFunctionality.js';
 import { helpers } from './helpers.js';
 import { playerCharacter } from './playerCharacter.js';
 import { menus } from './menus.js';
@@ -86,32 +85,12 @@ function putDownItem() {
   }
 
   function checkSuroundings() {
-    if(document.contains(document.getElementById("knock"))) { 
-    document.getElementById("eventInterface").removeChild(document.getElementById("knock"));
-    }
-    var NPCAtHome = "";
     if(playerCharacter.activeMap[playerCharacter.activeMap.mapLayout[playerCharacter.SpriteRowPos-1][playerCharacter.SpriteColPos]] == gameImages.home
       || playerCharacter.activeMap[playerCharacter.activeMap.mapLayout[playerCharacter.SpriteRowPos-1][playerCharacter.SpriteColPos]] == gameImages.stoneHome
       || playerCharacter.activeMap[playerCharacter.activeMap.mapLayout[playerCharacter.SpriteRowPos-1][playerCharacter.SpriteColPos]] == gameImages.tower
     ) {
-      for(var i = 0; i<npcFunctionality.NPCs.length; i++) {
-        if(npcFunctionality.NPCs[i].row == playerCharacter.SpriteRowPos-1 && npcFunctionality.NPCs[i].col == playerCharacter.SpriteColPos) {
-          NPCAtHome = npcFunctionality.NPCs[i];
-          break;
-        }
-      }
-      if(NPCAtHome != "") {
-        var atHomeNotify = document.createElement('li');
-        atHomeNotify.id = "knock";
-        atHomeNotify.textContent = "Looks like there's someone home... ";
-        var knockButton = document.createElement('button');
-        knockButton.innerHTML = "knock";
-        knockButton.addEventListener("click", () => npcFunctionality.enterHome(NPCAtHome));
-        atHomeNotify.appendChild(knockButton);
-        document.getElementById("eventInterface").appendChild(atHomeNotify);
-    } 
+      //if player is at a home do something
     }
-
   }
 
   function isPlayerOnWild() {

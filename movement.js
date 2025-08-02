@@ -3,7 +3,6 @@ import { worldMapsStore } from './maps.js';
 import { items } from './items.js';
 import { horsePhysical } from './horseAttributes.js';
 import { classDefinitions } from './classDefinitions.js';
-import {npcFunctionality} from './npcFunctionality.js';
 import { helpers } from './helpers.js';
 import { playerCharacter } from './playerCharacter.js';
 import { menus } from './menus.js';
@@ -13,7 +12,7 @@ import { worldInteractions } from './worldInteractions.js';
 import { ownedHorse } from './ownedHorse.js';
 import { wildCatchGame } from './wildCatchingMiniGame.js';
 
-function moveCharacter(key) {
+function moveCharacter(key, playerCharacter) {
     switch (key) {
       case 28:  // Right arrow was pressed 
        if (playerCharacter.SpriteColPos < 19 && ((playerCharacter.activeMap.mapLayout[playerCharacter.SpriteRowPos][playerCharacter.SpriteColPos+1] == 0))) { 
@@ -53,7 +52,7 @@ function moveCharacter(key) {
       }
         break;
        } else if (playerCharacter.SpriteColPos >= 19) {
-        moveMaps(key);
+        moveMaps(key, playerCharacter);
        }
        else {
       break;
@@ -96,7 +95,7 @@ function moveCharacter(key) {
       }
         break;
        }else if (playerCharacter.SpriteColPos <= 0) {
-        moveMaps(key);
+        moveMaps(key, playerCharacter);
        } else {
           break;
        }
@@ -130,7 +129,7 @@ function moveCharacter(key) {
         }
         break;
        } else if (playerCharacter.SpriteRowPos <= 0) {
-        moveMaps(key);
+        moveMaps(key, playerCharacter);
        } 
        else {
         break;
@@ -165,14 +164,14 @@ function moveCharacter(key) {
       }
         break;
        } else if (playerCharacter.SpriteRowPos >= 14) {
-        moveMaps(key);
+        moveMaps(key, playerCharacter);
        } else {
           break;
        }
     }
   }
 
-  function moveMaps(key) {
+  function moveMaps(key, playerCharacter) {
     switch (key) {
       case 28:  // Right arrow was pressed 
        if (playerCharacter.SpriteColPos >= 19 && playerCharacter.spriteMapCol < worldMapsStore.worldMaps.mapSize.cols && worldMapsStore.worldMaps.mapLayout[playerCharacter.spriteMapRow][playerCharacter.spriteMapCol+1] != 0) { 	

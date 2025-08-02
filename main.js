@@ -3,7 +3,6 @@ import { worldMapsStore } from './maps.js';
 import { items } from './items.js';
 import { horsePhysical } from './horseAttributes.js';
 import { classDefinitions } from './classDefinitions.js';
-import {npcFunctionality} from './npcFunctionality.js';
 import { helpers } from './helpers.js';
 import { playerCharacter } from './playerCharacter.js';
 import { menus } from './menus.js';
@@ -13,9 +12,9 @@ import { worldInteractions } from './worldInteractions.js';
 import { ownedHorse } from './ownedHorse.js';
 import { movement } from './movement.js';
 import { wildCatchGame } from './wildCatchingMiniGame.js';
-import {worldNPCs} from './npcDefinitions.js';
 import { gameState } from './saveAndLoad.js';
 import { skyUpdates } from './skyCanvas.js';
+import { oliviaActions } from './Olivia/Olivia.js';
 
 var INTERVAL = 50;
 var myInterval;    
@@ -61,6 +60,7 @@ function loadComplete() {
   function Tick() {
     helpers.animationWater();
     movement.moveHorses();
+    oliviaActions.entry();
   }
 
   document['onkeydown'] = function(event) {
@@ -69,16 +69,16 @@ function loadComplete() {
     // Check for a special key value, and map it to ASCII.
     switch (key) {
       case 37:  // Left arrow, ASCII 29 
-      movement.moveCharacter(29);
+      movement.moveCharacter(29, playerCharacter);
         break;
       case 38:  // Up arrow, ASCII 30
-      movement.moveCharacter(30);
+      movement.moveCharacter(30, playerCharacter);
         break;
       case 39:  // Right arrow, ASCII 28  
-      movement.moveCharacter(28);
+      movement.moveCharacter(28, playerCharacter);
         break; 
       case 40:  // Down arrow, ASCII 31
-      movement.moveCharacter(31);
+      movement.moveCharacter(31, playerCharacter);
         break;
     }
   };

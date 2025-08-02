@@ -103,22 +103,6 @@ canvas {
     background: whitesmoke;
 }
 
-#NPC {
-    position: fixed;
-    margin-left: 160px;
-    margin-top: 70px;
-    display: none;
-    overflow: scroll;
-    height: 350px;
-    width: 390px;
-    background: whitesmoke;    
-}
-
-#exitNPCCard {
-    float: right;
-    background-color: #ab9191;    
-}
-
 #exitExpand {
     float: right;
     background-color: #ab9191;

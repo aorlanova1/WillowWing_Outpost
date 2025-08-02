@@ -3,7 +3,6 @@ import { worldMapsStore } from './maps.js';
 import { items } from './items.js';
 import { horsePhysical } from './horseAttributes.js';
 import { classDefinitions } from './classDefinitions.js';
-import {npcFunctionality} from './npcFunctionality.js';
 import { helpers } from './helpers.js';
 import { playerCharacter } from './playerCharacter.js';
 import { menus } from './menus.js';
@@ -13,13 +12,8 @@ import { worldInteractions } from './worldInteractions.js';
 import { ownedHorse } from './ownedHorse.js';
 import { movement } from './movement.js';
 import { wildCatchGame } from './wildCatchingMiniGame.js';
-import {worldNPCs} from './npcDefinitions.js';
+import { oliviaActions } from './Olivia/Olivia.js';
 
-//LOCAL STORAGE:
-// NPCs
-// player horses
-// player coin
-// inventory
 
 
 function saveGame() {
@@ -40,7 +34,6 @@ function saveGame() {
         });
         localStorage.setItem("playerHorses", JSON.stringify(horseToSave));
         localStorage.setItem("playerCoin", JSON.stringify(playerCharacter.playerCoin));
-        localStorage.setItem("NPCs", JSON.stringify(npcFunctionality.NPCs));
         localStorage.setItem("playerInventory", JSON.stringify(Array.from(playerCharacter.playerItems.entries())));
         localStorage.setItem("spriteMapCol", JSON.stringify(playerCharacter.spriteMapCol));
         localStorage.setItem("spriteMapRow", JSON.stringify(playerCharacter.spriteMapRow));
@@ -100,7 +93,6 @@ function loadGame() {
     });
     playerCharacter.playerCoin = JSON.parse(localStorage.getItem("playerCoin"));
     playerCharacter.playerItems =  new Map(JSON.parse(localStorage.getItem("playerInventory")));
-    npcFunctionality.NPCs = JSON.parse(localStorage.getItem("NPCs"));
     playerCharacter.spriteMapCol = JSON.parse(localStorage.getItem("spriteMapCol"));
     playerCharacter.spriteMapRow = JSON.parse(localStorage.getItem("spriteMapRow"));
     playerCharacter.SpriteColPos = JSON.parse(localStorage.getItem("SpriteColPos"));
@@ -117,18 +109,16 @@ function initializeGame() {
       menus.initializeMenus();
       menus.buttonEvents();
       helpers.updateBank();
-      worldNPCs.createQuests();
 }
 
 function initializeNewGame() {
     wildHorses.createWilds();
+    oliviaActions.entry();
     helpers.generateMap(playerCharacter.activeMap);
       helpers.drawSprite();
       menus.initializeMenus();
       menus.buttonEvents();
       helpers.updateBank();
-      worldNPCs.createNPCs();
-      worldNPCs.createQuests();
 }
 
 export const gameState = {

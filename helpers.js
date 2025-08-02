@@ -3,7 +3,6 @@ import { worldMapsStore } from './maps.js';
 import { items } from './items.js';
 import { horsePhysical } from './horseAttributes.js';
 import { classDefinitions } from './classDefinitions.js';
-import {npcFunctionality} from './npcFunctionality.js';
 import { playerCharacter } from './playerCharacter.js';
 import { menus } from './menus.js';
 import { inventory } from './inventory.js';
@@ -127,6 +126,15 @@ function randomWorldWilds(horse, minRow, maxRow, minCol, maxCol) {
       playerCharacter.SpriteWidth, playerCharacter.SpriteHeight, playerCharacter.SpriteColPos*32, playerCharacter.SpriteRowPos*32, playerCharacter.SpriteWidth, playerCharacter.SpriteHeight);
   }
 
+    function drawOlivia(olivia) {
+    if(olivia.playerSpriteImage == null || olivia.playerSpriteImage == "") {
+      var putSprite = new Image();
+      putSprite.src = olivia.playerSprite;
+      olivia.playerSpriteImage = putSprite;
+    }
+    ctx.drawImage(olivia.playerSpriteImage, olivia.SpriteCol * olivia.SpriteWidth, olivia.SpriteRow * olivia.SpriteHeight, 
+      olivia.SpriteWidth, olivia.SpriteHeight, olivia.SpriteColPos*32, olivia.SpriteRowPos*32, olivia.SpriteWidth, olivia.SpriteHeight);
+  }
   function drawHorse(testHorse) {
 
     if(testHorse.horseSpriteSheet == "") {
@@ -365,20 +373,6 @@ function randomWorldWilds(horse, minRow, maxRow, minCol, maxCol) {
 
   }
   
-
-  function checkNPCLevel(NPC) {
-    if(NPC.NPCRelationship >= 0 && NPC.NPCRelationship <5) {
-      NPC.activeDialogue = NPC.dialogue1;
-      NPC.questLevel = 1;
-    } else if(NPC.NPCRelationship >= 5 && NPC.NPCRelationship <15) {
-      NPC.activeDialogue = NPC.dialogue2;
-      NPC.questLevel = 1;
-    } else if (NPC.NPCRelationship >= 15) {
-      NPC.activeDialogue = NPC.dialogue3;
-      NPC.questLevel = 1;
-    } 
-  }
-
   function loadSound() {
     music = new Audio('assetsSound/willow-wing.wav');
     music.loop = true;
@@ -429,7 +423,6 @@ function randomWorldWilds(horse, minRow, maxRow, minCol, maxCol) {
     loadCanvas,
     ctx,
     canvas,
-    checkNPCLevel,
     notifyPlayer,
     removePlayerHorse,
     clearRidenHorses,
@@ -439,5 +432,6 @@ function randomWorldWilds(horse, minRow, maxRow, minCol, maxCol) {
     playSound,
     toggleSoundButton,
     findHorseByName,
-    getTime
+    getTime,
+    drawOlivia
   }

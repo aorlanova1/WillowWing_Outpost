@@ -3,7 +3,6 @@ import { worldMapsStore } from './maps.js';
 import { items } from './items.js';
 import { horsePhysical } from './horseAttributes.js';
 import { classDefinitions } from './classDefinitions.js';
-import {npcFunctionality} from './npcFunctionality.js';
 import { helpers } from './helpers.js';
 import { playerCharacter } from './playerCharacter.js';
 import { inventory } from './inventory.js';
@@ -22,7 +21,6 @@ var menuExpandList;
 var menuHorseExpandList;
 var exitHorseCard;
 var exitExpandMenu;
-var npcMenuExpand;  
 var bankShow;
 var save;
 var toggleSound;
@@ -32,7 +30,6 @@ var toggleSound;
     menuHorseExpandList.style.display = "none";
     menuInventoryExpandList.style.display = "none";
     horseCard.style.display = "none";
-    npcMenuExpand.style.display = "none";
   }
 
   function initializeMenus() {
@@ -44,7 +41,6 @@ var toggleSound;
     menuHorseExpandList = document.getElementById('menuHorseExpandList')
     menuExpandList = document.getElementById('menuExpandList');
     exitHorseCard = document.getElementById('exitCard');
-    npcMenuExpand = document.getElementById('NPC');
     bankShow = document.getElementById('playerCoins');
     save = document.getElementById('saveButton');
     toggleSound = document.getElementById('sound');
@@ -89,7 +85,6 @@ var toggleSound;
     menuHorseExpandList,
     exitHorseCard,
     exitExpandMenu,
-    npcMenuExpand,
     bankShow,
     toggleSound,
     exitMenu,
